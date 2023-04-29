@@ -13,10 +13,21 @@ event = {
 			limit = {
 				has_origin = origin_incohesive
 			}
-			set_country_flag = ehof_precursor_spawned
-			set_country_flag = starting_event			# go away
-			country_event = {
-				id = ehof_incohesive.2
+			if = {
+				limit = { is_ai = yes }
+				capital_scope.solar_system = { 
+					set_star_flag = gigas_new_planets 
+					set_star_flag = ehof_ai_reset
+				}
+				country_event = { id = ehof_incohesive.8} #dummy event to fix scope
+			}
+			else_if = {
+				limit = { is_ai = no }
+				set_country_flag = ehof_precursor_spawned
+				set_country_flag = starting_event			# go away
+				country_event = {
+					id = ehof_incohesive.2
+				}
 			}
 		}
 	}
@@ -91,7 +102,79 @@ country_event = {
 				}
 			}
 			every_system_planet = {
-				ehofo_name_new_barren = yes
+				#ehofo_name_new_barren = yes DO NOT ASK ME WHY THIS DOESN'T WORK AS A SCRIPTED EFFECT BUT IT DOESN'T - Bread (Now frustrated)
+				random_list = {
+					0 = {
+						set_name = {
+							key = "ehofo_NEW_planet_1"
+							variable_string = "[solar_system.GetName]"
+						}
+						modifier = { add = 1 check_variable = { value = 1 which = ehof_origin_planet_count } }
+					}
+					0 = {
+						set_name = {
+							key = "ehofo_NEW_planet_2"
+							variable_string = "[solar_system.GetName]"
+						}
+						modifier = { add = 1 check_variable = { value = 2 which = ehof_origin_planet_count } }
+					}
+					0 = {
+						set_name = {
+							key = "ehofo_NEW_planet_3"
+							variable_string = "[solar_system.GetName]"
+						}
+						modifier = { add = 1 check_variable = { value = 3 which = ehof_origin_planet_count } }
+					}
+					0 = {
+						set_name = {
+							key = "ehofo_NEW_planet_4"
+							variable_string = "[solar_system.GetName]"
+						}
+						modifier = { add = 1 check_variable = { value = 4 which = ehof_origin_planet_count } }
+					}
+					0 = {
+						set_name = {
+							key = "ehofo_NEW_planet_5"
+							variable_string = "[solar_system.GetName]"
+						}
+						modifier = { add = 1 check_variable = { value = 5 which = ehof_origin_planet_count } }
+					}
+					0 = {
+						set_name = {
+							key = "ehofo_NEW_planet_6"
+							variable_string = "[solar_system.GetName]"
+						}
+						modifier = { add = 1 check_variable = { value = 6 which = ehof_origin_planet_count } }
+					}
+					0 = {
+						set_name = {
+							key = "ehofo_NEW_planet_7"
+							variable_string = "[solar_system.GetName]"
+						}
+						modifier = { add = 1 check_variable = { value = 7 which = ehof_origin_planet_count } }
+					}
+					0 = {
+						set_name = {
+							key = "ehofo_NEW_planet_8"
+							variable_string = "[solar_system.GetName]"
+						}
+						modifier = { add = 1 check_variable = { value = 8 which = ehof_origin_planet_count } }
+					}
+					0 = {
+						set_name = {
+							key = "ehofo_NEW_planet_9"
+							variable_string = "[solar_system.GetName]"
+						}
+						modifier = { add = 1 check_variable = { value = 9 which = ehof_origin_planet_count } }
+					}
+					0 = {
+						set_name = {
+							key = "ehofo_NEW_planet_10"
+							variable_string = "[solar_system.GetName]"
+						}
+						modifier = { add = 1 check_variable = { value = 10 which = ehof_origin_planet_count } }
+					}
+				}
 				every_moon = {
 					prev = {
 						save_global_event_target_as = ehofo_previous_planet
@@ -191,27 +274,22 @@ country_event = {
 			limit = {
 				any_owned_ship = {
 					OR = {
-						is_ship_size = constructor
-						is_ship_size = science
-						is_ship_size = corvette
+						ehof_is_construction_ship = yes
+						ehof_is_science_ship = yes
+						is_ship_class = shipclass_military #Covers Cordyceptic military
 					}
 				}
 			}
+			set_location = event_target:ehofo_starbase.orbit
 			if = {
-				limit = {
-					exists = leader
-				}
-				leader = {
-					unassign_leader = this
-					save_global_event_target_as = ehofo_scientist
-				}
+				limit = { any_owned_ship = { is_ship_class = shipclass_military } }
+				set_home_base = event_target:ehofo_starbase
 			}
-			destroy_fleet = this
 		}
 		event_target:ehofo_new_world = {
 			change_pc = event_target:ehofo_old_world
 			generate_start_deposits_and_blockers = yes
-			generate_start_buildings_and_districts = yes
+			#generate_start_buildings_and_districts = yes Moving this to be later to enable inbuilt compatability with PD
 			generate_start_pops = yes
 			if = {
 				limit = {
@@ -254,50 +332,49 @@ country_event = {
 				assign_leader = event_target:ehofo_governor
 			}
 		}
-		create_fleet = {
-			effect = {
-				set_owner = prev
-				create_ship = {
-					name = random
-					random_existing_design = science
-				}
-				set_fleet_stance = evasive
-				#set_location = prev.capital_star
-				set_location = event_target:ehofo_new_system
-				set_leader = event_target:ehofo_scientist
-			}
-		}
-		create_fleet = {
-			effect = {
-				set_owner = prev
-				create_ship = {
-					name = random
-					random_existing_design = constructor
-				}
-				set_fleet_stance = evasive
-				set_location = event_target:ehofo_new_system
-			}
-		}
-		create_fleet = {
-			set_take_point = yes
-			effect = {
-				set_owner = prev
-				while = {
-					count = 3
-					create_ship = {
-						name = random
-						random_existing_design = corvette
-					}
-				}
-				set_location = event_target:ehofo_new_system
-			}
-		}
+		# create_fleet = {
+		# 	effect = {
+		# 		set_owner = prev
+		# 		create_ship = {
+		# 			name = random
+		# 			random_existing_design = science
+		# 		}
+		# 		set_fleet_stance = evasive
+		# 		#set_location = prev.capital_star
+		# 		set_location = event_target:ehofo_new_system
+		# 		set_leader = event_target:ehofo_scientist
+		# 	}
+		# }
+		# create_fleet = {
+		# 	effect = {
+		# 		set_owner = prev
+		# 		create_ship = {
+		# 			name = random
+		# 			random_existing_design = constructor
+		# 		}
+		# 		set_fleet_stance = evasive
+		# 		set_location = event_target:ehofo_new_system
+		# 	}
+		# }
+		# create_fleet = {
+		# 	set_take_point = yes
+		# 	effect = {
+		# 		set_owner = prev
+		# 		while = {
+		# 			count = 3
+		# 			create_ship = {
+		# 				name = random
+		# 				random_existing_design = corvette
+		# 			}
+		# 		}
+		# 		set_location = event_target:ehofo_new_system
+		# 	}
+		# }
 		clear_global_event_target = ehofo_old_world
 		clear_global_event_target = ehofo_old_system
 		clear_global_event_target = ehofo_new_world
 		clear_global_event_target = ehofo_new_system
 		clear_global_event_target = ehofo_starbase
-		clear_global_event_target = ehofo_scientist
 		clear_global_event_target = ehofo_governor
 		if = {
 			limit = {
@@ -641,11 +718,11 @@ country_event = {
 		has_origin = origin_incohesive
 	}
 	immediate = {
-		random_owned_planet = {
-			limit = {
-				is_planet_class = pc_ll_temperate
+		capital_scope = {
+			planet = {
+				save_global_event_target_as = ehof_origin_species_homeworld_fix
+				generate_start_buildings_and_districts = yes 
 			}
-			save_global_event_target_as = ehof_origin_species_homeworld_fix
 		}
 		species = {
 			set_species_homeworld = event_target:ehof_origin_species_homeworld_fix
@@ -699,6 +776,10 @@ system_event = {
 	id = ehof_incohesive.7
 	hide_window = yes
 	is_triggered_only = yes
+	trigger = {#don't remove survey data if owned (it means an AI was reset)
+		NOT = { exists = space_owner }
+	}
+
 	immediate = {
 		every_playable_country = {
 			prev = {
@@ -710,3 +791,18 @@ system_event = {
 		}
 	}
 }
+
+country_event = {
+	id = ehof_incohesive.8
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		has_origin = origin_incohesive
+		is_ai = yes
+	}
+
+	immediate = {
+		giga_reset_ai_start = yes
+	}
+}
+

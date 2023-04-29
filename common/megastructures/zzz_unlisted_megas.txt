@@ -58,7 +58,7 @@ relic_penrose_sphere_2 = {
 ehof_megastructure_wormhole_destination = {
 	entity = "ehof_artificial_wormhole_entity"
 	portrait = "GFX_megastructure_wormhole"
-	place_entity_on_planet_plane = no
+	place_entity_on_planet_plane = yes
 	construction_blocks_and_blocked_by = none
 	show_galactic_map_icon = no
 	bypass_type = ehof_wormhole_standard
@@ -223,6 +223,33 @@ katzen_forge_1 = {
 					}
 					set_location = fromfrom
 					set_fleet_flag = warforge_platform
+				}
+			}
+		}
+		solar_system = {
+			if = {
+				limit = { 
+					NOR = {
+						any_system_planet = {
+							OR = {
+								has_planet_flag = siegfried_world
+								is_planet_class = pc_giga_siegfried_world
+							}
+						}
+						starbase = {
+							fleet = {
+								has_modifier = warforge_detection
+							}
+						}
+					}
+				}
+				starbase = {
+					fleet = {
+						add_modifier = {
+							modifier = warforge_detection
+							days = -1
+						}
+					}
 				}
 			}
 		}

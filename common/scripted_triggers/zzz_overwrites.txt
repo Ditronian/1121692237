@@ -368,24 +368,14 @@ has_no_non_gate_megastructure = {
 					is_megastructure_type = eq_shipyard_2
 
 					is_megastructure_type = ehof_megastructure_phase0
-					is_megastructure_type = ehof_megastructure_phase1_activating
-					is_megastructure_type = ehof_megastructure_phase1_active
-					is_megastructure_type = ehof_megastructure_phase1_decommissioned
-					is_megastructure_type = ehof_megastructure_phase1_idle
-					is_megastructure_type = ehof_megastructure_phase2_activating
-					is_megastructure_type = ehof_megastructure_phase2_active
-					is_megastructure_type = ehof_megastructure_phase2_decommissioned
-					is_megastructure_type = ehof_megastructure_phase2_idle
-					is_megastructure_type = ehof_megastructure_phase3_activating
-					is_megastructure_type = ehof_megastructure_phase3_active
-					is_megastructure_type = ehof_megastructure_phase3_decommissioned
-					is_megastructure_type = ehof_megastructure_phase3_idle
-					is_megastructure_type = ehof_megastructure_phase4_activating
-					is_megastructure_type = ehof_megastructure_phase4_active
-					is_megastructure_type = ehof_megastructure_phase4_decommissioned
-					is_megastructure_type = ehof_megastructure_phase4_idle
+					is_megastructure_type = ehof_megastructure_phase1
+					is_megastructure_type = ehof_megastructure_phase2
+					is_megastructure_type = ehof_megastructure_phase3
+					is_megastructure_type = ehof_megastructure_phase4
 					is_megastructure_type = ehof_megastructure_restored
 					is_megastructure_type = ehof_megastructure_ruined
+					is_megastructure_type = ehof_megastructure_restored_origin
+					is_megastructure_type = ehof_megastructure_ruined_origin
 
 					is_megastructure_type = ehof_presphere_dyson
 					is_megastructure_type = ehof_presphere_ruined
@@ -997,24 +987,15 @@ has_any_megastructure_in_empire = {
 				has_megastructure = eq_shipyard_2
 
 				has_megastructure = ehof_megastructure_phase0
-				has_megastructure = ehof_megastructure_phase1_activating
-				has_megastructure = ehof_megastructure_phase1_active
-				has_megastructure = ehof_megastructure_phase1_decommissioned
-				has_megastructure = ehof_megastructure_phase1_idle
-				has_megastructure = ehof_megastructure_phase2_activating
-				has_megastructure = ehof_megastructure_phase2_active
-				has_megastructure = ehof_megastructure_phase2_decommissioned
-				has_megastructure = ehof_megastructure_phase2_idle
-				has_megastructure = ehof_megastructure_phase3_activating
-				has_megastructure = ehof_megastructure_phase3_active
-				has_megastructure = ehof_megastructure_phase3_decommissioned
-				has_megastructure = ehof_megastructure_phase3_idle
-				has_megastructure = ehof_megastructure_phase4_activating
-				has_megastructure = ehof_megastructure_phase4_active
-				has_megastructure = ehof_megastructure_phase4_decommissioned
-				has_megastructure = ehof_megastructure_phase4_idle
+				has_megastructure = ehof_megastructure_phase1
+				has_megastructure = ehof_megastructure_phase2
+				has_megastructure = ehof_megastructure_phase3
+				has_megastructure = ehof_megastructure_phase4
 				has_megastructure = ehof_megastructure_restored
 				has_megastructure = ehof_megastructure_ruined
+				has_megastructure = ehof_megastructure_restored_origin
+				has_megastructure = ehof_megastructure_ruined_origin
+				
 
 				has_megastructure = ehof_presphere_dyson
 				has_megastructure = ehof_presphere_ruined
@@ -1765,38 +1746,44 @@ habitable_planet = {
 		is_planet_class = pc_flusion_gaia_ecu
 
 		# Planetary Diversity
-		is_planet_class = pc_megaflorahive
-		is_planet_class = pc_megafloratol
-		is_planet_class = pc_pdhive1
-		is_planet_class = pc_pdhive2
-		is_planet_class = pc_bioforge
-		is_planet_class = pc_biocapital
-		is_planet_class = pc_biofort
-		is_pd_regular = yes
-		is_pd_gaia = yes
-		is_pd_rare = yes
+		is_pd_arcology = yes 
+		is_pd_hive_arcology = yes
+		is_pd_robot_arcology = yes
 	}
 }
 habitable_planet_not_urban = {
 	OR = {
 		# vanilla
-		is_planet_class = pc_desert
-		is_planet_class = pc_tropical
-		is_planet_class = pc_arid
-		is_planet_class = pc_continental
-		is_planet_class = pc_ocean
-		is_planet_class = pc_tundra
-		is_planet_class = pc_arctic
-		is_planet_class = pc_alpine
-		is_planet_class = pc_savannah
-		is_planet_class = pc_gaia
+		giga_is_desert = yes
+		giga_is_tropical = yes
+		giga_is_arid = yes
+		giga_is_continental = yes
+		giga_is_ocean = yes
+		giga_is_tundra = yes
+		giga_is_arctic = yes
+		giga_is_alpine = yes
+		giga_is_savannah = yes
+		giga_is_gaia = yes
 
 		# gigastructures
-		is_planet_class = pc_ll_temperate
-		is_planet_class = pc_ll_foggy
-		is_planet_class = pc_ll_torrid
-		is_planet_class = pc_giga_edge_of_eternity
+		giga_is_lifeless = yes
 		is_planet_class = pc_katzenland
+
+		#PD
+		is_pd_nuked = yes
+		is_pd_rare = yes
+		is_pd_exotic = yes
+		is_pd_hive_world = yes
+		is_pd_planet_for_aqua_trait = yes
+		is_pd_rare = yes
+		is_pd_unique = yes
+		is_pd_megaflora_hive = yes
+		is_pd_rare = yes
+		is_pd_shroud_world = yes
+		is_pd_aquatics = yes
+		is_pd_gaia = yes
+		is_pd_ocean = yes
+		is_pd_regular = yes
 	}
 }
 uses_habitat_capitals = {

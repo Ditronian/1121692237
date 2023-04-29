@@ -68,11 +68,10 @@ country_event = {
 					limit = {
 						is_moon = no
 						OR = {
-							is_planet_class = pc_barren
-							is_planet_class = pc_barren_cold
-							is_planet_class = pc_toxic
-							is_planet_class = pc_molten
-							is_planet_class = pc_frozen
+							giga_is_barren_cn = yes
+							giga_is_toxic = yes
+							giga_is_frozen = yes 
+							giga_is_molten = yes
 						}
 						solar_system = {
 							NOR = {
@@ -819,11 +818,10 @@ country_event = {
 					is_colony = no
 					is_artificial = no
 					OR = {
-						is_planet_class = pc_barren
-						is_planet_class = pc_barren_cold
-						is_planet_class = pc_toxic
-						is_planet_class = pc_frozen
-						is_planet_class = pc_molten
+						giga_is_barren_cn = yes
+						giga_is_toxic = yes
+						giga_is_frozen = yes 
+						giga_is_molten = yes
 					}
 					giga_valid_planet_wrecked_ship = yes
 				}
@@ -1240,7 +1238,7 @@ country_event = {
 		country_event = { id = giga_flavor_systems.2005 days = 6800 random = 1200 } #early space age Age, change to 20 years
 		remove_country_flag = machine_age
 		set_country_flag = atomic_age
-		set_primitive_age = atomic_age
+		set_pre_ftl_age = atomic_age
 		home_planet = {
 			while = {
 				count = 5
@@ -1372,7 +1370,7 @@ country_event = {
 		country_event = { id = giga_flavor_systems.2010 days = 6800 random = 1200 } #FTL
 		remove_country_flag = atomic_age
 		set_country_flag = early_space_age
-		set_primitive_age = early_space_age
+		set_pre_ftl_age = early_space_age
 		home_planet = {
 			while = {
 				count = 3
@@ -1588,7 +1586,7 @@ country_event = {
 			influence = 250
 		}
 		home_planet = {
-			remove_all_primitive_buildings = yes
+			remove_all_buildings = yes
 			add_building = building_major_capital
 			set_capital = yes
 			while = {

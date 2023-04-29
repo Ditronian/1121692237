@@ -520,17 +520,21 @@ country_event = {
 	location = event_target:urmazin_capital
 
 	option = {	# Continue
+		trigger = {
+			NOT = { has_country_flag = ehof_asked_already }
+		}
 		custom_gui = "enclave_ehof_trader_option"
 		name = "ehof_mega_trader.007.continue"
 		is_dialog_only = yes
 		response_text = "ehof_mega_trader.007.b.response.b"
+		hidden_effect = { set_country_flag = ehof_asked_already }
 	}
 
 	option = {	# Go back
 		custom_gui = "enclave_ehof_trader_option"
 		default_hide_option = yes
 		name = "ehof_goback"
-		hidden_effect = { country_event = { id = ehof_mega_trader.010 } }
+		hidden_effect = { country_event = { id = ehof_mega_trader.010 } remove_country_flag = ehof_asked_already}
 	}
 }
 
@@ -606,7 +610,7 @@ country_event = {
 
 	immediate = {
 		random_system_within_border = {
-			limit = { has_an_active_ehof = yes }
+			limit = { giga_has_an_active_ehof = yes }
 			star = { save_event_target_as = ehof_trader_evict_fleet }
 		}
 		every_owned_fleet = {
@@ -2236,7 +2240,7 @@ country_event = {
 
 	immediate = {
 		random_system_within_border = {
-			limit = { has_an_active_ehof = yes }
+			limit = { giga_has_an_active_ehof = yes }
 			remove_star_flag = ehof_trader_wormhole_active_@root.controller
 			save_event_target_as = ehof_remove_wormhole_one
 		}
@@ -2284,7 +2288,7 @@ fleet_event = {
 		}
 		controller = {
 			random_system_within_border = {
-				limit = { has_an_active_ehof = yes }
+				limit = { giga_has_an_active_ehof = yes }
 				set_star_flag = ehof_trader_wormhole_active_@root.controller
 				if = {
 					limit = {
@@ -2326,7 +2330,7 @@ fleet_event = {
 			clear_orders = yes
 			root.controller = {
 				random_system_within_border = {
-					limit = { has_an_active_ehof = yes }
+					limit = { giga_has_an_active_ehof = yes }
 					star = { save_event_target_as = ehof_trader_evict_fleet }
 				}
 			}
@@ -2359,7 +2363,7 @@ country_event = {
 
 	immediate = {
 		random_system_within_border = {
-			limit = { has_an_active_ehof = yes }
+			limit = { giga_has_an_active_ehof = yes }
 			remove_star_flag = ehof_trader_wormhole_active_@root
 			every_system_megastructure = {
 				limit = {
