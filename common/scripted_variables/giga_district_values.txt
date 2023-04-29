@@ -43,12 +43,11 @@
 
 ###########################################################
 # Alderson - ringworld x6
-@giga_alderson_cost						= 6000
-@giga_alderson_cost_sr					= 300
-@giga_alderson_maintenance				= 30
-@giga_alderson_maintenance_sr			= 12
-# Rework means different build time scale than cost
-@giga_alderson_district_buildtime		= 1440
+@giga_alderson_cost					= 12000
+@giga_alderson_cost_sr				= 600
+@giga_alderson_maintenance			= 60
+@giga_alderson_maintenance_sr		= 12
+@giga_alderson_district_buildtime	= 3840
 
 ###########################################################
 # Birch - ringworld x16 - see birch district file for specifics instead
