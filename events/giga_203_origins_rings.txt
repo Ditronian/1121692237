@@ -11,7 +11,6 @@ country_event = {
 	immediate = {
 		if = {
 			limit = { is_ai = yes }
-			capital_scope.solar_system = { set_star_flag = gigas_new_planets }
 			giga_reset_ai_start = yes
 		}
 		else = {
@@ -19,9 +18,11 @@ country_event = {
 				solar_system = {
 					remove_star_flag = sol_sector	# cleanup of stuff used to block New Frontiers subclasser
 					star = {
+						set_name = "Eye of Darkness"
 						add_deposit = d_dark_matter_deposit_2
 						while = { count = 5 giga_field_debris = yes }
-						giga_set_has_mega_flag = yes
+						set_planet_flag = has_megastructure
+						set_planet_flag = megastructure
 					}
 					while = { count = 5 giga_field_system_debris = yes }
 
@@ -39,11 +40,19 @@ country_event = {
 						init_effect = {
 							set_name = "Ring Section"
 							root = {
-								giga_set_ringworld_graphical_culture = {
-									TARGET = prev
-									SOURCE = this
-									SIZE = behemoth
-									TYPE = tech
+								switch = {
+									trigger = graphical_culture
+									humanoid_01		= { prev = { set_planet_entity = { entity = "humanoid_01_behemoth_tech_sector_entity"	} } }
+									plantoid_01		= { prev = { set_planet_entity = { entity = "plantoid_01_behemoth_tech_sector_entity"	} } }
+									mammalian_01	= { prev = { set_planet_entity = { entity = "mammalian_01_behemoth_tech_sector_entity"	} } }
+									reptilian_01	= { prev = { set_planet_entity = { entity = "reptilian_01_behemoth_tech_sector_entity"	} } }
+									avian_01		= { prev = { set_planet_entity = { entity = "avian_01_behemoth_tech_sector_entity"		} } }
+									molluscoid_01	= { prev = { set_planet_entity = { entity = "molluscoid_01_behemoth_tech_sector_entity"	} } }
+									fungoid_01		= { prev = { set_planet_entity = { entity = "fungoid_01_behemoth_tech_sector_entity"	} } }
+									arthropoid_01	= { prev = { set_planet_entity = { entity = "arthropoid_01_behemoth_tech_sector_entity"	} } }
+									lithoid_01		= { prev = { set_planet_entity = { entity = "lithoid_01_behemoth_tech_sector_entity"	} } }
+									necroid_01		= { prev = { set_planet_entity = { entity = "necroid_01_behemoth_tech_sector_entity"	} } }
+									default 		= { prev = { set_planet_entity = { entity = "mammalian_01_behemoth_tech_sector_entity"	} } }
 								}
 							}
 
@@ -53,7 +62,8 @@ country_event = {
 							set_planet_flag = forbid_guillis_planet_modifiers
 							set_planet_flag = gpm_has_planet_rings
 							set_planet_flag = hot_zone				# Real Space (Prevents Rings)
-							set_planet_flag = megastructure
+							set_planet_flag = megastructure			# Vanilla uses to check if a megastrucure can be built here
+							set_planet_flag = has_megastructure		# Vanilla uses to check if an orbital station can be built here
 							set_planet_flag = colony_event			# Vanilla uses to prevent unwanted events on planets
 							set_planet_flag = giga_ringworld_tit
 							set_planet_flag = giga_ringworld_beh
@@ -70,11 +80,19 @@ country_event = {
 						init_effect = {
 							set_name = "Ring Section"
 							root = {
-								giga_set_ringworld_graphical_culture = {
-									TARGET = prev
-									SOURCE = this
-									SIZE = behemoth
-									TYPE = seam
+								switch = {
+									trigger = graphical_culture
+									humanoid_01		= { prev = { set_planet_entity = { entity = "humanoid_01_behemoth_seam_sector_entity"	} } }
+									plantoid_01		= { prev = { set_planet_entity = { entity = "plantoid_01_behemoth_seam_sector_entity"	} } }
+									mammalian_01	= { prev = { set_planet_entity = { entity = "mammalian_01_behemoth_seam_sector_entity"	} } }
+									reptilian_01	= { prev = { set_planet_entity = { entity = "reptilian_01_behemoth_seam_sector_entity"	} } }
+									avian_01		= { prev = { set_planet_entity = { entity = "avian_01_behemoth_seam_sector_entity"		} } }
+									molluscoid_01	= { prev = { set_planet_entity = { entity = "molluscoid_01_behemoth_seam_sector_entity"	} } }
+									fungoid_01		= { prev = { set_planet_entity = { entity = "fungoid_01_behemoth_seam_sector_entity"	} } }
+									arthropoid_01	= { prev = { set_planet_entity = { entity = "arthropoid_01_behemoth_seam_sector_entity"	} } }
+									lithoid_01		= { prev = { set_planet_entity = { entity = "lithoid_01_behemoth_seam_sector_entity"	} } }
+									necroid_01		= { prev = { set_planet_entity = { entity = "necroid_01_behemoth_seam_sector_entity"	} } }
+									default 		= { prev = { set_planet_entity = { entity = "mammalian_01_behemoth_seam_sector_entity"	} } }
 								}
 							}
 
@@ -84,7 +102,8 @@ country_event = {
 							set_planet_flag = forbid_guillis_planet_modifiers
 							set_planet_flag = gpm_has_planet_rings
 							set_planet_flag = hot_zone				# Real Space (Prevents Rings)
-							set_planet_flag = megastructure
+							set_planet_flag = megastructure			# Vanilla uses to check if a megastrucure can be built here
+							set_planet_flag = has_megastructure		# Vanilla uses to check if an orbital station can be built here
 							set_planet_flag = colony_event			# Vanilla uses to prevent unwanted events on planets
 							set_planet_flag = giga_ringworld_tit
 							set_planet_flag = giga_ringworld_beh
@@ -219,16 +238,25 @@ country_event = {
 				set_planet_flag = forbid_guillis_planet_modifiers
 				set_planet_flag = gpm_has_planet_rings
 				set_planet_flag = hot_zone				# Real Space (Prevents Rings)
-				set_planet_flag = megastructure
+				set_planet_flag = megastructure			# Vanilla uses to check if a megastrucure can be built here
+				set_planet_flag = has_megastructure		# Vanilla uses to check if an orbital station can be built here
 				set_planet_flag = colony_event			# Vanilla uses to prevent unwanted events on planets
 				set_planet_flag = giga_ringworld_tit
 				set_planet_flag = giga_ringworld_beh
 				root = {
-					giga_set_ringworld_graphical_culture = {
-						TARGET = prev
-						SOURCE = this
-						SIZE = behemoth
-						TYPE = gaia_habitable
+					switch = {
+						trigger = graphical_culture
+						humanoid_01		= { prev = { set_planet_entity = { entity = "humanoid_01_behemoth_gaia_habitable_sector_entity"		} } }
+						plantoid_01		= { prev = { set_planet_entity = { entity = "plantoid_01_behemoth_gaia_habitable_sector_entity"		} } }
+						mammalian_01	= { prev = { set_planet_entity = { entity = "mammalian_01_behemoth_gaia_habitable_sector_entity"	} } }
+						reptilian_01	= { prev = { set_planet_entity = { entity = "reptilian_01_behemoth_gaia_habitable_sector_entity"	} } }
+						avian_01		= { prev = { set_planet_entity = { entity = "avian_01_behemoth_gaia_habitable_sector_entity"		} } }
+						molluscoid_01	= { prev = { set_planet_entity = { entity = "molluscoid_01_behemoth_gaia_habitable_sector_entity"	} } }
+						fungoid_01		= { prev = { set_planet_entity = { entity = "fungoid_01_behemoth_gaia_habitable_sector_entity"		} } }
+						arthropoid_01	= { prev = { set_planet_entity = { entity = "arthropoid_01_behemoth_gaia_habitable_sector_entity"	} } }
+						lithoid_01		= { prev = { set_planet_entity = { entity = "lithoid_01_behemoth_gaia_habitable_sector_entity"		} } }
+						necroid_01		= { prev = { set_planet_entity = { entity = "necroid_01_behemoth_gaia_habitable_sector_entity"		} } }
+						default 		= { prev = { set_planet_entity = { entity = "mammalian_01_behemoth_gaia_habitable_sector_entity"	} } }
 					}
 				}
 
@@ -239,9 +267,9 @@ country_event = {
 				remove_all_districts = yes
 
 				add_deposit = d_giga_arcane_generator
-				add_deposit = d_giga_decrepit_tunnels_1
-				add_deposit = d_giga_decrepit_tunnels_2
-				add_deposit = d_giga_decrepit_tunnels_3
+				add_deposit = d_decrepit_tunnels_1
+				add_deposit = d_decrepit_tunnels_2
+				add_deposit = d_decrepit_tunnels_3
 				add_deposit = d_great_ring_excavated_mountain
 				add_deposit = d_ringworld_capital_city
 				add_deposit = d_segment_rubble_3
@@ -351,7 +379,6 @@ country_event = {
 	immediate = {
 		if = {
 			limit = { is_ai = yes }
-			capital_scope.solar_system = { set_star_flag = gigas_new_planets }
 			giga_reset_ai_start = yes
 		}
 		else = {
@@ -359,8 +386,10 @@ country_event = {
 				solar_system = {
 					remove_star_flag = sol_sector	# cleanup of stuff used to block New Frontiers subclasser
 					star = {
+						set_name = "The Elder Void"
 						giga_field_debris = yes
-						giga_set_has_mega_flag = yes
+						set_planet_flag = has_megastructure
+						set_planet_flag = megastructure
 					}
 					while = { count = 2 giga_field_system_debris = yes }
 					spawn_megastructure = {
@@ -389,7 +418,8 @@ country_event = {
 							set_planet_flag = forbid_guillis_planet_modifiers
 							set_planet_flag = gpm_has_planet_rings
 							set_planet_flag = hot_zone				# Real Space (Prevents Rings)
-							set_planet_flag = megastructure
+							set_planet_flag = megastructure			# Vanilla uses to check if a megastrucure can be built here
+							set_planet_flag = has_megastructure		# Vanilla uses to check if an orbital station can be built here
 							set_planet_flag = colony_event			# Vanilla uses to prevent unwanted events on planets
 							set_planet_flag = giga_penrose
 						}
@@ -399,7 +429,8 @@ country_event = {
 				set_planet_flag = forbid_guillis_planet_modifiers
 				set_planet_flag = gpm_has_planet_rings
 				set_planet_flag = hot_zone				# Real Space (Prevents Rings)
-				set_planet_flag = megastructure
+				set_planet_flag = megastructure			# Vanilla uses to check if a megastrucure can be built here
+				set_planet_flag = has_megastructure		# Vanilla uses to check if an orbital station can be built here
 				set_planet_flag = colony_event			# Vanilla uses to prevent unwanted events on planets
 				set_planet_flag = giga_penrose
 
@@ -409,9 +440,9 @@ country_event = {
 				clear_deposits = yes
 				remove_all_districts = yes
 				add_deposit = d_giga_arcane_generator
-				add_deposit = d_giga_decrepit_tunnels_1
-				add_deposit = d_giga_decrepit_tunnels_2
-				add_deposit = d_giga_decrepit_tunnels_3
+				add_deposit = d_decrepit_tunnels_1
+				add_deposit = d_decrepit_tunnels_2
+				add_deposit = d_decrepit_tunnels_3
 				add_deposit = d_great_ring_excavated_mountain
 				add_deposit = d_ringworld_capital_city
 				add_deposit = d_segment_rubble_3
@@ -432,20 +463,6 @@ country_event = {
 					add_deposit = d_segment_rubble_1
 					add_deposit = d_segment_rubble_2
 					add_deposit = d_segment_rubble_2
-				}
-				ROOT = {#Habitability force change for secondary species
-					every_owned_pop_species = { 
-						if = {
-							limit = {
-								has_trait = trait_pc_continental_preference
-							}
-							change_species_characteristics = {
-								remove_trait = trait_pc_continental_preference
-								add_traits_at_start_of_list = yes
-								add_trait = trait_pc_giga_penrose_habitable_preference
-							}
-						}
-					}
 				}
 				# normal empires
 				if = {
@@ -486,10 +503,8 @@ country_event = {
 					if = {
 						limit = {
 							root = {
-								OR = {
-									has_valid_civic = civic_machine_assimilator
-									has_valid_civic = civic_machine_servitor
-								}
+								has_valid_civic = civic_machine_assimilator
+								has_valid_civic = civic_machine_servitor
 							}
 						}
 						if = {
@@ -525,7 +540,6 @@ country_event = {
 	immediate = {
 		if = {
 			limit = { is_ai = yes }
-			capital_scope.solar_system = { set_star_flag = gigas_new_planets }
 			giga_reset_ai_start = yes
 		}
 		else = {
@@ -533,8 +547,10 @@ country_event = {
 				solar_system = {
 					remove_star_flag = sol_sector	# cleanup of stuff used to block New Frontiers subclasser
 					star = {
+						set_name = "Interstellar Dwelling"
 						giga_field_debris = yes
-						giga_set_has_mega_flag = yes
+						set_planet_flag = has_megastructure
+						set_planet_flag = megastructure
 					}
 					while = { count = 2 giga_field_system_debris = yes }
 					spawn_megastructure = {
@@ -548,7 +564,7 @@ country_event = {
 						location = solar_system
 						orbit_angle_offset = 0
 						orbit_distance_offset = 45
-						size = 10
+						size = 12
 
 						init_effect = {
 							set_name = "Interstellar Ringworld Section B"
@@ -563,7 +579,8 @@ country_event = {
 							set_planet_flag = forbid_guillis_planet_modifiers
 							set_planet_flag = gpm_has_planet_rings
 							set_planet_flag = hot_zone				# Real Space (Prevents Rings)
-							set_planet_flag = megastructure
+							set_planet_flag = megastructure			# Vanilla uses to check if a megastrucure can be built here
+							set_planet_flag = has_megastructure		# Vanilla uses to check if an orbital station can be built here
 							set_planet_flag = colony_event			# Vanilla uses to prevent unwanted events on planets
 							set_planet_flag = giga_interstellar_ring
 						}
@@ -575,7 +592,7 @@ country_event = {
 						location = solar_system
 						orbit_angle_offset = 90
 						orbit_distance_offset = 45
-						size = 10
+						size = 12
 
 						init_effect = {
 							set_name = "Interstellar Ringworld Section C"
@@ -590,7 +607,8 @@ country_event = {
 							set_planet_flag = forbid_guillis_planet_modifiers
 							set_planet_flag = gpm_has_planet_rings
 							set_planet_flag = hot_zone				# Real Space (Prevents Rings)
-							set_planet_flag = megastructure
+							set_planet_flag = megastructure			# Vanilla uses to check if a megastrucure can be built here
+							set_planet_flag = has_megastructure		# Vanilla uses to check if an orbital station can be built here
 							set_planet_flag = colony_event			# Vanilla uses to prevent unwanted events on planets
 							set_planet_flag = giga_interstellar_ring
 						}
@@ -602,7 +620,7 @@ country_event = {
 						location = solar_system
 						orbit_angle_offset = 180
 						orbit_distance_offset = 45
-						size = 10
+						size = 12
 
 						init_effect = {
 							set_name = "Interstellar Ringworld Section D"
@@ -617,19 +635,19 @@ country_event = {
 							set_planet_flag = forbid_guillis_planet_modifiers
 							set_planet_flag = gpm_has_planet_rings
 							set_planet_flag = hot_zone				# Real Space (Prevents Rings)
-							set_planet_flag = megastructure
+							set_planet_flag = megastructure			# Vanilla uses to check if a megastrucure can be built here
+							set_planet_flag = has_megastructure		# Vanilla uses to check if an orbital station can be built here
 							set_planet_flag = colony_event			# Vanilla uses to prevent unwanted events on planets
 							set_planet_flag = giga_interstellar_ring
 						}
 					}
 				}
 
-				set_planet_size = 10
-
 				set_planet_flag = forbid_guillis_planet_modifiers
 				set_planet_flag = gpm_has_planet_rings
 				set_planet_flag = hot_zone				# Real Space (Prevents Rings)
-				set_planet_flag = megastructure
+				set_planet_flag = megastructure			# Vanilla uses to check if a megastrucure can be built here
+				set_planet_flag = has_megastructure		# Vanilla uses to check if an orbital station can be built here
 				set_planet_flag = colony_event			# Vanilla uses to prevent unwanted events on planets
 				set_planet_flag = giga_interstellar_ring
 
@@ -640,13 +658,13 @@ country_event = {
 				remove_all_districts = yes
 
 				add_deposit = d_giga_arcane_generator
-				add_deposit = d_giga_decrepit_tunnels_1
-				add_deposit = d_giga_decrepit_tunnels_2
-				add_deposit = d_giga_decrepit_tunnels_3
+				add_deposit = d_decrepit_tunnels_1
+				add_deposit = d_decrepit_tunnels_2
+				add_deposit = d_decrepit_tunnels_3
 				add_deposit = d_great_ring_excavated_mountain
 				add_deposit = d_ringworld_capital_city
-				#add_deposit = d_segment_rubble_3
-				#add_deposit = d_segment_rubble_4
+				add_deposit = d_segment_rubble_3
+				add_deposit = d_segment_rubble_4
 				add_district = district_interstellar_industrial
 
 				# normal empires

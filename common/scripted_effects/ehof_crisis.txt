@@ -217,7 +217,6 @@ create_compound_fleet = {
 		create_ehof_admiral = yes
 		create_fleet = {
 			name = "Compound Armada"
-			settings = { is_boss = yes } 
 			effect = {
 				create_compound_ships = yes
 				set_owner = event_target:compound_country
@@ -241,7 +240,6 @@ create_reshaper_compound_fleet = {
 	event_target:compound_country = {
 		change_variable = { which = current_reshapers value = 1 }
 		create_fleet = {
-			settings = { is_boss = yes } 
 			effect = {
 				set_owner = event_target:compound_country
 				create_ship = {
@@ -260,41 +258,28 @@ create_reshaper_compound_fleet = {
 	}
 }
 
-# Modernized difficulty
-giga_compound_difficulty_modern = {
-	switch = {
-		trigger = has_global_flag
-		compound_capped_1 = { add_modifier = { modifier = giga_compound_easy days = -1 } }
-		compound_capped_2 = { add_modifier = { modifier = giga_compound_normal days = -1 } }
-		compound_capped_3 = { add_modifier = { modifier = giga_compound_hard days = -1 } }
-		compound_capped_4 = { add_modifier = { modifier = giga_compound_brutal days = -1 } }
-	}
-}
-
 create_compound_army = {
-	# Disabled for now as custom transport ship design is required or immunity will break
-
-	# create_ehof_general = yes
-	# compound_set_fleet_spawn = yes
-	# event_target:compound_country = {
-	# 	change_variable = { which = current_propagators value = 1 }
-	# 	create_fleet = {
-	# 		effect = {
-	# 			set_owner = event_target:compound_country
-	# 			create_army_transport = {
-	# 				graphical_culture = "ehof_01"
-	# 				army_type = "compound_assault"
-	# 				ship_name = "NAME_Propagator"
-	# 			}
-	# 			set_location = {
-	# 				target = event_target:compound_fleet_spawn
-	# 				distance = 35
-	# 				angle = random
-	# 			}
-	# 		}
-	# 	}
-	# 	last_created_army =  { assign_leader = event_target:compound_army_leader }
-	# }
+	create_ehof_general = yes
+	compound_set_fleet_spawn = yes
+	event_target:compound_country = {
+		change_variable = { which = current_propagators value = 1 }
+		create_fleet = {
+			effect = {
+				set_owner = event_target:compound_country
+				create_army_transport = {
+					graphical_culture = "ehof_01"
+					army_type = "compound_assault"
+					ship_name = "NAME_Propagator"
+				}
+				set_location = {
+					target = event_target:compound_fleet_spawn
+					distance = 35
+					angle = random
+				}
+			}
+		}
+		last_created_army =  { assign_leader = event_target:compound_army_leader }
+	}
 }
 
 create_architect_compound_fleet = {
@@ -302,7 +287,6 @@ create_architect_compound_fleet = {
 	change_variable = { which = current_architects value = 1 }
 	event_target:compound_country = {
 		create_fleet = {
-			settings = { is_boss = yes } 
 			effect = {
 				set_owner = event_target:compound_country
 				create_ship = {
@@ -323,10 +307,10 @@ create_architect_compound_fleet = {
 
 create_compound_military_station = {
 	random_list = {
-		40 = { create_fleet = { settings = { is_boss = yes } effect = { set_owner = event_target:compound_country create_ship = { name = random design = "NAME_Barricade"	graphical_culture = "ehof_01" } set_location = { target = event_target:spawn_military_station distance = 15 angle = random } } } }
-		30 = { create_fleet = { settings = { is_boss = yes } effect = { set_owner = event_target:compound_country create_ship = { name = random design = "NAME_Garrison"		graphical_culture = "ehof_01" } set_location = { target = event_target:spawn_military_station distance = 15 angle = random } } } }
-		20 = { create_fleet = { settings = { is_boss = yes } effect = { set_owner = event_target:compound_country create_ship = { name = random design = "NAME_Bastion"		graphical_culture = "ehof_01" } set_location = { target = event_target:spawn_military_station distance = 15 angle = random } } } }
-		10 = { create_fleet = { settings = { is_boss = yes } effect = { set_owner = event_target:compound_country create_ship = { name = random design = "NAME_Bulwark"		graphical_culture = "ehof_01" } set_location = { target = event_target:spawn_military_station distance = 15 angle = random } } } }
+		40 = { create_fleet = { effect = { set_owner = event_target:compound_country create_ship = { name = random design = "NAME_Barricade"	graphical_culture = "ehof_01" } set_location = { target = event_target:spawn_military_station distance = 15 angle = random } } } }
+		30 = { create_fleet = { effect = { set_owner = event_target:compound_country create_ship = { name = random design = "NAME_Garrison"		graphical_culture = "ehof_01" } set_location = { target = event_target:spawn_military_station distance = 15 angle = random } } } }
+		20 = { create_fleet = { effect = { set_owner = event_target:compound_country create_ship = { name = random design = "NAME_Bastion"		graphical_culture = "ehof_01" } set_location = { target = event_target:spawn_military_station distance = 15 angle = random } } } }
+		10 = { create_fleet = { effect = { set_owner = event_target:compound_country create_ship = { name = random design = "NAME_Bulwark"		graphical_culture = "ehof_01" } set_location = { target = event_target:spawn_military_station distance = 15 angle = random } } } }
 	}
 }
 
@@ -711,7 +695,6 @@ annihilator_rewards = {
 destroy_annihilator = {
 	set_timed_global_flag = { flag = annihilator_shroud_cd days = @annihilator_shroud_cd }			# Shroud CD
 	set_timed_global_flag = { flag = annihilator_returning days = @ehof_ui_notification_time }		# UI Global
-	set_timed_global_flag = { flag = annihilator_gone days = 1} #Fixes the one day delay between the annhilator passing and failing an exists check for the UI
 	remove_global_flag = annihilator_returned
 	event_target:ehof_annihilator = {
 		if = { limit = { exists = leader } leader = { unassign_leader = this } }
@@ -747,7 +730,6 @@ create_annihilator = {
 			is_boss = yes
 		}
 		effect = {
-			set_owner = event_target:creators_country
 			create_ship = {
 				name = "NAME_Stellar_Annihilator"
 				design = NAME_Stellar_Annihilator
@@ -756,6 +738,7 @@ create_annihilator = {
 			assign_leader = event_target:annihilator_admiral
 			set_formation_scale = 1
 			save_global_event_target_as = ehof_annihilator
+			set_owner = event_target:creators_country
 		}
 	}
 }
@@ -907,11 +890,6 @@ annihilator_defend = {
 	if = { limit = { has_global_flag = sa_target_follow }	remove_global_flag = sa_target_follow }
 	set_global_flag = sa_target_defend
 
-	#Validate capital system is still capital
-	event_target:discoverer_country = {
-		capital_scope.solar_system = { save_global_event_target_as = discoverer_system }
-	}
-
 	# Save a target
 	event_target:discoverer_system = {
 		closest_system = {
@@ -931,38 +909,12 @@ annihilator_defend = {
 
 	event_target:annihilator_location.solar_system = {
 		if = {
-			limit = { 
-				NOR = { 
-					distance = { source = event_target:discoverer_system use_bypasses = yes max_jumps = 10 } 
-					distance = { source = event_target:discoverer_system same_solar_system = yes }
-				} 
-			}
+			limit = { NOT = { distance = { source = event_target:discoverer_system max_jumps = 10 } } }
 			event_target:creators_country = {
 				set_global_flag = annihilator_shroud
 				destroy_annihilator = yes
 				country_event = { id = annihilator.005 days = @annihilator_shroud_time }	# Respawn Annihalor at discoverer capital
 			}
-		}
-	}
-	# Verify Defense location is within range of capital
-	if = {
-		limit = { 
-			exists = event_target:sa_defend_discoverer 
-			event_target:sa_defend_discoverer.solar_system = { #No longer a valid target for the annihilator because its too far
-				NOR = { 
-					distance = { source = event_target:discoverer_system use_bypasses = yes max_jumps = 10 } 
-					distance = { source = event_target:discoverer_system same_solar_system = yes }
-				} 
-			}
-		}
-		event_target:discoverer_system = {
-			star = { save_global_event_target_as = sa_defend_discoverer }
-		}
-	}
-	else_if = {
-		limit = {NOT = {exists = event_target:sa_defend_discoverer } } #No valid defense target? this shouldn't really ever happen but as a precaution
-		event_target:discoverer_system = {
-			star = { save_global_event_target_as = sa_defend_discoverer }
 		}
 	}
 
@@ -974,75 +926,4 @@ annihilator_defend = {
 			arrival_effect = annihilator_defend
 		}
 	}
-}
-# giga_compound_apply_death_modifier = {
-# 	optimize_memory
-
-
-# }
-giga_compound_apply_death_modifier_2 = {
-	optimize_memory
-	solar_system = {
-		giga_set_if_not_set = {
-			VARIABLE = giga_compound_death_counter_temp
-			VALUE = 1
-			INCREMENT = 1
-		}
-		add_modifier = {
-			modifier = giga_compound_death_mod_$DIFFICULTY$
-			multiplier = giga_compound_death_counter_temp
-			days = 270
-		}
-		every_fleet_in_system = {
-			limit = {
-				exists = controller
-				controller = { giga_is_compound_allied_fleet = yes }
-			}
-			add_modifier = {
-				modifier = giga_compound_death_mod_allies_$DIFFICULTY$
-				multiplier = prev.giga_compound_death_counter_temp
-				days = 270
-			}
-		}
-	}
-}
-giga_set_if_not_set = {
-	optimize_memory
-	if = {
-		limit = { 
-			NOT = {
-				is_variable_set = $VARIABLE$
-			}
-		}
-		set_variable = {
-			which = $VARIABLE$
-			value = $VALUE|0$
-		}
-	}
-	[[INCREMENT]
-	else = {
-	change_variable = {
-		which = $VARIABLE$
-		value = $INCREMENT$
-	}	
-	}
-	]
-}
-giga_decrement_then_unset = {
-	optimize_memory
-	subtract_variable = {
-		which = $VARIABLE$
-		value = $VALUE|1$
-	}
-	[[UNSET]
-if = {
-	limit = { 
-		check_variable = {
-			which = $VARIABLE$
-			value = $UNSET_VALUE|0$
-		}
-	}
-	clear_variable = $VARIABLE$
-}
-	]
 }

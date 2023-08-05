@@ -4,7 +4,7 @@
 #	Since all but original require giga_tech_tetradimensional_engineering anyway, easiest seems to be merge them all.
 ###
 ap_gigastructural_constructs = {
-	ai_weight = { factor = 1000 }
+	ai_weight = { factor = 0 }
 	on_enabled = {
 		custom_tooltip = "ap_gigastructural_constructs_add_research"
 		hidden_effect = {
@@ -15,22 +15,7 @@ ap_gigastructural_constructs = {
 	}
 
 	possible = {
-		custom_tooltip = { 
-			fail_text = "requires_built_or_repaired_gigastructure"	
-			or = {
-				has_country_flag = has_built_or_repaired_gigastructure 
-				and = {
-					is_ai = yes
-					or = {
-						num_ascension_perks > 6
-						any_country = {
-							is_ai = no
-							has_galactic_wonders = yes
-						}
-					}
-				}
-			}
-		}
+		custom_tooltip = { fail_text = "requires_built_or_repaired_gigastructure"	has_country_flag = has_built_or_repaired_gigastructure }
 		custom_tooltip = { fail_text = "requires_ap_galactic_wonders"				has_galactic_wonders = yes }
 		custom_tooltip = { fail_text = "requires_ascension_perks_3"					num_ascension_perks > 2 }
 		custom_tooltip = { fail_text = "requires_mega_engineering"					has_technology = tech_mega_engineering }
@@ -56,7 +41,7 @@ ap_systemcraft = {
 	}
 
 	possible = {
-		custom_tooltip = { fail_text = "requires_ap_gigastructural_constructs"	has_gigastructural_constructs = yes }
+		custom_tooltip = { fail_text = "requires_ap_gigastructural_constructs"	has_ascension_perk = ap_gigastructural_constructs }
 		custom_tooltip = { fail_text = "requires_ap_colossus"					has_ascension_perk = ap_colossus }
 		custom_tooltip = { fail_text = "requires_ndb"							has_technology = giga_tech_ndb_4 }
 		custom_tooltip = { fail_text = "requires_planetcraft"					has_technology = giga_tech_war_planet }
@@ -66,6 +51,7 @@ ap_systemcraft = {
 	potential = {
 		host_has_dlc = "Utopia"
 		host_has_dlc = "Apocalypse"
+		host_has_dlc = "Federations"
 		NOR = {
 			has_ascension_perk = ap_systemcraft
 			has_global_flag = systemcraft_disabled
@@ -85,7 +71,7 @@ ap_slice_of_life = {
 	}
 
 	possible = {
-		custom_tooltip = { fail_text = "requires_ap_gigastructural_constructs"	has_gigastructural_constructs = yes }
+		custom_tooltip = { fail_text = "requires_ap_gigastructural_constructs"	has_ascension_perk = ap_gigastructural_constructs }
 		custom_tooltip = { fail_text = "requires_tetraengineering"				has_technology = giga_tech_tetradimensional_engineering }
 		custom_tooltip = { fail_text = "requires_gargantuan"					has_technology = giga_tech_ringworld_gargantuan_2 }
 	}
@@ -96,7 +82,6 @@ ap_slice_of_life = {
 			has_ascension_perk = ap_slice_of_life
 			has_global_flag = alderson_disabled
 		}
-		is_giga_one_planet_origin = no
 	}
 
 	ai_weight = {
@@ -119,7 +104,7 @@ ap_qso = {
 	}
 
 	possible = {
-		custom_tooltip = { fail_text = "requires_ap_gigastructural_constructs"	has_gigastructural_constructs = yes }
+		custom_tooltip = { fail_text = "requires_ap_gigastructural_constructs"	has_ascension_perk = ap_gigastructural_constructs }
 		custom_tooltip = { fail_text = "requires_ndb"							has_technology = giga_tech_ndb_4 }
 		custom_tooltip = { fail_text = "requires_planetcraft"					has_technology = giga_tech_war_planet }
 		custom_tooltip = { fail_text = "requires_tetraengineering"				has_technology = giga_tech_tetradimensional_engineering }
@@ -130,7 +115,11 @@ ap_qso = {
 				AND = {
 					any_system = { is_star_class = sc_birch }
 					NOT = { any_system = { is_star_class = sc_quasar } }
-					has_megastructure = ehof_megastructure_phase4
+					OR = {
+						has_megastructure = ehof_megastructure_phase4_activating
+						has_megastructure = ehof_megastructure_phase4_active
+						has_megastructure = ehof_megastructure_phase4_idle
+					}
 					any_system_within_border = { cohesive_system = yes }
 				}
 			}
@@ -169,7 +158,7 @@ ap_vast_expanses = {
 	}
 
 	possible = {
-		custom_tooltip = { fail_text = "requires_ap_gigastructural_constructs"	has_gigastructural_constructs = yes }
+		custom_tooltip = { fail_text = "requires_ap_gigastructural_constructs"	has_ascension_perk = ap_gigastructural_constructs }
 		custom_tooltip = { fail_text = "requires_tetraengineering"				has_technology = giga_tech_tetradimensional_engineering }
 		custom_tooltip = { fail_text = "requires_gargantuan"					has_technology = giga_tech_ringworld_gargantuan_2 }
 		custom_tooltip = { fail_text = "requires_ap_master_builders"			has_ascension_perk = ap_master_builders }
@@ -180,7 +169,11 @@ ap_vast_expanses = {
 				AND = {
 					any_system = { is_star_class = sc_quasar }
 					NOT = { any_system = { is_star_class = sc_birch } }
-					has_megastructure = ehof_megastructure_phase4
+					OR = {
+						has_megastructure = ehof_megastructure_phase4_activating
+						has_megastructure = ehof_megastructure_phase4_active
+						has_megastructure = ehof_megastructure_phase4_idle
+					}
 					any_system_within_border = { cohesive_system = yes }
 				}
 			}
@@ -202,7 +195,51 @@ ap_vast_expanses = {
 				has_global_flag = ehof_disabled
 			}
 		}
-		is_giga_one_planet_origin = no
+	}
+}
+
+ap_defender_of_the_galaxy = {
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_ascension_perks_3"
+			num_ascension_perks > 2
+		}
+	}
+	modifier = {
+		description = ap_defender_of_the_galaxy_modifier_desc
+		damage_vs_country_type_swarm_mult = 0.5
+		damage_vs_country_type_extradimensional_mult = 0.5
+		damage_vs_country_type_extradimensional_2_mult = 0.5
+		damage_vs_country_type_extradimensional_3_mult = 0.5
+		damage_vs_country_type_ai_empire_mult = 0.5
+		damage_vs_country_type_gray_goo_mult = 0.5
+		damage_vs_country_type_compound_empire_mult = 0.5
+		damage_vs_country_type_katzenartig_imperium_mult = 0.5
+		damage_vs_country_type_dormant_aeternum_mult = 0.5
+		damage_vs_country_type_blokkat_stripminers_mult = 0.5
+		damage_vs_player_crisis_mult = 0.5
+	}
+
+	on_enabled = {
+		custom_tooltip = "ap_defender_of_the_galaxy_effect_opinion"
+		# see triggered_opinion_ap_defender_of_the_galaxy
+	}
+
+	potential = {
+		NOT = {
+			has_ascension_perk = ap_defender_of_the_galaxy
+		}
+	}
+
+	ai_weight = {
+		factor = 20
+		modifier = {
+			factor = 0
+			NOR = {
+				has_global_flag = galactic_crisis_happened
+				has_global_flag = gray_goo_crisis_active
+			}
+		}
 	}
 }
 
@@ -228,7 +265,7 @@ ap_celestial_printing = {
 	}
 
 	possible = {
-		custom_tooltip = { fail_text = "requires_ap_gigastructural_constructs"		has_gigastructural_constructs = yes }
+		custom_tooltip = { fail_text = "requires_ap_gigastructural_constructs"		has_ascension_perk = ap_gigastructural_constructs }
 		custom_tooltip = { fail_text = "requires_ascension_perks_3"					num_ascension_perks > 2 }
 		custom_tooltip = { fail_text = "requires_war_planets"						has_technology = giga_tech_war_planet }
 		custom_tooltip = { fail_text = "requires_tetraengineering"					has_technology = giga_tech_tetradimensional_engineering }
@@ -238,8 +275,8 @@ ap_celestial_printing = {
 		NOR = { 
 			has_ascension_perk = ap_celestial_printing
 			AND = {
-				has_global_flag = giga_celestial_printing_moon_disabled
-				has_global_flag = giga_celestial_printing_planet_disabled
+				has_global_flag = giga_disable_celestial_printing
+				has_global_flag = giga_disable_celestial_printing_planet
 			} 
 		} 
 	}
@@ -273,6 +310,46 @@ ap_celestial_printing = {
 # 	potential = { NOT = { has_ascension_perk = ap_planetcraft_primacy } }
 # }
 
+ap_eternal_vigilance = {
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_technology_starbase_4"
+			has_technology = tech_starbase_4
+		}
+	}
 
+	on_enabled = {
+		custom_tooltip = "adds_4_asteroid_artillery_points"
+		hidden_effect = {
+			change_variable = {
+				which = asteroid_artillery_points_max
+				value = 4
+			}
+		}
+	}
 
+	modifier = {
+		shipclass_starbase_damage_mult = 0.25
+		shipclass_starbase_hull_mult = 0.25
+		shipclass_military_station_damage_mult = 0.25
+		starbase_defense_platform_capacity_add = 5
+	}
 
+	potential = {
+		NOT = {
+			has_ascension_perk = ap_eternal_vigilance
+		}
+	}
+
+	ai_weight = {
+		factor = 10
+		modifier = {
+			factor = 2
+			has_civic = civic_inwards_perfection
+		}
+		modifier = {
+			factor = 1.5
+			is_xenophobe = yes
+		}
+	}
+}

@@ -453,19 +453,17 @@ country_event = {
 				}
 				round_variable = asteroid_artillery_pen_cost #Round it to avoid excessive decimal buildup
 			}
-			event_target:asteroid_artillery_ship_config_target = {
-				if = {
-					limit = { has_modifier = giga_asteroid_artillery_pen }
-					remove_modifier = giga_asteroid_artillery_pen
-				}
-				set_variable = {
-					which = asteroid_artillery_pen
-					value = event_target:asteroid_artillery_location.asteroid_artillery_pen
-				}
-				add_modifier = {
-					modifier = giga_asteroid_artillery_pen
-					multiplier = asteroid_artillery_pen
-				}
+			if = {
+				limit = { has_modifier = giga_asteroid_artillery_pen }
+				remove_modifier = giga_asteroid_artillery_pen
+			}
+			set_variable = {
+				which = asteroid_artillery_pen
+				value = event_target:asteroid_artillery_location.asteroid_artillery_pen
+			}
+			add_modifier = {
+				modifier = giga_asteroid_artillery_pen
+				multiplier = asteroid_artillery_pen
 			}
 			country_event = { id = giga_artillery.1000 }
 		}
@@ -486,23 +484,21 @@ country_event = {
 	hide_window = yes
 
 	trigger = {
-		from = {
-			NOT = { has_fleet_flag = maginot_orbital_defence }
-			is_ship_size = asteroid_artillery
-		}
+		from = { is_ship_size = asteroid_artillery }
 	}
 
 	immediate = {
 		from.solar_system = {
 			random_system_planet = {
 				limit = {
-					has_planet_flag = has_giga_asteroid_id
 					check_variable = {
 						which = giga_asteroid_id
 						value = ROOT.from.giga_asteroid_ship_id
 					}
 				}
 				change_pc = pc_asteroid
+				remove_planet_flag = has_megastructure
+				remove_planet_flag = megastructure
 				remove_planet_flag = asteroid_has_artillery
 				solar_system = {
 					random_system_megastructure = {
@@ -512,7 +508,6 @@ country_event = {
 						remove_megastructure = THIS
 					}
 				}
-				giga_clear_has_mega_flag = yes
 			}
 		}
 	}
@@ -530,10 +525,7 @@ country_event = {
 	is_triggered_only = yes
 
 	trigger = {
-		fromfrom = {
-			NOT = { has_fleet_flag = maginot_orbital_defence }
-			is_ship_size = asteroid_artillery
-		}
+		fromfrom = { is_ship_size = asteroid_artillery }
 	}
 
 	immediate = {
@@ -541,7 +533,6 @@ country_event = {
 			save_global_event_target_as = ast_artillery_destroyed_system
 			random_system_planet = {
 				limit = {
-					has_planet_flag = has_giga_asteroid_id
 					check_variable = {
 						which = giga_asteroid_id
 						value = ROOT.fromfrom.giga_asteroid_ship_id
@@ -803,7 +794,8 @@ country_event = {
 			}
 			planet = {
 				remove_planet_flag = asteroid_has_artillery
-				giga_clear_has_mega_flag = { MEGA = prev }
+				remove_planet_flag = megastructure
+				remove_planet_flag = has_megastructure
 				change_pc = pc_asteroid
 			}
 			remove_megastructure = THIS
@@ -924,7 +916,6 @@ event = {
 		}
 	}
 }
-
 
 # 		make AIs build them
 # 		random_country = {

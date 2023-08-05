@@ -26,18 +26,15 @@ compound = {
 	}
 
 	fleet_names = {
-		sequential_name = compound_fleet_name
+		sequential_name = "%O% Armada"
 	}
 
 	army_names = {
 		compound_assault = {
-			sequential_name = compound_off_army_name
+			sequential_name = "%O% Catalyst"
 		}
 		compound_defense = {
-			sequential_name = compound_def_army_name
-		}
-		generic = {
-			sequential_name = compound_gen_army_name
+			sequential_name = "%O% Preserver"
 		}
 	}
 

@@ -14,7 +14,7 @@ entity = {
 
 entity = {
 	name = "blokkat_shield_mega_part_2_entity"
-	pdxmesh = "giga_ascendant_01_habitat_frame_mesh"
+	pdxmesh = "ascendant_01_habitat_frame_mesh"
 	
 	attach = { "habitat_main" = "ascendant_01_nexus_stage_2" }
 	attach = { "habitat_main" = "ascendant_01_nexus_stage_3" }
@@ -22,7 +22,7 @@ entity = {
 	scale = 4.5
 	
 	default_state = "idle"
-	state = { name = "idle"
+	state = { name = "idle" animation = "idle"
 		start_event = { trigger_once = yes sound = { soundeffect = "think_tank_core_amb" } }
 		start_event = { trigger_once = yes sound = { soundeffect = "think_tank_structure_amb_02" stop_on_state_change = yes } }
 	}
@@ -120,7 +120,7 @@ entity = {
 	scale = 2
 	
 	default_state = "idle"
-	state = { name = "idle"
+	state = { name = "idle" animation = "idle"
 		event = { trigger_once = yes sound = { soundeffect = "mega_shipyard_idle" } }
 	}
 	

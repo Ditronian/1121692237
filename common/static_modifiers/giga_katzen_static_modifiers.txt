@@ -28,12 +28,8 @@ improbable_kaiser = {
 	ship_evasion_mult = 1.5
 	ship_orbital_bombardment_mult = 10
 	planet_orbital_bombardment_damage = -2
-	ship_cloaking_detection_add = 10
 }
 
-warforge_detection = {
-	ship_cloaking_detection_add = 2
-}
 corrona_defence_buff = {
 	planet_orbital_bombardment_damage = -1
 	icon = "gfx/interface/icons/planet_modifiers/pm_surreal_visions.dds"
@@ -74,7 +70,6 @@ stellarite_kaiser = {
 	ship_evasion_add = 10
 	ship_evasion_mult = 0.5
 	ship_orbital_bombardment_mult = 5
-	ship_cloaking_detection_add = 5
 }
 
 stellarite_kaiser_moon_modifier = {
@@ -107,20 +102,6 @@ katzen_deathwish = {
 	ship_shield_mult = 2
 	megastructure_build_speed_mult = 1
 	ship_base_speed_mult = 0.5
-	ship_cloaking_detection_add = 1
-}
-
-
-katzen_easy = {
-	army_damage_mult = -0.40
-	army_health = -0.40
-	ship_weapon_damage = -0.30
-	ship_fire_rate_mult = -0.20
-	ship_hull_mult = -0.40
-	ship_armor_mult = -0.40
-	ship_shield_mult = -0.40
-	ship_base_speed_mult = -0.20
-	ship_cloaking_detection_add = -2
 }
 
 katzen_breakup = {
@@ -250,14 +231,4 @@ katzen_submarine_subspace_blockade = {
 	planet_jobs_produces_mult = -0.50
 	pop_happiness = -0.15
 	planet_stability_add = -10
-}
-
-sudden_flusion_rebellion = {
-	army_damage_mult = -0.20
-	army_morale = -0.20
-	army_health = -0.20
-}
-
-solakian_ability_morale_debuff = {
-	army_damage_mult = -0.075
 }

@@ -234,21 +234,21 @@ fleet_event = {
 		exists = solar_system
 		solar_system = { urmazin_capital = yes }
 		exists = event_target:urmazin_capital
-		controller = { NOT = { has_country_flag = ehof_trader_already_triggered } }
+		owner = { NOT = { has_country_flag = ehof_trader_already_triggered } }
 	}
 
 	immediate = {
-		controller = { set_timed_country_flag = { flag = ehof_trader_already_triggered days = @ehof_short_cooldown } } # Dont trigger more than once (Multiple fleets)
+		owner = { set_timed_country_flag = { flag = ehof_trader_already_triggered days = @ehof_short_cooldown } } # Dont trigger more than once (Multiple fleets)
 
 		# First time
 		if = {
-			limit = { controller = { NOT = { has_country_flag = ehof_traders_first_time } } }
-			controller = { set_country_flag = ehof_traders_first_time }
+			limit = { owner = { NOT = { has_country_flag = ehof_traders_first_time } } }
+			owner = { set_country_flag = ehof_traders_first_time }
 			fleet_event = { id = ehof_mega_trader.002 }
 		}
 
 		# Every other time
-		else = { controller = { country_event = { id = ehof_mega_trader.006 } } }
+		else = { owner = { country_event = { id = ehof_mega_trader.006 } } }
 	}
 }
 
@@ -331,7 +331,7 @@ fleet_event = {
 		custom_gui = "enclave_ehof_trader_option"
 		default_hide_option = yes
 		name = "ehof_mega_trader.005.a"
-		hidden_effect = { controller = { country_event = { id = ehof_mega_trader.006 } } }
+		hidden_effect = { owner = { country_event = { id = ehof_mega_trader.006 } } }
 	}
 }
 
@@ -520,21 +520,17 @@ country_event = {
 	location = event_target:urmazin_capital
 
 	option = {	# Continue
-		trigger = {
-			NOT = { has_country_flag = ehof_asked_already }
-		}
 		custom_gui = "enclave_ehof_trader_option"
 		name = "ehof_mega_trader.007.continue"
 		is_dialog_only = yes
 		response_text = "ehof_mega_trader.007.b.response.b"
-		hidden_effect = { set_country_flag = ehof_asked_already }
 	}
 
 	option = {	# Go back
 		custom_gui = "enclave_ehof_trader_option"
 		default_hide_option = yes
 		name = "ehof_goback"
-		hidden_effect = { country_event = { id = ehof_mega_trader.010 } remove_country_flag = ehof_asked_already}
+		hidden_effect = { country_event = { id = ehof_mega_trader.010 } }
 	}
 }
 
@@ -553,8 +549,8 @@ fleet_event = {
 	}
 	location = event_target:urmazin_capital
 
-	trigger = { NOT = { controller = { has_country_flag = ehof_trader_no_military } } }
-	immediate = { controller = { set_country_flag = ehof_trader_no_military } }
+	trigger = { NOT = { owner = { has_country_flag = ehof_trader_no_military } } }
+	immediate = { owner = { set_country_flag = ehof_trader_no_military } }
 
 	option = {
 		custom_gui = "enclave_ehof_trader_option"
@@ -610,7 +606,7 @@ country_event = {
 
 	immediate = {
 		random_system_within_border = {
-			limit = { giga_has_an_active_ehof = yes }
+			limit = { has_an_active_ehof = yes }
 			star = { save_event_target_as = ehof_trader_evict_fleet }
 		}
 		every_owned_fleet = {
@@ -2182,13 +2178,13 @@ fleet_event = {
 		clear_fleet_actions = this
 		clear_orders = yes
 		if = {
-			limit = { controller = { NOT = { any_owned_fleet = { exists = solar_system solar_system = { urmazin_system = yes } } } } }
+			limit = { owner = { NOT = { any_owned_fleet = { exists = solar_system solar_system = { urmazin_system = yes } } } } }
 			from = {
-				remove_star_flag = ehof_trader_wormhole_active_@root.controller
+				remove_star_flag = ehof_trader_wormhole_active_@root.owner
 				save_event_target_as = ehof_remove_wormhole_one
 			}
 			fromfrom = { save_event_target_as = ehof_remove_wormhole_two }
-			controller = { country_event = { id = ehof_mega_trader.108 days = 2 } }
+			owner = { country_event = { id = ehof_mega_trader.108 days = 2 } }
 		}
 	}
 }
@@ -2240,8 +2236,8 @@ country_event = {
 
 	immediate = {
 		random_system_within_border = {
-			limit = { giga_has_an_active_ehof = yes }
-			remove_star_flag = ehof_trader_wormhole_active_@root.controller
+			limit = { has_an_active_ehof = yes }
+			remove_star_flag = ehof_trader_wormhole_active_@root.owner
 			save_event_target_as = ehof_remove_wormhole_one
 		}
 		event_target:urmazin_capital = { save_event_target_as = ehof_remove_wormhole_two }
@@ -2256,8 +2252,7 @@ fleet_event = {
 	is_triggered_only = yes
 
 	trigger = {
-		exists = controller
-		controller = { NOT = { is_country_type = ehof_traders } }
+		owner = { NOT = { is_country_type = ehof_traders } }
 		exists = solar_system
 		solar_system = { urmazin_capital = yes }
 	}
@@ -2270,7 +2265,7 @@ fleet_event = {
 					NOT = {
 						any_system_megastructure = {
 							has_megastructure_flag = ehof_trader_external_nexus
-							has_megastructure_flag = ehof_trader_wormhole_for_@root.controller
+							has_megastructure_flag = ehof_trader_wormhole_for_@root.owner
 						}
 					}
 				}
@@ -2281,21 +2276,21 @@ fleet_event = {
 					owner = event_target:urmazin_country
 					init_effect = {
 						set_megastructure_flag = ehof_trader_external_nexus
-						set_megastructure_flag = ehof_trader_wormhole_for_@root.controller
+						set_megastructure_flag = ehof_trader_wormhole_for_@root.owner
 					}
 				}
 			}
 		}
-		controller = {
+		owner = {
 			random_system_within_border = {
-				limit = { giga_has_an_active_ehof = yes }
-				set_star_flag = ehof_trader_wormhole_active_@root.controller
+				limit = { has_an_active_ehof = yes }
+				set_star_flag = ehof_trader_wormhole_active_@root.owner
 				if = {
 					limit = {
 						NOT = {
 							any_system_megastructure = {
 								has_megastructure_flag = ehof_trader_external_node
-								has_megastructure_flag = ehof_trader_wormhole_for_@root.controller
+								has_megastructure_flag = ehof_trader_wormhole_for_@root.owner
 							}
 						}
 					}
@@ -2305,7 +2300,7 @@ fleet_event = {
 						owner = event_target:urmazin_country
 						init_effect = {
 							set_megastructure_flag = ehof_trader_external_node
-							set_megastructure_flag = ehof_trader_wormhole_for_@root.controller
+							set_megastructure_flag = ehof_trader_wormhole_for_@root.owner
 						}
 					}
 				}
@@ -2328,9 +2323,9 @@ fleet_event = {
 			remove_auto_move_target = yes
 			clear_fleet_actions = this
 			clear_orders = yes
-			root.controller = {
+			root.owner = {
 				random_system_within_border = {
-					limit = { giga_has_an_active_ehof = yes }
+					limit = { has_an_active_ehof = yes }
 					star = { save_event_target_as = ehof_trader_evict_fleet }
 				}
 			}
@@ -2363,7 +2358,7 @@ country_event = {
 
 	immediate = {
 		random_system_within_border = {
-			limit = { giga_has_an_active_ehof = yes }
+			limit = { has_an_active_ehof = yes }
 			remove_star_flag = ehof_trader_wormhole_active_@root
 			every_system_megastructure = {
 				limit = {

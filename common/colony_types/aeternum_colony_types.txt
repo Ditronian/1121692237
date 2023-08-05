@@ -1,13 +1,10 @@
 # Aeternum Birch
 col_aeternum_capital = {
-	icon = GFX_colony_type_capital
+	icon = 10
 
 	potential = {
 		exists = owner
-		OR = {
-			is_planet_class = pc_birch
-			is_planet_class = pc_void_birch
-		}
+		is_planet_class = pc_birch
 		owner = {
 			is_country_type = dormant_aeternum
 		}

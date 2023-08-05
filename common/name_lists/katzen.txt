@@ -12,85 +12,82 @@ katzens = {
 		}
 	}
 	fleet_names = { 
-		sequential_name = katzen_fleet_name
+		sequential_name = "%O% Katzenweltraumtruppen Task Force" 
 	}
 	army_names = {
 
 		machine_defense = {
-			sequential_name = katzen_army_name
+			sequential_name = "%O% Katzenbodentruppen"
 		}
 		
 		machine_assault_1 = {
-			sequential_name = katzen_army_name
+			sequential_name = "%O% Katzenbodentruppen"
 		}
 		
 		machine_assault_2 = {
-			sequential_name = katzen_army_name
+			sequential_name = "%O% Katzenbodentruppen"
 		}
 		
 		machine_assault_3 = {
-			sequential_name = katzen_army_name
+			sequential_name = "%O% Katzenbodentruppen"
 		}
 	
 		defense_army = {
-			sequential_name = katzen_army_name
+			sequential_name = "%O% Katzenbodentruppen"
 		}
 			
 		assault_army = {
-			sequential_name = katzen_army_name
+			sequential_name = "%O% Katzenbodentruppen"
 		}
 		
 		slave_army = {
-			sequential_name = katzen_army_name
+			sequential_name = "%O% Katzenbodentruppen"
 		}
 		
 		clone_army = {
-			sequential_name = katzen_army_name
+			sequential_name = "%O% Katzenbodentruppen"
 		}
 
 		undead_army = {
-			sequential_name = katzen_army_name
+			sequential_name = "%O% Katzenbodentruppen"
 		}
 
 		robotic_army = {
-			sequential_name = katzen_army_name
+			sequential_name = "%O% Katzenbodentruppen"
 		}
 		
 		robotic_defense_army = {
-			sequential_name = katzen_army_name
+			sequential_name = "%O% Katzenbodentruppen"
 		}
 		
 		psionic_army = {
-			sequential_name = katzen_army_name
+			sequential_name = "%O% Katzenbodentruppen"
 		}
 		
 		xenomorph_army = {
-			sequential_name = katzen_army_name
+			sequential_name = "%O% Katzenbodentruppen"
 		}
 		
 		gene_warrior_army = {
-			sequential_name = katzen_army_name
+			sequential_name = "%O% Katzenbodentruppen"
 		}
 
 		occupation_army = {
-			sequential_name = katzen_army_name
+			sequential_name = "%O% Katzenbodentruppen"
 		}
 
 		robotic_occupation_army = {
-			sequential_name = katzen_army_name
+			sequential_name = "%O% Katzenbodentruppen"
 		}
 
 		primitive_army = {
-			sequential_name = katzen_primitive_army 
+			sequential_name = "Katzenbodentruppen %C%"
 		}
 		industrial_army = {
-			sequential_name = katzen_primitive_army
+			sequential_name = "Katzenbodentruppen %C%"
 		}
 		postatomic_army = {
-			sequential_name = katzen_primitive_army
-		}
-		generic = {
-			sequential_name = katzen_army_name
+			sequential_name = "Katzenbodentruppen %C%"
 		}
 	}
 	

@@ -6,38 +6,52 @@
 @gigatier7weight2	= 12
 @gigatier7weight3	= 10
 
-@giga_aiweight_multiplier_questionable = 0.1	#STOP RESEARCHING DUMB TECHS THAT DON'T EXIST ANYMORE!
-@giga_aiweight_multiplier_weak = 1	#Bad/requires advanced thought to use
-@giga_aiweight_multiplier_medium = 10	#Okay/basic resources 
-@giga_aiweight_multiplier_strong = 100	#Strong
-@giga_aiweight_multiplier_insane = 1000	#The Meta/Multi-stage
-@Giga_aiweight_multiplier = 10000
+@giga_aiweight_multiplier = 10000
 
 #############################
-### Unity Costs #############
+### Districts ###############
 #############################
+# Base costs
+# cost				= 125
+# sr				= 6.25
+# maintenance		= 0.625
+# sr_maintenance	= 0.25
+# build time		= 44
 
-@giga_kilo_unity_cost				= 500
-@giga_kilo_repair_unity_cost		= 750
+# Habitats x3
+@giga_hab_cost						= 300
+@giga_hab_sr						= 18
+@giga_hab_maintenance				= 1.875
+@giga_hab_sr_maintenance			= 0.75
+@giga_hab_district_buildtime		= 132
 
-@giga_small_mega_unity_cost			= 1000
-@giga_small_mega_repair_unity_cost	= 1500
+# Planets x5
+@giga_planet_cost					= 500
+@giga_planet_sr						= 30
+@giga_planet_maintenance			= 3.125
+@giga_planet_sr_maintenance			= 1.25
+@giga_planet_district_buildtime		= 220
 
-@giga_mega_unity_cost				= 2500
-@giga_mega_start_unity_cost 		= 2500
-@giga_mega_repair_unity_cost		= 3200
+# Ringworlds x8
+@giga_rw_cost						= 1000
+@giga_rw_cost_sr					= 50
+@giga_rw_maintenance				= 5
+@giga_rw_maintenance_sr				= 2
+@giga_rw_district_buildtime			= 360
 
-@giga_big_mega_unity_cost			= 5000
-@giga_big_mega_start_unity_cost		= 5000
-@giga_big_mega_repair_unity_cost	= 7500
+# Alderson x48
+@giga_alderson_cost					= 12000
+@giga_alderson_cost_sr				= 600
+@giga_alderson_maintenance			= 60
+@giga_alderson_maintenance_sr		= 24
+@giga_alderson_district_buildtime	= 4224
 
-@giga_giga_unity_cost				= 10000
-@giga_giga_start_unity_cost			= 10000
-@giga_giga_repair_unity_cost		= 15000
-
-@giga_tera_unity_cost				= 20000
-@giga_tera_start_unity_cost			= 20000
-@giga_tera_repair_unity_cost		= 30000
+# Birch x64
+@giga_birch_cost					= 16000
+@giga_birch_cost_sr					= 800
+@giga_birch_maintenance				= 80
+@giga_birch_maintenance_sr			= 32
+@giga_birch_district_buildtime		= 5632
 
 #Scaling for O Stars:
 #500% Production
@@ -49,15 +63,6 @@
 ### Dyson Sphere Scaling ####
 #############################
 # Dyson Sphere Cost
-@dyson_cost_unity_o_star				= 22500		# 450%
-@dyson_cost_unity_b_star				= 12500		# 250%
-@dyson_cost_unity_m_giant_star			= 10000		# 200%
-@dyson_cost_unity_a_star				= 7500		# 150%
-@dyson_cost_unity_f_star				= 6250		# 125%
-@dyson_cost_unity_g_star				= 5000		# 100% Vanilla
-@dyson_cost_unity_k_star				= 3750		# 75%
-@dyson_cost_unity_m_star				= 2500		# 50%
-
 @dyson_p1_cost_alloys_o_star			= 45000		# 450%
 @dyson_p1_cost_alloys_b_star			= 25000		# 250%
 @dyson_p1_cost_alloys_m_giant_star		= 20000		# 200%
@@ -214,15 +219,6 @@
 ### Matrioshka Scaling ######
 #############################
 # Matrioshka Cost
-@matrioshka_cost_unity_o_star					= 45000		# 450%
-@matrioshka_cost_unity_b_star					= 25000		# 250%
-@matrioshka_cost_unity_m_giant_star				= 20000		# 200%
-@matrioshka_cost_unity_a_star					= 15000		# 150%
-@matrioshka_cost_unity_f_star					= 12500		# 125%
-@matrioshka_cost_unity_g_star					= 10000		# 100% Vanilla
-@matrioshka_cost_unity_k_star					= 7500		# 75%
-@matrioshka_cost_unity_m_star					= 5000		# 50%
-
 @matrioshka_p1_cost_alloys_o_star				= 135000	# 450%
 @matrioshka_p1_cost_alloys_b_star				= 75000		# 250%
 @matrioshka_p1_cost_alloys_m_giant_star			= 60000		# 200%
@@ -619,15 +615,6 @@
 ### Starlifter Scaling ######
 #############################
 # Starlifter Cost
-@starlifter_cost_unity_o_star					= 22500		# 450%
-@starlifter_cost_unity_b_star					= 12500		# 250%
-@starlifter_cost_unity_m_giant_star				= 10000		# 200%
-@starlifter_cost_unity_a_star					= 7500		# 150%
-@starlifter_cost_unity_f_star					= 6250		# 125%
-@starlifter_cost_unity_g_star					= 5000		# 100% Vanilla
-@starlifter_cost_unity_k_star					= 3750		# 75%
-@starlifter_cost_unity_m_star					= 2500		# 50%
-
 @starlifter_p1_cost_alloys_o_star				= 67500		# 450%
 @starlifter_p1_cost_alloys_b_star				= 37500		# 250%
 @starlifter_p1_cost_alloys_m_giant_star			= 30000		# 200%
@@ -792,9 +779,3 @@
 @starlifter_p5_buildtime_g_star				= 3600		# 100% Vanilla
 @starlifter_p5_buildtime_k_star				= 2700		# 75%
 @starlifter_p5_buildtime_m_star				= 1800		# 50%
-
-#############################
-### Elysium #################
-#############################
-
-@giga_elysium_jobs_per_100 = 75

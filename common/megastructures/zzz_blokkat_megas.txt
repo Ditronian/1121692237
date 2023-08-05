@@ -1,7 +1,6 @@
 blokkat_dummy_lgate = {
 	entity = ""
 	construction_entity = ""
-	upgrade_desc = hide
 	portrait = "GFX_megastructure_construction_background"
 	place_entity_on_planet_plane = no
 	show_galactic_map_icon = no
@@ -13,23 +12,42 @@ blokkat_dummy_lgate = {
 	}
 }
 
-blokkat_dummy_mega = {
+blokkat_dummy_gateway = {
 	entity = ""
 	construction_entity = ""
-	upgrade_desc = hide
 	portrait = "GFX_megastructure_construction_background"
 	place_entity_on_planet_plane = no
 	show_galactic_map_icon = no
-	show_in_outliner = no
 
-	upgrade_from = { 
-		gateway_final 
-		gateway_restored 
-		lgate_base
-		ehof_pgate_gateway
-		hyper_relay
-		hyper_relay_restored
+	upgrade_from = { gateway_final }
+
+	potential = {
+		always = no
 	}
+}
+
+blokkat_dummy_gateway_repair = {
+	entity = ""
+	construction_entity = ""
+	portrait = "GFX_megastructure_construction_background"
+	place_entity_on_planet_plane = no
+	show_galactic_map_icon = no
+
+	upgrade_from = { gateway_restored }
+
+	potential = {
+		always = no
+	}
+}
+
+blokkat_dummy_pillar = {
+	entity = ""
+	construction_entity = ""
+	portrait = "GFX_megastructure_construction_background"
+	place_entity_on_planet_plane = no
+	show_galactic_map_icon = no
+
+	upgrade_from = { ehof_pgate_gateway }
 
 	potential = {
 		always = no
@@ -108,7 +126,7 @@ blokkat_harvester_charged_mothership = {
 	place_entity_on_planet_plane = yes
 	show_galactic_map_icon = no
 
-	build_time = 80
+	build_time = 15
 
 	upgrade_from = {
 		blokkat_harvester_charging_up_mothership

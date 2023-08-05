@@ -1,5 +1,3 @@
-###Components Changes
-
 ################
 # Tier 1 Techs #
 ################
@@ -37,7 +35,7 @@ tech_sm_computers = {
 	}
 
 	ai_weight = {
-		factor = @giga_aiweight_multiplier_questionable
+		factor = @ehof_t1_weight
 		modifier = {
 			factor = 1.25
 			research_leader = {
@@ -93,7 +91,7 @@ tech_qnm_sensors = {
 	}
 
 	ai_weight = {
-		factor = @giga_aiweight_multiplier_questionable
+		factor = @ehof_t1_weight
 		modifier = {
 			factor = 1.25
 			research_leader = {
@@ -145,7 +143,7 @@ tech_sm_armor = {
 	}
 
 	ai_weight = {
-		factor = @giga_aiweight_multiplier_questionable
+		factor = @ehof_t1_weight
 		modifier = {
 			factor = 1.25
 			research_leader = {
@@ -190,7 +188,7 @@ tech_sm_auto_repair = {
 	}
 
 	ai_weight = {
-		factor = @giga_aiweight_multiplier_questionable
+		factor = @ehof_t1_weight
 		modifier = {
 			factor = 1.25
 			research_leader = {
@@ -235,7 +233,7 @@ tech_qnm_shields = {
 	}
 
 	ai_weight = {
-		factor = @giga_aiweight_multiplier_questionable
+		factor = @ehof_t1_weight
 		modifier = {
 			factor = 1.25
 			research_leader = {
@@ -280,7 +278,7 @@ tech_qnm_thrusters = {
 	}
 
 	ai_weight = {
-		factor = @giga_aiweight_multiplier_questionable
+		factor = @ehof_t1_weight
 		modifier = {
 			factor = 1.5
 			research_leader = {
@@ -338,7 +336,7 @@ tech_qnm_reactors = {
 	}
 
 	ai_weight = {
-		factor = @giga_aiweight_multiplier_questionable
+		factor = @ehof_t1_weight
 		modifier = {
 			factor = 1.25
 			research_leader = {
@@ -391,7 +389,7 @@ tech_qnm_jumpdrive = {
 	}
 
 	ai_weight = {
-		factor = @giga_aiweight_multiplier_questionable
+		factor = @ehof_t1_weight
 		modifier = {
 			factor = 1.5
 			research_leader = {
@@ -429,7 +427,7 @@ tech_sm_flak_batteries = {
 	}
 
 	ai_weight = {
-		factor = @giga_aiweight_multiplier_questionable
+		factor = @ehof_t1_weight
 		modifier = { factor = 1.25	has_ethic = ethic_militarist }
 		modifier = { factor = 1.5	has_ethic = ethic_fanatic_militarist }
 		modifier = { factor = 1.25	research_leader = { area = engineering has_trait = "leader_trait_expertise_propulsion" } }
@@ -443,15 +441,8 @@ tech_sm_autocannons = {
 	tier = 5
 	category = { propulsion }
 	ai_update_type = military
-potential ={
-	or = {
-		AND = {
-			has_technology = tech_autocannons_3
-			has_technology = tech_qnm_utilities
-		}
-		has_country_flag = giga_special_tech_compound_weapon_bypass
-	}
-}
+	prerequisites = { "tech_autocannons_3" "tech_qnm_utilities" }
+
 	weight_modifier = {
 		modifier = { factor = 1.25	has_ethic = ethic_militarist }
 		modifier = { factor = 1.5	has_ethic = ethic_fanatic_militarist }
@@ -459,7 +450,7 @@ potential ={
 	}
 
 	ai_weight = {
-		factor = @giga_aiweight_multiplier_questionable
+		factor = @ehof_t1_weight
 		modifier = { factor = 1.25	has_ethic = ethic_militarist }
 		modifier = { factor = 1.5	has_ethic = ethic_fanatic_militarist }
 		modifier = { factor = 1.25	research_leader = { area = engineering has_trait = "leader_trait_expertise_propulsion" } }
@@ -482,7 +473,7 @@ tech_sm_mass_drivers = {
 	}
 
 	ai_weight = {
-		factor = @giga_aiweight_multiplier_questionable
+		factor = @ehof_t1_weight
 		modifier = { factor = 1.25	has_ethic = ethic_militarist }
 		modifier = { factor = 1.5	has_ethic = ethic_fanatic_militarist }
 		modifier = { factor = 1.25	research_leader = { area = engineering has_trait = "leader_trait_expertise_propulsion" } }
@@ -505,7 +496,7 @@ tech_sm_kinetic_artillery = {
 	}
 
 	ai_weight = {
-		factor = @giga_aiweight_multiplier_questionable
+		factor = @ehof_t1_weight
 		modifier = { factor = 1.25	has_ethic = ethic_militarist }
 		modifier = { factor = 1.5	has_ethic = ethic_fanatic_militarist }
 		modifier = { factor = 1.25	research_leader = { area = engineering has_trait = "leader_trait_expertise_propulsion" } }
@@ -528,7 +519,7 @@ tech_sm_mass_accelerator = {
 	}
 
 	ai_weight = {
-		factor = @giga_aiweight_multiplier_questionable
+		factor = @ehof_t1_weight
 		modifier = { factor = 1.25	has_ethic = ethic_militarist }
 		modifier = { factor = 1.5	has_ethic = ethic_fanatic_militarist }
 		modifier = { factor = 1.25	research_leader = { area = engineering has_trait = "leader_trait_expertise_propulsion" } }
@@ -551,7 +542,7 @@ tech_sm_titanic = {
 	}
 
 	ai_weight = {
-		factor = @giga_aiweight_multiplier_questionable
+		factor = @ehof_t1_weight
 		modifier = { factor = 1.25	has_ethic = ethic_militarist }
 		modifier = { factor = 1.5	has_ethic = ethic_fanatic_militarist }
 		modifier = { factor = 1.25	research_leader = { area = engineering has_trait = "leader_trait_expertise_propulsion" } }
@@ -574,7 +565,7 @@ tech_qnm_pd_tracking = {
 	}
 
 	ai_weight = {
-		factor = @giga_aiweight_multiplier_questionable
+		factor = @ehof_t1_weight
 		modifier = { factor = 1.25	has_ethic = ethic_militarist }
 		modifier = { factor = 1.5	has_ethic = ethic_fanatic_militarist }
 		modifier = { factor = 1.25	research_leader = { area = physics has_trait = "leader_trait_expertise_particles" } }
@@ -597,7 +588,7 @@ tech_qnm_lasers = {
 	}
 
 	ai_weight = {
-		factor = @giga_aiweight_multiplier_questionable
+		factor = @ehof_t1_weight
 		modifier = { factor = 1.25	has_ethic = ethic_militarist }
 		modifier = { factor = 1.5	has_ethic = ethic_fanatic_militarist }
 		modifier = { factor = 1.25	research_leader = { area = physics has_trait = "leader_trait_expertise_particles" } }
@@ -620,7 +611,7 @@ tech_qnm_plasma = {
 	}
 
 	ai_weight = {
-		factor = @giga_aiweight_multiplier_questionable
+		factor = @ehof_t1_weight
 		modifier = { factor = 1.25	has_ethic = ethic_militarist }
 		modifier = { factor = 1.5	has_ethic = ethic_fanatic_militarist }
 		modifier = { factor = 1.25	research_leader = { area = physics has_trait = "leader_trait_expertise_particles" } }
@@ -634,16 +625,8 @@ tech_qnm_disruptors = {
 	tier = 5
 	category = { particles }
 	ai_update_type = military
-	
-potential = {
-	or = {
-		AND = {
-			has_technology = tech_disruptors_3
-			has_technology = tech_qnm_utilities
-		}
-		has_country_flag = giga_special_tech_compound_weapon_bypass
-	}
-}
+	prerequisites = { "tech_disruptors_3" "tech_qnm_utilities" }
+
 	weight_modifier = {
 		modifier = { factor = 1.25	has_ethic = ethic_militarist }
 		modifier = { factor = 1.5	has_ethic = ethic_fanatic_militarist }
@@ -651,7 +634,7 @@ potential = {
 	}
 
 	ai_weight = {
-		factor = @giga_aiweight_multiplier_questionable
+		factor = @ehof_t1_weight
 		modifier = { factor = 1.25	has_ethic = ethic_militarist }
 		modifier = { factor = 1.5	has_ethic = ethic_fanatic_militarist }
 		modifier = { factor = 1.25	research_leader = { area = physics has_trait = "leader_trait_expertise_particles" } }
@@ -674,7 +657,7 @@ tech_qnm_energy_torpedoes = {
 	}
 
 	ai_weight = {
-		factor = @giga_aiweight_multiplier_questionable
+		factor = @ehof_t1_weight
 		modifier = { factor = 1.25	has_ethic = ethic_militarist }
 		modifier = { factor = 1.5	has_ethic = ethic_fanatic_militarist }
 		modifier = { factor = 1.25	research_leader = { area = physics has_trait = "leader_trait_expertise_particles" } }
@@ -697,7 +680,7 @@ tech_qnm_energy_lance = {
 	}
 
 	ai_weight = {
-		factor = @giga_aiweight_multiplier_questionable
+		factor = @ehof_t1_weight
 		modifier = { factor = 1.25	has_ethic = ethic_militarist }
 		modifier = { factor = 1.5	has_ethic = ethic_fanatic_militarist }
 		modifier = { factor = 1.25	research_leader = { area = physics has_trait = "leader_trait_expertise_particles" } }
@@ -720,7 +703,7 @@ tech_qnm_arc_emitter = {
 	}
 
 	ai_weight = {
-		factor = @giga_aiweight_multiplier_questionable
+		factor = @ehof_t1_weight
 		modifier = { factor = 1.25	has_ethic = ethic_militarist }
 		modifier = { factor = 1.5	has_ethic = ethic_fanatic_militarist }
 		modifier = { factor = 1.25	research_leader = { area = physics has_trait = "leader_trait_expertise_particles" } }
@@ -743,7 +726,7 @@ tech_qnm_titanic = {
 	}
 
 	ai_weight = {
-		factor = @giga_aiweight_multiplier_questionable
+		factor = @ehof_t1_weight
 		modifier = { factor = 1.25	has_ethic = ethic_militarist }
 		modifier = { factor = 1.5	has_ethic = ethic_fanatic_militarist }
 		modifier = { factor = 1.25	research_leader = { area = physics has_trait = "leader_trait_expertise_particles" } }
@@ -763,11 +746,9 @@ tech_compound_armor = {
 	ai_update_type = all
 	prerequisites = { "tech_ship_armor_5" }
 	weight_modifier = { factor = 0 }
-	potential = {
-		has_global_flag = compound_invasion_happened
-	}
+
 	ai_weight = {
-		factor = @giga_aiweight_multiplier_questionable
+		factor = @ehof_t2_weight
 		modifier = {
 			factor = 1.25
 			research_leader = {
@@ -788,9 +769,7 @@ tech_compound_computers = {
 	ai_update_type = military
 	prerequisites = { "tech_combat_computers_2" }
 	weight_modifier = { factor = 0 }
-	potential = {
-		has_global_flag = compound_invasion_happened
-	}
+
 	prereqfor_desc = {
 		hide_prereq_for_desc = component
 		custom = {
@@ -800,7 +779,7 @@ tech_compound_computers = {
 	}
 
 	ai_weight = {
-		factor = @giga_aiweight_multiplier_questionable
+		factor = @ehof_t2_weight
 		modifier = {
 			factor = 1.25
 			research_leader = {
@@ -822,9 +801,7 @@ tech_compound_drives = {
 	prerequisites = { tech_jump_drive_1 }
 	feature_flags = { jump_method }
 	weight_modifier = { factor = 0 }
-	potential = {
-		has_global_flag = compound_invasion_happened
-	}
+
 	prereqfor_desc = {
 		component = {
 			title = "TECH_UNLOCK_COMPOUND_JUMPDRIVE_TITLE"
@@ -833,7 +810,7 @@ tech_compound_drives = {
 	}
 
 	ai_weight = {
-		factor = @giga_aiweight_multiplier_questionable
+		factor = @ehof_t2_weight
 		modifier = {
 			factor = 1.25
 			research_leader = {
@@ -855,9 +832,7 @@ tech_compound_reactors = {
 	prerequisites = { "tech_zero_point_power" }
 	gateway = power_generation
 	weight_modifier = { factor = 0 }
-	potential = {
-		has_global_flag = compound_invasion_happened
-	}
+
 	prereqfor_desc = {
 		hide_prereq_for_desc = component
 		custom = {
@@ -867,7 +842,7 @@ tech_compound_reactors = {
 	}
 
 	ai_weight = {
-		factor = @giga_aiweight_multiplier_questionable
+		factor = @ehof_t2_weight
 		modifier = {
 			factor = 1.25
 			research_leader = {
@@ -888,9 +863,7 @@ tech_compound_sensors = {
 	ai_update_type = all
 	prerequisites = { "tech_sensors_4" }
 	weight_modifier = { factor = 0 }
-	potential = {
-		has_global_flag = compound_invasion_happened
-	}
+
 	prereqfor_desc = {
 		component = {
 			title = "TECH_UNLOCK_COMPOUND_SENSOR_TITLE"
@@ -899,7 +872,7 @@ tech_compound_sensors = {
 	}
 
 	ai_weight = {
-		factor = @giga_aiweight_multiplier_questionable
+		factor = @ehof_t2_weight
 		modifier = {
 			factor = 1.25
 			research_leader = {
@@ -920,11 +893,9 @@ tech_compound_shields = {
 	ai_update_type = all
 	prerequisites = { "tech_shields_5" }
 	weight_modifier = { factor = 0 }
-	potential = {
-		has_global_flag = compound_invasion_happened
-	}
+
 	ai_weight = {
-		factor = @giga_aiweight_multiplier_questionable
+		factor = @ehof_t2_weight
 		modifier = {
 			factor = 1.25
 			research_leader = {
@@ -945,9 +916,7 @@ tech_compound_thrusters = {
 	ai_update_type = all
     prerequisites = { "tech_thrusters_4" }
 	weight_modifier = { factor = 0 }
-	potential = {
-		has_global_flag = compound_invasion_happened
-	}
+
 	prereqfor_desc = {
 		hide_prereq_for_desc = component
 		custom = {
@@ -957,7 +926,7 @@ tech_compound_thrusters = {
 	}
 
 	ai_weight = {
-		factor = @giga_aiweight_multiplier_questionable
+		factor = @ehof_t2_weight
 		modifier = {
 			factor = 1.25
 			research_leader = {

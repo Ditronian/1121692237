@@ -85,12 +85,7 @@ d_exp_civ_fe_preserve = {
 		category = planet_deposits
 		produces = {
 			society_research = 700
-		}
-		produces = {
-			trigger = {
-				has_ancrel = yes
-			}
-			minor_artifacts = 1
+			minor_artifacts = 0.1
 		}
 	}
 

@@ -83,9 +83,7 @@ country_event = {
 		room = "creator_room"
 	}
 	desc = "annihilator_dialog.004.desc"
-	immediate = {
-		set_country_flag = qnm_utilities_possible
-	}
+
 	option = {
 		custom_gui = "ehof_mainui_option_big"
 		name = "annihilator_dialog.004.response"
@@ -613,7 +611,7 @@ country_event = {
 		custom_gui = "ehof_mainui_option_big"
 		trigger = { check_variable = { which = sa_lootbox value = 5 } }
 		name = "annihilator_dialog.010.response"
-		add_monthly_resource_mult = { resource = minor_artifacts value = 24 min = 200 max = 500 }
+		add_monthly_resource_mult = { resource = minor_artifacts value = 24 min = 20 max = 50 }
 		hidden_effect = { set_variable = { which = sa_lootbox value = 0 } }
 	}
 

@@ -89,7 +89,7 @@ decision_blokkat_emergency_evacuation = {
 
 decision_grandbunny_shield_system = {
 	sound = event_mystic_reveal
-	icon = decision_grandbunny_shield_system
+	icon = decision_psychic_illuminate
 
 	resources = {
 		category = decisions

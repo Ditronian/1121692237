@@ -14,45 +14,7 @@ giga_contact_blokkat_bureau = {
 	effect = { custom_tooltip = "giga_contact_blokkats_tooltip" hidden_effect = { from = { country_event = { id = giga_blokkat.3000 } } } }
 }
 
-giga_contact_blokkat_willingness = {
-	potential = {
-		exists = from
-		#OR = { any_country = { is_country_type = blokkat_stripminers } }
-		from = {
-			has_country_flag = blokkat_willingness_active
-		}
-	}
-	allow = {
-		hidden_trigger = {
-			from = { NOT = { has_country_flag = monitoring_blokkat_willingness } }
-		}
-	}
-	effect = { custom_tooltip = "giga_contact_blokkats_willingness_tooltip" hidden_effect = { from = { country_event = { id = giga_blokkat_join.5500 } } } }
-}
-
-
 #Difficulties
-blokkats_x_very_easy = {
-	potential = {
-		exists = from
-		from = {
-			has_country_flag = giga_menu_page_00
-			NOT = {	has_global_flag = giga_blokkats_disabled }
-			has_global_flag = giga_blokkats_very_easy
-		}
-	}
-	allow = {
-		custom_tooltip = {
-			fail_text = "must_not_have_started_game"
-			NOT = { has_global_flag = giga_game_started }
-		}
-		hidden_trigger = {
-			NOT = { has_global_flag = giga_blokkats_disabled }
-		}
-	}
-	effect = { custom_tooltip = "giga_blokkats_very_easy" }
-}
-
 blokkats_x_easy = {
 	potential = {
 		exists = from
@@ -135,54 +97,6 @@ blokkats_x_endtech = {
 		}
 	}
 	effect = { custom_tooltip = "giga_blokkats_endtech" }
-}
-
-blokkats_x_deathmode = {
-	potential = {
-		exists = from
-		from = {
-			has_country_flag = giga_menu_page_00
-			NOT = {	has_global_flag = giga_blokkats_disabled }
-			has_global_flag = giga_blokkats_deathmode
-		}
-	}
-	allow = {
-		custom_tooltip = {
-			fail_text = "must_not_have_started_game"
-			NOT = { has_global_flag = giga_game_started }
-		}
-		hidden_trigger = {
-			NOT = { has_global_flag = giga_blokkats_disabled }
-		}
-	}
-	effect = { custom_tooltip = "giga_blokkats_deathmode" }
-}
-
-blokkats_x_very_easy_disabled = {
-	potential = {
-		exists = from
-		from = {
-			has_country_flag = giga_menu_page_00
-			OR = {
-				has_global_flag = giga_blokkats_disabled
-				NOT = { has_global_flag = giga_blokkats_very_easy }
-			}
-		}
-	}
-	allow = {
-		custom_tooltip = {
-			fail_text = "must_not_have_started_game"
-			NOT = { has_global_flag = giga_game_started }
-		}
-		hidden_trigger = {
-			NOT = { has_global_flag = giga_blokkats_disabled }
-		}
-	}
-	effect = {
-		custom_tooltip = "giga_blokkats_very_easy"
-		remove_flags_blokkat_difficulty = yes
-		set_global_flag = giga_blokkats_very_easy
-	}
 }
 
 blokkats_x_easy_disabled = {
@@ -293,33 +207,6 @@ blokkats_x_endtech_disabled = {
 	}
 }
 
-blokkats_x_deathmode_disabled = {
-	potential = {
-		exists = from
-		from = {
-			has_country_flag = giga_menu_page_00
-			OR = {
-				has_global_flag = giga_blokkats_disabled
-				NOT = { has_global_flag = giga_blokkats_deathmode }
-			}
-		}
-	}
-	allow = {
-		custom_tooltip = {
-			fail_text = "must_not_have_started_game"
-			NOT = { has_global_flag = giga_game_started }
-		}
-		hidden_trigger = {
-			NOT = { has_global_flag = giga_blokkats_deathmode }
-		}
-	}
-	effect = {
-		custom_tooltip = "giga_blokkats_deathmode"
-		remove_flags_blokkat_difficulty = yes
-		set_global_flag = giga_blokkats_deathmode
-	}
-}
-
 blokkats_x = {
 	potential = {
 		exists = from
@@ -405,37 +292,12 @@ blokkats_x_guaranteed_disabled = { #default "enabled" option, click to DISABLE
 }
 
 #Vintage or not
-blokkats_x_canon = {
-	potential = {
-		exists = from
-		from = {
-			has_country_flag = giga_menu_page_00
-			NOR = {	
-				has_global_flag = regular_blokkats
-				has_global_flag = vintage_blokkats
-				has_global_flag = anime_blokkats 
-			}
-		}
-	}
-	allow = {
-		custom_tooltip = {
-			fail_text = "must_not_have_started_game"
-			NOT = { has_global_flag = giga_game_started }
-		}
-		hidden_trigger = {
-			NOT = { has_global_flag = giga_blokkats_disabled }
-		}
-	}
-	effect = { custom_tooltip = "giga_blokkats_canon" set_global_flag = regular_blokkats }
-}
-
-
 blokkats_x_regular = {
 	potential = {
 		exists = from
 		from = {
 			has_country_flag = giga_menu_page_00
-			has_global_flag = regular_blokkats
+			NOR = {	has_global_flag = vintage_blokkats has_global_flag = anime_blokkats }
 		}
 	}
 	allow = {
@@ -447,7 +309,7 @@ blokkats_x_regular = {
 			NOT = { has_global_flag = giga_blokkats_disabled }
 		}
 	}
-	effect = { custom_tooltip = "giga_blokkats_regular" set_global_flag = vintage_blokkats remove_global_flag = regular_blokkats }
+	effect = { custom_tooltip = "giga_blokkats_regular" set_global_flag = vintage_blokkats remove_global_flag = anime_blokkats }
 }
 
 blokkats_x_vintage = {

@@ -84,8 +84,9 @@ special_project = {
 	}
 
 	on_success = {
- 		ship_event = { id = giga_aeternum.4131 } 
-	}
-	on_fail = {#should be impossible as it has no time limit
+		if = {
+			limit = { exists = owner }
+			owner = { country_event = { id = giga_aeternum.4131 } }
+		}
 	}
 }

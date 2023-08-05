@@ -13,14 +13,14 @@ ship_event = {
 	trigger = {
 		solar_system = { cohesive_system = yes }
 		from = { has_anomaly = no }
-		controller = { NOT = { has_country_flag = code_intro } }
+		owner = { NOT = { has_country_flag = code_intro } }
 	}
 
 	immediate = {
 		random_list = {
 			1 = {}
 			3 = {
-				controller = {
+				owner = {
 					set_country_flag = code_intro
 					country_event = { id = ehof_reality_code.0011 }
 				}
@@ -83,6 +83,7 @@ country_event = {
 			}
 		}
 		name = INTERESTING
+		if = { limit = { has_ancrel = yes } small_artifact_reward = yes }
 	}
 }
 
@@ -140,9 +141,7 @@ country_event = {
 	show_sound = event_finding_loot
 	is_triggered_only = yes
 	location = from
-	immediate = {
-		set_country_flag = ehof_level_1_possible
-	}
+
 	option = {
 		default_hide_option = yes
 		name = OK
@@ -418,21 +417,7 @@ ship_event = {
 	picture = GFX_evt_toxic
 	location = from
 	is_triggered_only = yes
-	immediate = { hidden_effect = { if = {
-		limit = {
-			exists = owner
-		}
-		owner = {
-			save_event_target_as = rl_digsite_finder
-		}
-	} from = { 
-	
-
-ehof_giga_new_create_rl_digsite = {
-	digsite = code1_digsite
-	digsite_flag = code_world1
-	digsite_completion_flag = ehof_code_1_complete
-} } } }
+	immediate = { hidden_effect = { from = { create_archaeological_site = code1_digsite } } }
 	option = { default_hide_option = yes name = ancrel.4000.a }
 }
 
@@ -444,23 +429,7 @@ ship_event = {
 	picture = GFX_evt_shattered_planet
 	location = from
 	is_triggered_only = yes
-	immediate = { hidden_effect = { 
-		if = {
-			limit = {
-				exists = owner
-			}
-			owner = {
-				save_event_target_as = rl_digsite_finder
-			}
-		} from = { 
-			
-		
-		ehof_giga_new_create_rl_digsite = {
-			digsite = code2_digsite
-			digsite_flag = code_world2
-			digsite_completion_flag = ehof_code_2_complete
-		}
-		 } } }
+	immediate = { hidden_effect = { from = { create_archaeological_site = code2_digsite } } }
 	option = { default_hide_option = yes name = ancrel.4000.a }
 }
 
@@ -472,21 +441,7 @@ ship_event = {
 	picture = GFX_evt_frozen
 	location = from
 	is_triggered_only = yes
-	immediate = { hidden_effect = { if = {
-		limit = {
-			exists = owner
-		}
-		owner = {
-			save_event_target_as = rl_digsite_finder
-		}
-	} from = { 
-	
-
-ehof_giga_new_create_rl_digsite = {
-	digsite = code3_digsite
-	digsite_flag = code_world3
-	digsite_completion_flag = ehof_code_3_complete
-} } } }
+	immediate = { hidden_effect = { from = { create_archaeological_site = code3_digsite } } }
 	option = { default_hide_option = yes name = ancrel.4000.a }
 }
 
@@ -498,21 +453,7 @@ ship_event = {
 	picture = GFX_evt_molten
 	location = from
 	is_triggered_only = yes
-	immediate = { hidden_effect = { if = {
-		limit = {
-			exists = owner
-		}
-		owner = {
-			save_event_target_as = rl_digsite_finder
-		}
-	} from = { 
-	
-
-ehof_giga_new_create_rl_digsite = {
-	digsite = code4_digsite
-	digsite_flag = code_world4
-	digsite_completion_flag = ehof_code_4_complete
-} } } }
+	immediate = { hidden_effect = { from = { create_archaeological_site = code4_digsite } } }
 	option = { default_hide_option = yes name = ancrel.4000.a }
 }
 
@@ -524,21 +465,7 @@ ship_event = {
 	picture = GFX_evt_gas_giant
 	location = from
 	is_triggered_only = yes
-	immediate = { hidden_effect = { if = {
-		limit = {
-			exists = owner
-		}
-		owner = {
-			save_event_target_as = rl_digsite_finder
-		}
-	} from = { 
-	
-
-ehof_giga_new_create_rl_digsite = {
-	digsite = code5_digsite
-	digsite_flag = code_world5
-	digsite_completion_flag = ehof_code_5_complete
-} } } }
+	immediate = { hidden_effect = { from = { create_archaeological_site = code5_digsite } } }
 	option = { default_hide_option = yes name = ancrel.4000.a }
 }
 
@@ -550,21 +477,7 @@ ship_event = {
 	picture = GFX_evt_star_neutron
 	location = from
 	is_triggered_only = yes
-	immediate = { hidden_effect = {if = {
-		limit = {
-			exists = owner
-		}
-		owner = {
-			save_event_target_as = rl_digsite_finder
-		}
-	} from = { 
-	
-
-ehof_giga_new_create_rl_digsite = {
-	digsite = code6_digsite
-	digsite_flag = code_world6
-	digsite_completion_flag = ehof_code_6_complete
-} } } }
+	immediate = { hidden_effect = { from = { create_archaeological_site = code6_digsite } } }
 	option = { default_hide_option = yes name = ancrel.4000.a }
 }
 
@@ -599,7 +512,7 @@ fleet_event = {
 	option = {
 		default_hide_option = yes
 		name = CURIOUS
-		small_artifact_reward = yes
+		if = { limit = { has_ancrel = yes } small_artifact_reward = yes }
 	}
 }
 
@@ -628,7 +541,7 @@ fleet_event = {
 	option = {
 		default_hide_option = yes
 		name = CURIOUS
-		small_artifact_reward = yes
+		if = { limit = { has_ancrel = yes } small_artifact_reward = yes }
 	}
 }
 
@@ -655,7 +568,6 @@ fleet_event = {
 			set_country_flag = ehof_code_1_complete
 			set_country_flag = ehof_code_broken_world
 			set_country_flag = ehof_spawn_reality_code
-			
 			add_event_chain_counter = {
 				event_chain = ehof_p4_chain
 				counter = reality_code
@@ -663,14 +575,14 @@ fleet_event = {
 			}
 			country_event = { id = ehof_reality_code.005 }
 		}
-        event_target:code_world_planet = { add_deposit = d_negative_mass_deposit }
+		event_target:code_world_planet = { if = { limit = { has_negative_mass = no } ehof_add_negative_mass_deposit = yes } }
 	}
 	after = { from = { set_site_progress_locked = no } }
 
 	option = {
 		default_hide_option = yes
 		name = CURIOUS
-		medium_artifact_reward = yes
+		if = { limit = { has_ancrel = yes } large_artifact_reward = yes }
 	}
 }
 
@@ -701,7 +613,7 @@ fleet_event = {
 	option = {
 		default_hide_option = yes
 		name = CURIOUS
-		small_artifact_reward = yes
+		if = { limit = { has_ancrel = yes } small_artifact_reward = yes }
 	}
 }
 
@@ -730,7 +642,7 @@ fleet_event = {
 	option = {
 		default_hide_option = yes
 		name = CURIOUS
-		small_artifact_reward = yes
+		if = { limit = { has_ancrel = yes } small_artifact_reward = yes }
 	}
 }
 
@@ -763,14 +675,14 @@ fleet_event = {
 				amount = 1
 			}
 		}
-		event_target:code_world_planet = { add_deposit = d_negative_mass_deposit }
+		event_target:code_world_planet = { if = { limit = { has_negative_mass = no } ehof_add_negative_mass_deposit = yes } }
 	}
 	after = { from = { set_site_progress_locked = no } }
 
 	option = {
 		default_hide_option = yes
 		name = CURIOUS
-		medium_artifact_reward = yes
+		if = { limit = { has_ancrel = yes } large_artifact_reward = yes }
 		owner = {
 			add_research_option = tech_ehof_sentient_tier_2
 			add_tech_progress = { tech = tech_ehof_sentient_tier_2 progress = 0.1 }
@@ -805,7 +717,7 @@ fleet_event = {
 	option = {
 		default_hide_option = yes
 		name = CURIOUS
-		small_artifact_reward = yes
+		if = { limit = { has_ancrel = yes } small_artifact_reward = yes }
 	}
 }
 
@@ -834,7 +746,7 @@ fleet_event = {
 	option = {
 		default_hide_option = yes
 		name = CURIOUS
-		small_artifact_reward = yes
+		if = { limit = { has_ancrel = yes } small_artifact_reward = yes }
 	}
 }
 
@@ -868,14 +780,14 @@ fleet_event = {
 			}
 			country_event = { id = ehof_reality_code.003 days = 7 } # Trigger PGate Activation
 		}
-		event_target:code_world_planet = { add_deposit = d_negative_mass_deposit }
+		event_target:code_world_planet = { if = { limit = { has_negative_mass = no } ehof_add_negative_mass_deposit = yes } }
 	}
 	after = { from = { set_site_progress_locked = no } }
 
 	option = {
 		default_hide_option = yes
 		name = CURIOUS
-		medium_artifact_reward = yes
+		if = { limit = { has_ancrel = yes } large_artifact_reward = yes }
 		owner = {
 			add_research_option = tech_ehof_sentient_tier_3
 			add_tech_progress = { tech = tech_ehof_sentient_tier_3 progress = 0.1 }
@@ -910,7 +822,7 @@ fleet_event = {
 	option = {
 		default_hide_option = yes
 		name = CURIOUS
-		small_artifact_reward = yes
+		if = { limit = { has_ancrel = yes } small_artifact_reward = yes }
 	}
 }
 
@@ -939,7 +851,7 @@ fleet_event = {
 	option = {
 		default_hide_option = yes
 		name = CURIOUS
-		small_artifact_reward = yes
+		if = { limit = { has_ancrel = yes } small_artifact_reward = yes }
 	}
 }
 
@@ -968,7 +880,7 @@ fleet_event = {
 	option = {
 		default_hide_option = yes
 		name = CURIOUS
-		medium_artifact_reward = yes
+		if = { limit = { has_ancrel = yes } medium_artifact_reward = yes }
 	}
 }
 
@@ -1001,14 +913,14 @@ fleet_event = {
 				amount = 1
 			}
 		}
-		event_target:code_world_planet = { add_deposit = d_negative_mass_deposit }
+		event_target:code_world_planet = { if = { limit = { has_negative_mass = no } ehof_add_negative_mass_deposit = yes } }
 	}
 	after = { from = { set_site_progress_locked = no } }
 
 	option = {
 		default_hide_option = yes
 		name = CURIOUS
-		large_artifact_reward = yes
+		if = { limit = { has_ancrel = yes } large_artifact_reward = yes }
 		owner = {
 			add_research_option = tech_ehof_sentient_tier_4
 			add_tech_progress = { tech = tech_ehof_sentient_tier_4 progress = 0.1 }
@@ -1043,7 +955,7 @@ fleet_event = {
 	option = {
 		default_hide_option = yes
 		name = CURIOUS
-		small_artifact_reward = yes
+		if = { limit = { has_ancrel = yes } small_artifact_reward = yes }
 	}
 }
 
@@ -1072,7 +984,7 @@ fleet_event = {
 	option = {
 		default_hide_option = yes
 		name = CURIOUS
-		small_artifact_reward = yes
+		if = { limit = { has_ancrel = yes } small_artifact_reward = yes }
 	}
 }
 
@@ -1101,7 +1013,7 @@ fleet_event = {
 	option = {
 		default_hide_option = yes
 		name = CURIOUS
-		small_artifact_reward = yes
+		if = { limit = { has_ancrel = yes } medium_artifact_reward = yes }
 	}
 }
 
@@ -1134,14 +1046,14 @@ fleet_event = {
 				amount = 1
 			}
 		}
-		event_target:code_world_planet = { add_deposit = d_negative_mass_deposit }
+		event_target:code_world_planet = { if = { limit = { has_negative_mass = no } ehof_add_negative_mass_deposit = yes } }
 	}
 	after = { from = { set_site_progress_locked = no } }
 
 	option = {
 		default_hide_option = yes
 		name = CURIOUS
-		large_artifact_reward = yes
+		if = { limit = { has_ancrel = yes } large_artifact_reward = yes }
 		owner = {
 			add_research_option = tech_ehof_sentient_tier_5
 			add_tech_progress = { tech = tech_ehof_sentient_tier_5 progress = 0.1 }
@@ -1176,7 +1088,7 @@ fleet_event = {
 	option = {
 		default_hide_option = yes
 		name = CURIOUS
-		small_artifact_reward = yes
+		if = { limit = { has_ancrel = yes } small_artifact_reward = yes }
 	}
 }
 
@@ -1205,7 +1117,7 @@ fleet_event = {
 	option = {
 		default_hide_option = yes
 		name = CURIOUS
-		small_artifact_reward = yes
+		if = { limit = { has_ancrel = yes } small_artifact_reward = yes }
 	}
 }
 
@@ -1234,7 +1146,7 @@ fleet_event = {
 	option = {
 		default_hide_option = yes
 		name = CURIOUS
-		medium_artifact_reward = yes
+		if = { limit = { has_ancrel = yes } medium_artifact_reward = yes }
 	}
 }
 
@@ -1264,18 +1176,16 @@ fleet_event = {
 				counter = reality_code
 				amount = 1
 			}
-			root.owner = {
-				country_event = { id = ehof_reality_code.1000 }
-			}
+			country_event = { id = ehof_reality_code.1000 }
 		}
-		event_target:code_world_planet = { add_deposit = d_negative_mass_deposit }
+		event_target:code_world_planet = { if = { limit = { has_negative_mass = no } ehof_add_negative_mass_deposit = yes } }
 	}
 	after = { from = { set_site_progress_locked = no } }
 
 	option = {
 		default_hide_option = yes
 		name = CURIOUS
-		large_artifact_reward = yes
+		if = { limit = { has_ancrel = yes } great_artifact_reward = yes }
 		owner = {
 			add_research_option = tech_ehof_sentient_tier_6
 			add_tech_progress = { tech = tech_ehof_sentient_tier_6 progress = 0.1 }
@@ -1298,33 +1208,26 @@ country_event = {
 
 	immediate = {
 		hidden_effect = {
-			save_event_target_as = event_target:rl_digsite_finder
 			set_country_flag = ehof_final_digsite
 
 			# Save creator
-			# if = {
-			# 	limit = { exists = event_target:current_system_creator }
-			# 	clear_global_event_target = current_system_creator
-			# }
+			if = {
+				limit = { exists = event_target:current_system_creator }
+				clear_global_event_target = current_system_creator
+			}
 			save_global_event_target_as = current_system_creator
-event_target:current_system_creator = {
-	log = "creator is [this.GetName]"
-}
+
 			# Create system
 			random_system_within_border = {
 				limit = {
 					cohesive_system = yes
 					has_star_flag = ehof_system_created_by_@root
 				}
-				
 				spawn_system = {
 					min_distance >= 5
 					max_distance <= 25
 					hyperlane = no
 					initializer = "ehof_unique_cplanet"
-					effect = {
-						save_event_target_as = giga_new_hyper_source
-					}
 				}
 			}
 
@@ -1334,61 +1237,10 @@ event_target:current_system_creator = {
 					everchanging_system = yes
 					has_star_flag = ehof_system_created_by_@root
 				}
-				isolate_system = yes
-				log = "system selected  is [this.GetName]"
 				save_event_target_as = creator_poi
 				random_list = {
-					1 = { while = { count = 1 ehof_giga_new_generate_hyperlane_2 = yes } }
-		1 = { while = { count = 2  ehof_giga_new_generate_hyperlane_2 = yes } }
-				}
-				random_system_planet = {
-limit = {
-is_planet_class = pc_ehof_cplanet
-}
-log = "planet selected is [this.GetName]"
-event_target:current_system_creator = {
-	log = "creator is [this.GetName]"
-}
-# ehof_giga_new_create_rl_digsite =  {
-# 	digsite = code_final_digsite
-# 	digsite_flag = code_world7
-# 	digsite_completion_flag = ehof_code_7_complete
-# }
-event_target:current_system_creator = {
-	log = "creator is [this.GetName]"
-}
-log = "Does archaeological site exist?"
-if = {
-	limit = {
-		exists = archaeological_site
-	 }
-	 log = "True"
-}
-else = {
-	log = "False"
-}
-log = "Is Planet correctly marked?"
-if = {
-	limit = { 
-		has_planet_flag = code_world7@root
-	}
-	log = "True"
-}
-else = {
-	log = "False"
-}
-log = "Is Country correctly marked?"
-if = {
-	limit = { 
-		root = {
-			has_country_flag = code_world7@prev
-		}
-	}
-	log = "True"
-}
-else = {
-	log = "False"
-}
+					1 = { while = { count = 1 ehof_generate_hyperlane = yes } }
+					1 = { while = { count = 2 ehof_generate_hyperlane = yes } }
 				}
 			}
 
@@ -1478,7 +1330,7 @@ fleet_event = {
 	option = {
 		default_hide_option = yes
 		name = CURIOUS
-		small_artifact_reward = yes
+		if = { limit = { has_ancrel = yes } medium_artifact_reward = yes }
 	}
 }
 
@@ -1498,7 +1350,7 @@ fleet_event = {
 	option = {
 		default_hide_option = yes
 		name = CURIOUS
-		medium_artifact_reward = yes
+		if = { limit = { has_ancrel = yes } medium_artifact_reward = yes }
 	}
 }
 
@@ -1518,7 +1370,7 @@ fleet_event = {
 	option = {
 		default_hide_option = yes
 		name = CURIOUS
-		medium_artifact_reward = yes
+		if = { limit = { has_ancrel = yes } large_artifact_reward = yes }
 	}
 }
 
@@ -1538,7 +1390,7 @@ fleet_event = {
 	option = {
 		default_hide_option = yes
 		name = CURIOUS
-		medium_artifact_reward = yes
+		if = { limit = { has_ancrel = yes } large_artifact_reward = yes }
 	}
 }
 
@@ -1558,7 +1410,7 @@ fleet_event = {
 	option = {
 		default_hide_option = yes
 		name = CURIOUS
-		medium_artifact_reward = yes
+		if = { limit = { has_ancrel = yes } great_artifact_reward = yes }
 	}
 }
 
@@ -1583,7 +1435,7 @@ fleet_event = {
 	option = {
 		default_hide_option = yes
 		name = CURIOUS
-		great_artifact_reward = yes
+		if = { limit = { has_ancrel = yes } great_artifact_reward = yes }
 		random_system = {
 			limit = {
 				everchanging_system = yes

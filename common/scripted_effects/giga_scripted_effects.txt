@@ -91,58 +91,6 @@ katzenland_clear_districts = {
 	}
 }
 
-# since 3.3 removing a planet which has a colony on it causes a crash
-# so here's a little effect to shorten stuff - TTFTCUTS
-giga_remove_planet = {
-	set_planet_flag = giga_remove_planet
-	if = { 
-		limit = { is_colony = yes }
-		every_owned_pop = { kill_pop = yes }
-		destroy_colony = yes
-
-		set_planet_flag = has_megastructure
-		set_planet_flag = megastructure
-
-		change_pc = pc_giga_empty_space_asteroid
-
-		planet_event = { id = giga_mega.8500 days = 1 }
-	}
-	else = {
-		solar_system = {
-			every_fleet_in_system = {
-				limit = {
-					any_owned_ship = {
-						is_ship_class = shipclass_constructor
-					}
-					controller = {
-						is_ai = yes
-					}
-					is_fleet_idle = yes
-				}
-
-				set_fleet_flag = giga_remove_planet
-				every_owned_ship = {
-					set_disabled = yes
-				}
-			}
-		}
-
-		remove_planet = yes
-
-		solar_system = {
-			every_fleet_in_system = {
-				limit = {
-					has_fleet_flag = giga_remove_planet
-				}
-				every_owned_ship = {
-					set_disabled = no
-				}
-				remove_fleet_flag = giga_remove_planet
-			}
-		}
-	}
-}
-
 #################################
 ### Create Ship Effects #########
 #################################
@@ -152,6 +100,7 @@ giga_moon_barren = {		create_fleet = { name = "Attack Moon" settings = { spawn_d
 giga_moon_molten = {		create_fleet = { name = "Attack Moon" settings = { spawn_debris = no } effect = { set_owner = prev create_ship = { name = "Molten Attack Moon"		design = "Molten Planetoid"			effect = { set_ship_flag = giga_moon_molten } } } } }
 giga_moon_disco = {			create_fleet = { name = "Attack Moon" settings = { spawn_debris = no } effect = { set_owner = prev create_ship = { name = "Party Attack Moon"		design = "Disco Planetoid"			effect = { set_ship_flag = giga_moon_disco } } } } }
 giga_moon_luna = {			create_fleet = { name = "Attack Moon" settings = { spawn_debris = no } effect = { set_owner = prev create_ship = { name = "Luna"					design = "Luna"						effect = { set_ship_flag = giga_moon_luna } } } } }
+giga_moon_fe = {			create_fleet = { name = "Attack Moon" settings = { spawn_debris = no } effect = { set_owner = prev create_ship = { name = "Celestial Defender"		design = "Ancient AI Planetoid"		effect = { set_ship_flag = giga_moon_fe } } } } }
 
 giga_war_moon = {
 	create_fleet = { 
@@ -162,34 +111,49 @@ giga_war_moon = {
 			create_ship = { 
 				name = "Attack Moon" 
 				random_existing_design = giga_massive_planet
-				effect = { 
-					set_ship_flag = random 
-					[[ship_name]
-						set_name = {
-							key = $ship_name$
-							]
-							[[ship_name_variables]
-							variable_string = $ship_name_variables$
-							]
-							[[ship_name]
-						}
-					]
-				} 
+				effect = { set_ship_flag = random } 
 			}
 			set_formation_scale = 5
-
-			[[fleet_name]
-				set_name = {
-					key = $fleet_name$
-					]
-					[[fleet_name_variables]
-					variable_string = $fleet_name_variables$
-					]
-					[[fleet_name]
-				}
-			]
 		}
 	} 
+}
+
+giga_move_to_capital = {
+	random_list = {
+		1 = { capital_scope = { save_event_target_as = giga_fe_fleet_spawn } }
+		2 = { capital_scope.solar_system = { random_system_planet = { save_event_target_as = giga_fe_fleet_spawn } } }
+	}
+	last_created_fleet = { set_location = event_target:giga_fe_fleet_spawn }
+}
+
+giga_planet_fe = {
+	create_fleet = {
+		name = "The Grand Defender"
+		settings = { spawn_debris = no }
+		effect = {
+			set_owner = prev
+			create_ship = {
+				name = "The Grand Defender"
+				design = "Ancient Planetcraft"
+				effect = { set_ship_flag = giga_planet_fe }
+			}
+		}
+	}
+}
+
+giga_planet_fe_holy = {
+	create_fleet = {
+		name = "The Protector of Faith"
+		settings = { spawn_debris = no }
+		effect = {
+			set_owner = prev
+			create_ship = {
+				name = "Protector of Faith"
+				design = "Ancient Holy Planetcraft"
+				effect = { set_ship_flag = giga_planet_fe }
+			}
+		}
+	}
 }
 
 giga_planet_craft = {
@@ -206,33 +170,9 @@ giga_planet_craft = {
 				name = "Behemoth Planetcraft"
 				graphical_culture = root.from
 				random_existing_design = giga_planet_behemoth
-				effect = { 
-					set_ship_flag = giga_planet 
-
-					[[ship_name]
-						set_name = {
-							key = $ship_name$
-							]
-							[[ship_name_variables]
-							variable_string = $ship_name_variables$
-							]
-							[[ship_name]
-						}
-					]
-				}
+				effect = { set_ship_flag = giga_planet }
 			}
 			set_formation_scale = 10
-
-			[[fleet_name]
-				set_name = {
-					key = $fleet_name$
-					]
-					[[fleet_name_variables]
-					variable_string = $fleet_name_variables$
-					]
-					[[fleet_name]
-				}
-			]
 		}
 	}
 }
@@ -242,6 +182,7 @@ giga_system_craft = {
 		name = "The Stellar Systemcraft"
 		settings = {
 			spawn_debris = no
+			can_change_composition = no
 			is_boss = yes
 		}
 		effect = {
@@ -250,32 +191,7 @@ giga_system_craft = {
 				name = "The Stellar Systemcraft"
 				graphical_culture = root.from
 				random_existing_design = giga_systemcraft
-				effect = {
-
-					[[ship_name]
-						set_name = {
-							key = $ship_name$
-							]
-							[[ship_name_variables]
-							variable_string = $ship_name_variables$
-							]
-							[[ship_name]
-						}
-					]
-				}
 			}
-			set_formation_scale = 20
-
-			[[fleet_name]
-				set_name = {
-					key = $fleet_name$
-					]
-					[[fleet_name_variables]
-					variable_string = $fleet_name_variables$
-					]
-					[[fleet_name]
-				}
-			]
 		}
 	}
 }
@@ -451,18 +367,11 @@ giga_remove_system_planets = {
 			is_star = no
 			NOT = { is_planet_class = pc_giga_asteroid_artillery }
 		}
-		if = {
-			limit = {
-				is_colony = yes
-			}
-			destroy_colony = yes
-		}
 		remove_planet = yes
 	}
 	every_system_ambient_object = {
 		limit = {
 			NOR = {
-				ehof_any_amb_object = yes
 				is_ambient_object_type = NAME_Syzygy_Remains
 				is_ambient_object_type = abandoned_observation_outpost
 				is_ambient_object_type = abandoned_ship_2_object
@@ -598,9 +507,9 @@ giga_remove_system_planets = {
 				is_ambient_object_type = sa_firing_at_sphere
 				is_ambient_object_type = shrine_object
 				is_ambient_object_type = silent_freighter_object
-				# is_ambient_object_type = sm_forge_p2
-				# is_ambient_object_type = sm_forge_p3
-				# is_ambient_object_type = sm_forge_p4
+				is_ambient_object_type = sm_forge_p2
+				is_ambient_object_type = sm_forge_p3
+				is_ambient_object_type = sm_forge_p4
 				is_ambient_object_type = small_debris_object
 				is_ambient_object_type = space_storm_1
 				is_ambient_object_type = space_storm_2
@@ -1304,82 +1213,15 @@ giga_imprison = {
 		}
 		else_if = {
 			limit = {
-				is_giga_standard_ringworld = yes
-			}
-			every_owned_pop = { kill_pop = yes }
-			change_pc = pc_ringworld_habitable_shrouded
-			if = {
-				limit = { has_planet_flag = giga_ringworld_gar }
-				giga_set_ringworld_graphical_culture = {
-					TARGET = this
-					SOURCE = solar_system.starbase.owner
-					SIZE = gargantuan
-					TYPE = shrouded_habitable
+				OR = {
+					is_planet_class = pc_ringworld_habitable
+					is_planet_class = pc_ringworld_city
+					is_planet_class = pc_ringworld_machine
+					is_planet_class = pc_ringworld_hive
 				}
 			}
-			else_if = {
-				limit = { has_planet_flag = giga_ringworld_beh } 
-				giga_set_ringworld_graphical_culture = {
-					TARGET = this
-					SOURCE = solar_system.starbase.owner
-					SIZE = behemoth
-					TYPE = shrouded_habitable
-				}
-			}
-			else_if = {
-				limit = { has_planet_flag = giga_ringworld_tit } 
-				giga_set_ringworld_graphical_culture = {
-					TARGET = this
-					SOURCE = solar_system.starbase.owner
-					SIZE = titanic
-					TYPE = shrouded_habitable
-				}
-			}
-			else = {
-				giga_set_ringworld_graphical_culture = {
-					TARGET = this
-					SOURCE = solar_system.starbase.owner
-					SIZE = vanilla
-					TYPE = shrouded_habitable
-					VANILLA_TYPE = habitable #Unfortunate but if a proper version isn't included it probably doesn't have shrouded support
-				}
-			}
-			save_event_target_as = giga_planet_illuminated
-			root = { country_event = { id = giga_psychic_beacon.006 days = 2 } }
-		}
-		else_if = {
-			limit = { 		
-				is_planet_class = pc_squareworld_habitable
-			}
-			change_pc = pc_squareworld_shrouded_habitable #Not even the funny square is safe from me
 			every_owned_pop = { kill_pop = yes }
-			save_event_target_as = giga_planet_illuminated
-			root = { country_event = { id = giga_psychic_beacon.006 days = 2 } }
-		}
-		else_if = {
-			limit = {
-				is_planet_class = pc_giga_penrose_habitable
-			}
-			change_pc = pc_giga_penrose_shrouded_habitable
-			every_owned_pop = { kill_pop = yes }
-			save_event_target_as = giga_planet_illuminated
-			root = { country_event = { id = giga_psychic_beacon.006 days = 2 } }
-		}
-		else_if = {
-			limit = {
-				is_planet_class = pc_equatorial_shipyard
-			}
-			change_pc = pc_shrouded_equatorial_shipyard
-			every_owned_pop = { kill_pop = yes }
-			save_event_target_as = giga_planet_illuminated
-			root = { country_event = { id = giga_psychic_beacon.006 days = 2 } }
-		}
-		else_if = {
-			limit = {
-				is_planet_class = pc_interstellar_ringworld_habitable
-			}
-			change_pc = pc_interstellar_shrouded_ringworld_habitable
-			every_owned_pop = { kill_pop = yes }
+			change_pc = pc_ringworld_habitable_damaged
 			save_event_target_as = giga_planet_illuminated
 			root = { country_event = { id = giga_psychic_beacon.006 days = 2 } }
 		}
@@ -1387,12 +1229,6 @@ giga_imprison = {
 			add_modifier = {
 				modifier = beacon_shrouded_habitable_structure
 				days = 5400
-			}
-			create_ambient_object = {
-				type = aeternum_consecrated_shroud
-				location = this
-				use_3d_location = yes
-				entity_scale_to_size = yes
 			}
 			every_owned_pop = { kill_pop = yes }
 			save_event_target_as = giga_planet_illuminated
@@ -1594,7 +1430,7 @@ giga_generate_moons_on_planet = {
 				orbit_angle_offset = 37
 				orbit_distance_offset = 7
 				init_effect = {
-					set_name = { key = penrose_rename_moon1 variable_string = "\\[prevprev.GetName\\]"} 
+					set_name = penrose_rename_moon1
 					set_planet_flag = gpm_has_planet_rings
 				}
 			}
@@ -1609,7 +1445,7 @@ giga_generate_moons_on_planet = {
 				orbit_angle_offset = 164
 				orbit_distance_offset = 10
 				init_effect = {
-					set_name = { key = penrose_rename_moon2 variable_string = "\\[prevprev.GetName\\]"} 
+					set_name = penrose_rename_moon2
 					set_planet_flag = gpm_has_planet_rings
 				}
 			}
@@ -1624,7 +1460,7 @@ giga_generate_moons_on_planet = {
 				orbit_angle_offset = 283
 				orbit_distance_offset = 13
 				init_effect = {
-					set_name = { key = penrose_rename_moon3 variable_string = "\\[prevprev.GetName\\]"} 
+					set_name = penrose_rename_moon3
 					set_planet_flag = gpm_has_planet_rings
 				}
 			}
@@ -1639,7 +1475,7 @@ giga_generate_moons_on_planet = {
 				orbit_angle_offset = 203
 				orbit_distance_offset = 16
 				init_effect = {
-					set_name = { key = penrose_rename_moon4 variable_string = "\\[prevprev.GetName\\]"} 
+					set_name = penrose_rename_moon4
 					set_planet_flag = gpm_has_planet_rings
 				}
 			}
@@ -1654,7 +1490,7 @@ giga_generate_moons_on_planet = {
 				orbit_angle_offset = 203
 				orbit_distance_offset = 19
 				init_effect = {
-					set_name = { key = penrose_rename_moon5 variable_string = "\\[prevprev.GetName\\]"} 
+					set_name = penrose_rename_moon5
 					set_planet_flag = gpm_has_planet_rings
 				}
 			}
@@ -1664,170 +1500,134 @@ giga_generate_moons_on_planet = {
 
 giga_reset_ai_start = {
 	set_origin = origin_default
-	remove_country_flag = custom_start_screen
 	capital_scope = {
 		set_planet_flag = gpm_has_planet_rings
 		set_planet_size = 18
-		if = {
-			limit = { NOT = { solar_system = { has_star_flag = ehof_ai_reset } } } #already ideal planet class for EHOF reset
-			random_list = {
-				1 = { every_owned_pop = { limit = { is_robot_pop = no is_sapient = yes } modify_species = { ideal_planet_class = pc_tropical } }	change_pc = pc_tropical }
-				1 = { every_owned_pop = { limit = { is_robot_pop = no is_sapient = yes } modify_species = { ideal_planet_class = pc_arid } }		change_pc = pc_arid }
-				1 = { every_owned_pop = { limit = { is_robot_pop = no is_sapient = yes } modify_species = { ideal_planet_class = pc_continental } }	change_pc = pc_continental }
-				1 = { every_owned_pop = { limit = { is_robot_pop = no is_sapient = yes } modify_species = { ideal_planet_class = pc_ocean } }		change_pc = pc_ocean }
-				1 = { every_owned_pop = { limit = { is_robot_pop = no is_sapient = yes } modify_species = { ideal_planet_class = pc_tundra } }		change_pc = pc_tundra }
-				1 = { every_owned_pop = { limit = { is_robot_pop = no is_sapient = yes } modify_species = { ideal_planet_class = pc_arctic } }		change_pc = pc_arctic }
-				1 = { every_owned_pop = { limit = { is_robot_pop = no is_sapient = yes } modify_species = { ideal_planet_class = pc_alpine } }		change_pc = pc_alpine }
-				1 = { every_owned_pop = { limit = { is_robot_pop = no is_sapient = yes } modify_species = { ideal_planet_class = pc_savannah } }	change_pc = pc_savannah }
-				1 = { every_owned_pop = { limit = { is_robot_pop = no is_sapient = yes } modify_species = { ideal_planet_class = pc_desert } }		change_pc = pc_desert }
-			}
+		random_list = {
+			1 = { every_owned_pop = { limit = { is_robot_pop = no is_sapient = yes } modify_species = { ideal_planet_class = pc_tropical } }	change_pc = pc_tropical }
+			1 = { every_owned_pop = { limit = { is_robot_pop = no is_sapient = yes } modify_species = { ideal_planet_class = pc_arid } }		change_pc = pc_arid }
+			1 = { every_owned_pop = { limit = { is_robot_pop = no is_sapient = yes } modify_species = { ideal_planet_class = pc_continental } }	change_pc = pc_continental }
+			1 = { every_owned_pop = { limit = { is_robot_pop = no is_sapient = yes } modify_species = { ideal_planet_class = pc_ocean } }		change_pc = pc_ocean }
+			1 = { every_owned_pop = { limit = { is_robot_pop = no is_sapient = yes } modify_species = { ideal_planet_class = pc_tundra } }		change_pc = pc_tundra }
+			1 = { every_owned_pop = { limit = { is_robot_pop = no is_sapient = yes } modify_species = { ideal_planet_class = pc_arctic } }		change_pc = pc_arctic }
+			1 = { every_owned_pop = { limit = { is_robot_pop = no is_sapient = yes } modify_species = { ideal_planet_class = pc_alpine } }		change_pc = pc_alpine }
+			1 = { every_owned_pop = { limit = { is_robot_pop = no is_sapient = yes } modify_species = { ideal_planet_class = pc_savannah } }	change_pc = pc_savannah }
+			1 = { every_owned_pop = { limit = { is_robot_pop = no is_sapient = yes } modify_species = { ideal_planet_class = pc_desert } }		change_pc = pc_desert }
 		}
 		generate_start_deposits_and_blockers = yes
 		remove_all_buildings = yes
-		remove_all_districts = yes
 		generate_start_buildings_and_districts = yes
 		giga_generate_moons_on_planet = yes
-		owner = {
-			if = {
-				limit = {
-					is_gestalt = no
-				}
-				capital_scope = {
-					add_modifier = { modifier = prosp_uni_mod days = 7200 }
-				}
-			}
-			else = {
-				capital_scope = {
-					add_modifier = { modifier = prosp_uni_mod_gestalt days = 7200 }
-				}
-			}
-		}	
+
 		solar_system = {
-			if ={
-				limit = {
-					star = {
+			star = {
+				if = {
+					limit = {
 						OR = {
 							giga_black_hole = yes
 							is_planet_class = pc_giga_empty_space
 						}
 					}
-				}
-				star = {
-					change_pc = pc_g_star
-				}
-				set_star_class = sc_g
-			}
-			if = {
-				limit = { has_star_flag = ehof_ai_reset }
-				every_system_megastructure = {
-					limit = {
-						OR = {
-							is_megastructure_type = ehof_pgate_gateway
-							is_megastructure_type = ehof_pgate_unknown
-						}
-					}
-					remove_megastructure = this
-				}
-				every_system_ambient_object = {
-					limit = { is_ambient_object_type = fake_pstone }
-					destroy_ambient_object = this
+					change_pc = pc_black_hole
 				}
 			}
-			if = {
-				limit = { has_star_flag = gigas_new_planets }
-				# Create planet on same orbit for orbit lines
-				spawn_planet = {
-					class = rl_no_atmosphere_planets
-					size = 12
-					location = star
-					orbit_angle_offset = 124
-					orbit_distance_offset = 45
-					orbit_location = yes
-					init_effect = {
-						set_planet_flag = gpm_has_planet_rings
-						giga_generate_moons_on_planet = yes
-					}
-				}
-				if = {
-					limit = { NOT = { has_star_flag = birch_reset } } 
-					spawn_planet = {
-						class = pc_gas_giant
-						size = 30
-						location = star
-						orbit_angle_offset = 234
-						orbit_distance_offset = 57
-						orbit_location = yes
-						has_ring = yes
-						init_effect = {
-						}
-					}
-				}
 
-				spawn_planet = {
-					class = pc_gas_giant
-					size = 20
-					location = star
-					orbit_angle_offset = 281
-					orbit_distance_offset = 92
-					orbit_location = yes
-					has_ring = no
-					init_effect = {
-					}
-				}
-
-				spawn_planet = {
-					class = rl_unhabitable_planets
-					size = 21
-					location = star
-					orbit_angle_offset = 93
-					orbit_distance_offset = 105
-					orbit_location = yes
-					init_effect = {
-						set_planet_flag = gpm_has_planet_rings
-						giga_generate_moons_on_planet = yes
-					}
-				}
-
-				spawn_planet = {
-					class = rl_unhabitable_planets
-					size = 13
-					location = star
-					orbit_angle_offset = 164
-					orbit_distance_offset = 146
-					orbit_location = yes
-					init_effect = {
-						set_planet_flag = gpm_has_planet_rings
-						giga_generate_moons_on_planet = yes
-					}
-				}
-				if = { #These 2 orbitals are already filled
-					limit = { NOR = { has_star_flag = ehof_ai_reset has_star_flag = birch_reset} }
-					spawn_planet = {
-						class = pc_toxic
-						size = 16
-						location = star
-						orbit_angle_offset = 32
-						orbit_distance_offset = 78
-						orbit_location = yes
-						init_effect = {
-							set_planet_flag = gpm_has_planet_rings
-							giga_generate_moons_on_planet = yes
-						}
-					}
-	
-					spawn_planet = {
-						class = pc_gas_giant
-						size = 18
-						location = star
-						orbit_angle_offset = 325
-						orbit_distance_offset = 123
-						orbit_location = yes
-						has_ring = no
-						init_effect = {
-						}
-					}
+			# Create planet on same orbit for orbit lines
+			spawn_planet = {
+				class = rl_no_atmosphere_planets
+				size = 12
+				location = star
+				orbit_angle_offset = 124
+				orbit_distance_offset = 45
+				orbit_location = yes
+				init_effect = {
+					set_name = penrose_rename_planet_01
+					set_planet_flag = gpm_has_planet_rings
+					giga_generate_moons_on_planet = yes
 				}
 			}
+
+			spawn_planet = {
+				class = pc_gas_giant
+				size = 30
+				location = star
+				orbit_angle_offset = 234
+				orbit_distance_offset = 57
+				orbit_location = yes
+				has_ring = yes
+				init_effect = {
+					set_name = penrose_rename_planet_02
+				}
+			}
+
+			spawn_planet = {
+				class = pc_toxic
+				size = 16
+				location = star
+				orbit_angle_offset = 32
+				orbit_distance_offset = 78
+				orbit_location = yes
+				init_effect = {
+					set_name = penrose_rename_planet_03
+					set_planet_flag = gpm_has_planet_rings
+					giga_generate_moons_on_planet = yes
+				}
+			}
+
+			spawn_planet = {
+				class = pc_gas_giant
+				size = 20
+				location = star
+				orbit_angle_offset = 281
+				orbit_distance_offset = 92
+				orbit_location = yes
+				has_ring = no
+				init_effect = {
+					set_name = penrose_rename_planet_04
+				}
+			}
+
+			spawn_planet = {
+				class = rl_unhabitable_planets
+				size = 21
+				location = star
+				orbit_angle_offset = 93
+				orbit_distance_offset = 105
+				orbit_location = yes
+				init_effect = {
+					set_name = penrose_rename_planet_05
+					set_planet_flag = gpm_has_planet_rings
+					giga_generate_moons_on_planet = yes
+				}
+			}
+
+			spawn_planet = {
+				class = pc_gas_giant
+				size = 18
+				location = star
+				orbit_angle_offset = 325
+				orbit_distance_offset = 123
+				orbit_location = yes
+				has_ring = no
+				init_effect = {
+					set_name = penrose_rename_planet_06
+				}
+			}
+
+			spawn_planet = {
+				class = rl_unhabitable_planets
+				size = 24
+				location = star
+				orbit_angle_offset = 164
+				orbit_distance_offset = 146
+				orbit_location = yes
+				init_effect = {
+					set_name = penrose_rename_planet_07
+					set_planet_flag = gpm_has_planet_rings
+					giga_generate_moons_on_planet = yes
+				}
+			}
+
 			generate_home_system_resources = yes
 
 			# Create mining stations
@@ -1848,7 +1648,6 @@ giga_reset_ai_start = {
 				}
 			}
 		}
-		giga_rename_system = yes
 	}
 }
 
@@ -1941,209 +1740,86 @@ giga_ndb_target_beam_system = { create_ambient_object = { type = "nicoll_target_
 ### Planet Effects ##############
 #################################
 giga_reroll_lifeless = {
-	# just in case
-	if = { limit = { has_orbital_station = yes } orbital_station = { dismantle = yes } }
-
-	# mineral and energy multipliers
-	set_variable = { which = giga_lifeless_minerals value = value:giga_count_resource|resource|minerals| }
-	multiply_variable = { which = giga_lifeless_minerals value = 0.2 }
-	change_variable = { which = giga_lifeless_minerals value = 1 }
-
-	set_variable = { which = giga_lifeless_energy value = value:giga_count_resource|resource|energy| }
-	multiply_variable = { which = giga_lifeless_energy value = 0.2 }
-	change_variable = { which = giga_lifeless_energy value = 1 }
-
-	# count up rare resources on the planet
-	set_variable = { which = giga_lifeless_volatile_motes value = value:giga_count_resource|resource|volatile_motes| }
-	set_variable = { which = giga_lifeless_rare_crystals value = value:giga_count_resource|resource|rare_crystals| }
-	set_variable = { which = giga_lifeless_exotic_gases value = value:giga_count_resource|resource|exotic_gases| }
-
-	set_variable = { which = giga_lifeless_zro value = value:giga_count_resource|resource|sr_zro| }
-	set_variable = { which = giga_lifeless_dark_matter value = value:giga_count_resource|resource|sr_dark_matter| }
-	set_variable = { which = giga_lifeless_living_metal value = value:giga_count_resource|resource|sr_living_metal| }
-	set_variable = { which = giga_lifeless_nanites value = value:giga_count_resource|resource|nanites| }
-	set_variable = { which = giga_lifeless_iodizium value = value:giga_count_resource|resource|sr_iodizium| }
-	set_variable = { which = giga_lifeless_supertensiles value = value:giga_count_resource|resource|giga_sr_amb_megaconstruction| }
-
-	# generate random deposits
-
 	clear_deposits = yes
 	while = {
 		count = 14
 		random_list = {
 			50 = {}
-			20 = { 
-				add_deposit = d_geothermal_vent 		# Energy
-				modifier = { factor = giga_lifeless_energy always = yes }
-			}	
+			20 = { add_deposit = d_geothermal_vent }	# Energy
 			20 = {
 				add_deposit = d_underwater_vent			# Energy
 				modifier = { factor = 0 is_planet_class = pc_ll_torrid }
 				modifier = { factor = 0 is_planet_class = pc_ll_foggy }
-				modifier = { factor = giga_lifeless_energy always = yes }
 			}
 			20 = {
 				add_deposit = d_tempestous_mountain		# Energy
 				modifier = { factor = 0 is_planet_class = pc_ll_torrid }
-				modifier = { factor = giga_lifeless_energy always = yes }
 			}
-			10 = { 
-				add_deposit = d_veiny_cliffs 			# Minerals
-				modifier = { factor = giga_lifeless_minerals always = yes }
-			}		
-			10 = { 
-				add_deposit = d_mineral_fields 			# Minerals
-				modifier = { factor = giga_lifeless_minerals always = yes }
-			}
-			10 = { 
-				add_deposit = d_prosperous_mesa 		# Minerals
-				modifier = { factor = giga_lifeless_minerals always = yes }
-			}
-			10 = { 
-				add_deposit = d_ore_rich_caverns 		# Minerals
-				modifier = { factor = giga_lifeless_minerals always = yes }
-			}
-			10 = { 
-				add_deposit = d_rich_mountain 			# Minerals
-				modifier = { factor = giga_lifeless_minerals always = yes }
-			}
+			10 = { add_deposit = d_veiny_cliffs }		# Minerals
+			10 = { add_deposit = d_mineral_fields }		# Minerals
+			10 = { add_deposit = d_prosperous_mesa }	# Minerals
+			10 = { add_deposit = d_ore_rich_caverns }	# Minerals
+			10 = { add_deposit = d_rich_mountain }		# Minerals
 			10 = {
 				add_deposit = d_submerged_ore_veins		# Minerals
 				modifier = { factor = 0 is_planet_class = pc_ll_torrid }
-				modifier = { factor = giga_lifeless_minerals always = yes }
 			}
 			5 = {
 				add_deposit = d_forgiving_tundra		# Food
-				#modifier = { factor = 0 is_planet_class = pc_ll_temperate }
+				modifier = { factor = 0 is_planet_class = pc_ll_temperate }
 				modifier = { factor = 0 is_planet_class = pc_ll_torrid }
 			}
 			5 = {
 				add_deposit = d_black_soil				# Food
-				#modifier = { factor = 0 is_planet_class = pc_ll_foggy }
-				#modifier = { factor = 0 is_planet_class = pc_ll_temperate }
+				modifier = { factor = 0 is_planet_class = pc_ll_foggy }
+				modifier = { factor = 0 is_planet_class = pc_ll_temperate }
 			}
 			5 = {
-				add_deposit = d_nutritious_mudland		# Food
-				#modifier = { factor = 0 is_planet_class = pc_ll_foggy }
-				#modifier = { factor = 0 is_planet_class = pc_ll_torrid }
+				add_deposit = d_rugged_woods			# Food
+				modifier = { factor = 0 is_planet_class = pc_ll_foggy }
+				modifier = { factor = 0 is_planet_class = pc_ll_torrid }
 			}
 
 			##########################
 			### Rare #################
 			##########################
-			2 = {
-				modifier = { factor = 0 is_planet_class = pc_ll_temperate }
-				modifier = { factor = 0 is_planet_class = pc_ll_foggy }
-
-				random_list = {
-					1 = { add_deposit = d_dust_caverns }
-					1 = { add_deposit = d_dust_desert }
-				}
-			}
-			2 = {
-				modifier = { factor = 0 is_planet_class = pc_ll_temperate }
-				modifier = { factor = 0 is_planet_class = pc_ll_torrid }
-				
-				random_list = {
-					1 = { add_deposit = d_bubbling_swamp }
-					1 = { add_deposit = d_fuming_bog }
-				}
-			}
-			2 = {
-				modifier = { factor = 0 is_planet_class = pc_ll_foggy }
-				modifier = { factor = 0 is_planet_class = pc_ll_torrid }
-				
-				random_list = {
-					1 = { add_deposit = d_crystalline_caverns }
-					# 1 = { add_deposit = d_crystal_forest }
-					# 1 = { add_deposit = d_crystal_reef }
-					1 = { 
-						add_deposit = d_crystalline_caverns 
-						add_deposit = d_crystalline_caverns 
-					}
-				}
-			}
-
-			2 = {
-				add_deposit = d_betharian_deposit
-				modifier = { factor = giga_lifeless_energy always = yes }
-			}
-		}
-	}
-
-	# generate deposits for the rare space resources
-
-	# motes
-	while = { limit = { check_variable = { which = giga_lifeless_volatile_motes value >= 1 } } 
-		random_list = {
-			1 = { 
+			5 = {
 				add_deposit = d_dust_caverns
-				change_variable = { which = giga_lifeless_volatile_motes value = -1 }
+				modifier = { factor = 0 is_planet_class = pc_ll_temperate }
+				modifier = { factor = 0 is_planet_class = pc_ll_foggy }
 			}
-			1 = {
+			5 = {
 				add_deposit = d_dust_desert
-				change_variable = { which = giga_lifeless_volatile_motes value = -2 }
-				modifier = { factor = 0 check_variable = { which = giga_lifeless_volatile_motes value < 2 } }
+				modifier = { factor = 0 is_planet_class = pc_ll_temperate }
+				modifier = { factor = 0 is_planet_class = pc_ll_foggy }
 			}
-		}
-	}
-
-	# crystals
-	while = { limit = { check_variable = { which = giga_lifeless_rare_crystals value >= 1 } } 
-		#random_list = {
-		#	2 = { 
-				add_deposit = d_crystalline_caverns
-				change_variable = { which = giga_lifeless_rare_crystals value = -1 }
-		# 	}
-		# 	1 = {
-		# 		add_deposit = d_crystal_forest
-		# 		change_variable = { which = giga_lifeless_rare_crystals value = -2 }
-		# 		modifier = { factor = 0 check_variable = { which = giga_lifeless_rare_crystals value < 2 } }
-		# 	}
-		# 	1 = {
-		# 		add_deposit = d_crystal_reef
-		# 		change_variable = { which = giga_lifeless_rare_crystals value = -2 }
-		# 		modifier = { factor = 0 check_variable = { which = giga_lifeless_rare_crystals value < 2 } }
-		# 		modifier = { factor = 0 is_planet_class = pc_ll_torrid }
-		# 	}
-		# }
-	}
-
-	# gases
-	while = { limit = { check_variable = { which = giga_lifeless_exotic_gases value >= 1 } } 
-		random_list = {
-			1 = { 
+			5 = {
 				add_deposit = d_bubbling_swamp
-				change_variable = { which = giga_lifeless_exotic_gases value = -1 }
+				modifier = { factor = 0 is_planet_class = pc_ll_temperate }
+				modifier = { factor = 0 is_planet_class = pc_ll_torrid }
 			}
-			1 = {
+			5 = {
 				add_deposit = d_fuming_bog
-				change_variable = { which = giga_lifeless_exotic_gases value = -2 }
-				modifier = { factor = 0 check_variable = { which = giga_lifeless_exotic_gases value < 2 } }
+				modifier = { factor = 0 is_planet_class = pc_ll_temperate }
+				modifier = { factor = 0 is_planet_class = pc_ll_torrid }
+			}
+			5 = {
+				add_deposit = d_crystalline_caverns
+				modifier = { factor = 0 is_planet_class = pc_ll_foggy }
+				modifier = { factor = 0 is_planet_class = pc_ll_torrid }
+			}
+			5 = {
+				add_deposit = d_crystal_forest
+				modifier = { factor = 0 is_planet_class = pc_ll_foggy }
+				modifier = { factor = 0 is_planet_class = pc_ll_torrid }
+			}
+			5 = {
+				add_deposit = d_crystal_reef
+				modifier = { factor = 0 is_planet_class = pc_ll_foggy }
+				modifier = { factor = 0 is_planet_class = pc_ll_torrid }
 			}
 		}
 	}
-
-	# other assorted rare resources
-	while = { count = giga_lifeless_zro 			add_deposit = d_giga_lifeless_zro_1 }
-	while = { count = giga_lifeless_dark_matter 	add_deposit = d_giga_lifeless_dark_matter_1 }
-	while = { count = giga_lifeless_living_metal 	add_deposit = d_giga_lifeless_living_metal_1 }
-	while = { count = giga_lifeless_nanites 		add_deposit = d_giga_lifeless_nanites_1 }
-	while = { count = giga_lifeless_iodizium 		add_deposit = d_giga_lifeless_iodizium_1 }
-	while = { count = giga_lifeless_supertensiles 	add_deposit = d_giga_lifeless_supertensiles_1 }
-
-	# clean up
-	clear_variable = giga_lifeless_minerals
-	clear_variable = giga_lifeless_energy
-	clear_variable = giga_lifeless_volatile_motes
-	clear_variable = giga_lifeless_rare_crystals
-	clear_variable = giga_lifeless_exotic_gases
-	clear_variable = giga_lifeless_zro
-	clear_variable = giga_lifeless_dark_matter
-	clear_variable = giga_lifeless_living_metal
-	clear_variable = giga_lifeless_nanites
-	clear_variable = giga_lifeless_iodizium
-	clear_variable = giga_lifeless_supertensiles
 }
 
 giga_calculate_allowed_habitats = {
@@ -2364,969 +2040,5 @@ apply_giga_bulwark_trad_build_speed = {
 				days = -1
 			}
 		}
-	}
-}
-
-giga_alderson_repair_effect = {
-	# if = {
-	# 	limit = {
-	# 		num_districts = {
-	# 			type = $pre_repair_district$
-	# 			value > 0
-	# 		}
-	# 	}
-	# }
-	export_trigger_value_to_variable = { 
-		trigger = num_districts 
-		parameters = { type = $pre_repair_district$ }
-		variable = $var_name$
-	}
-	if = {
-		limit = {
-			check_variable = {
-				which = $var_name$
-				value < 6
-			}
-		}
-		set_variable = {
-			which = $var_name$
-			value = 1
-		}
-	}
-	else = {
-		divide_variable = { which = $var_name$ value = 6 }
-		floor_variable = $var_name$
-	}
-}
-
-giga_alderson_repair_after_effect = {
-	while = { count = $var_name$ add_district = $post_repair_district$ }
-	set_variable = { which = $var_name$ value = 0 }  
-}
-
-clear_giga_mega_balance_modifiers = {
-	if = {
-		limit = { has_modifier = giga_ai_savings_info }
-		remove_modifier = giga_ai_savings_info
-	}
-	if = {
-		limit = { has_modifier = giga_mega_upkeep_balance }
-		remove_modifier = giga_mega_upkeep_balance
-	}
-	if = {
-		limit = { has_modifier = giga_mega_cost_balance }
-		remove_modifier = giga_mega_cost_balance
-	}
-	if = {
-		limit = { has_modifier = giga_mega_output_balance }
-		remove_modifier = giga_mega_output_balance
-	}
-}
-
-# update the build speed recution on the rogue AI PCC, so that we always have SOME build speed
-giga_update_rogue_ai_computer_build_speed = {
-	remove_modifier = giga_rogue_ai_computer_build_speed
-
-	if = {
-		limit = {
-			has_modifier = giga_rogue_ai_computer
-			has_deposit = d_giga_rogue_ai_relay_servers
-		}
-
-		add_modifier = {
-			modifier = giga_rogue_ai_computer_build_speed
-			multiplier = value:giga_rogue_ai_computer_build_speed_mult
-		}
-	}
-}
-
-# start a colony for the AI on this planet if the system is friendly and clear of hostiles
-# for mega completion where the AI is kinda bad at getting things colonised, like ring worlds
-#
-# use in mega on_complete blocks
-# this = planet
-# from = owner
-giga_start_ai_colony_if_safe = {
-	if = {
-		limit = {
-			# make sure it's after the game start because otherwise it fucks over the gamers
-			years_passed >= 1
-			# make sure this is an AI and not a "one planet" play style
-			root.from = {
-				is_ai = yes
-				not = { is_giga_one_planet_origin = yes }
-			}
-			# check that the solar system is controlled by the same empire
-			# and that this mega isn't in a system owned by someone else somehow
-			solar_system = {
-				exists = owner
-				exists = starbase
-				exists = starbase.controller
-				starbase.controller = {
-					is_same_empire = owner
-					is_same_empire = root.from
-				}
-				# prevent if hostiles are around
-				not = {
-					any_fleet_in_system = {
-						controller = {
-							is_hostile_to = root.from
-						}
-					}
-				}
-			}
-		}
-		giga_get_species_for_colony = {
-			TARGET = this
-			WHO = root.from
-		}
-		start_colony = {
-			owner = root.from
-			species = event_target:giga_colony_species
-		}
-	}
-}
-
-# save an appropriate species for a colony to event_target:giga_colony_species
-# WHO = country for the colony
-# TARGET = planet to be colonised
-giga_get_species_for_colony = {
-	$WHO$ = {
-		save_event_target_as = giga_source_country
-	}
-	$TARGET$ = {
-		save_event_target_as = giga_target_planet
-	}
-
-	# try to find the best candidate species
-	event_target:giga_source_country = {
-		ordered_owned_pop_species = {
-			position = 0
-
-			# make sure they're allowed to be the rulers
-			limit = {
-				can_think = yes
-
-				# necrophage origin -> necrophages only
-				if = {
-					limit = {
-						event_target:giga_source_country = {
-							has_origin = origin_necrophage
-						}
-					}
-					has_trait = trait_necrophage
-				}
-
-				# "citizenship" check
-				if = {
-					limit = {
-						event_target:giga_source_country = {
-							is_machine_empire = yes
-						}
-					}
-					has_citizenship_type = {
-						type = citizenship_full_machine
-						country = event_target:giga_source_country
-					}
-				}
-				else = {
-					has_citizenship_type = {
-						type = citizenship_full
-						country = event_target:giga_source_country
-					}
-					
-				}
-
-				# only if colonisation is allowed for this species
-				has_colonization_control = {
-					type = no
-					country = event_target:giga_source_country
-				}
-			}
-
-			order_by = value:giga_get_species_for_colony_habitability
-
-			save_event_target_as = giga_colony_species
-		}
-	}
-
-	# primary species fallback
-	if = {
-		limit = {
-			not = { exists = event_target:giga_colony_species }
-		}
-
-		event_target:giga_source_country = {
-			species = {
-				save_event_target_as = giga_colony_species
-			}
-		}
-	}
-}
-
-giga_set_has_mega_flag = {
-	set_planet_flag = has_megastructure
-}
-
-giga_clear_has_mega_flag = {
-	if = {
-		limit = {
-			has_planet_flag = has_megastructure
-			nor = {
-				# any mega is attached to this planet
-				any_system_megastructure = {
-					if = {
-						limit = {
-							exists = $MEGA|fromfrom$
-							$MEGA|fromfrom$ = {
-								is_scope_type = megastructure
-							}
-						}
-						not = { is_same_value = $MEGA|fromfrom$ }
-					}
-
-					# check planet
-					exists = planet
-					planet = {
-						is_same_value = prevprev
-					}
-				}
-				# any habitable mega is attached to this planet
-				any_moon = {
-					has_planet_flag = megastructure
-					not = { has_planet_flag = giga_planet_mega }
-					not = { has_planet_flag = giga_remove_planet }
-				}
-			}
-		}
-
-		remove_planet_flag = has_megastructure
-	}
-}
-
-giga_set_ringworld_graphical_culture = {
-#$TYPE$ $SIZE$ $TARGET$ $SOURCE$ $VANILLA_TYPE$
-#	set_planet_entity = { entity = $SIZE$_$TYPE$_sector_entity graphical_culture = $SOURCE$ picture = pc_ringworld } 
- 	$TARGET$ = { save_event_target_as = targetringworld }
-	$SOURCE$ = { #If an available graphical culture is found use it, otherwise go back to mammalian
-		switch = {
-			trigger = graphical_culture
-			#If a vanilla type it has slightly different syntax and it needs a different default
-			[[VANILLA_TYPE] 
-				humanoid_01		= { event_target:targetringworld = { set_planet_entity = { entity = humanoid_01_$SIZE$_$TYPE$_entity	} } }
-				plantoid_01		= { event_target:targetringworld = { set_planet_entity = { entity = plantoid_01_$SIZE$_$TYPE$_entity	} } }
-				mammalian_01	= { event_target:targetringworld = { set_planet_entity = { entity = mammalian_01_$SIZE$_$TYPE$_entity	} } }
-				reptilian_01	= { event_target:targetringworld = { set_planet_entity = { entity = reptilian_01_$SIZE$_$TYPE$_entity	} } }
-				avian_01		= { event_target:targetringworld = { set_planet_entity = { entity = avian_01_$SIZE$_$TYPE$_entity		} } }
-				molluscoid_01	= { event_target:targetringworld = { set_planet_entity = { entity = molluscoid_01_$SIZE$_$TYPE$_entity	} } }
-				fungoid_01		= { event_target:targetringworld = { set_planet_entity = { entity = fungoid_01_$SIZE$_$TYPE$_entity		} } }
-				arthropoid_01	= { event_target:targetringworld = { set_planet_entity = { entity = arthropoid_01_$SIZE$_$TYPE$_entity	} } }
-				lithoid_01		= { event_target:targetringworld = { set_planet_entity = { entity = lithoid_01_$SIZE$_$TYPE$_entity		} } }
-				necroid_01		= { event_target:targetringworld = { set_planet_entity = { entity = necroid_01_$SIZE$_$TYPE$_entity		} } }
-				toxoid_01		= { event_target:targetringworld = { set_planet_entity = { entity = toxoid_01_$SIZE$_$TYPE$_entity		} } }
-				aquatic_01		= { event_target:targetringworld = { set_planet_entity = { entity = aquatic_01_$SIZE$_$TYPE$_entity		} } }
-				nemesis_01		= { event_target:targetringworld = { set_planet_entity = { entity = nemesis_01_$SIZE$_$TYPE$_entity		} } } 
-
-				default 		= { event_target:targetringworld = { set_planet_entity = { entity = $VANILLA_TYPE$_entity_01_entity graphical_culture = $SOURCE$ } } } 
-			]
-
-			#If not vanilla type default to mammalian
-			[[!VANILLA_TYPE]
-				humanoid_01		= { event_target:targetringworld = { set_planet_entity = { entity = humanoid_01_$SIZE$_$TYPE$_sector_entity		} } }
-				plantoid_01		= { event_target:targetringworld = { set_planet_entity = { entity = plantoid_01_$SIZE$_$TYPE$_sector_entity		} } }
-				mammalian_01	= { event_target:targetringworld = { set_planet_entity = { entity = mammalian_01_$SIZE$_$TYPE$_sector_entity	} } }
-				reptilian_01	= { event_target:targetringworld = { set_planet_entity = { entity = reptilian_01_$SIZE$_$TYPE$_sector_entity	} } }
-				avian_01		= { event_target:targetringworld = { set_planet_entity = { entity = avian_01_$SIZE$_$TYPE$_sector_entity		} } }
-				molluscoid_01	= { event_target:targetringworld = { set_planet_entity = { entity = molluscoid_01_$SIZE$_$TYPE$_sector_entity	} } }
-				fungoid_01		= { event_target:targetringworld = { set_planet_entity = { entity = fungoid_01_$SIZE$_$TYPE$_sector_entity		} } }
-				arthropoid_01	= { event_target:targetringworld = { set_planet_entity = { entity = arthropoid_01_$SIZE$_$TYPE$_sector_entity	} } }
-				lithoid_01		= { event_target:targetringworld = { set_planet_entity = { entity = lithoid_01_$SIZE$_$TYPE$_sector_entity		} } }
-				necroid_01		= { event_target:targetringworld = { set_planet_entity = { entity = necroid_01_$SIZE$_$TYPE$_sector_entity		} } }
-				toxoid_01		= { event_target:targetringworld = { set_planet_entity = { entity = toxoid_01_$SIZE$_$TYPE$_sector_entity		} } }
-				aquatic_01		= { event_target:targetringworld = { set_planet_entity = { entity = aquatic_01_$SIZE$_$TYPE$_sector_entity		} } }
-				nemesis_01		= { event_target:targetringworld = { set_planet_entity = { entity = nemesis_01_$SIZE$_$TYPE$_sector_entity		} } }
-				default 		= { event_target:targetringworld = { set_planet_entity = { entity = mammalian_01_$SIZE$_$TYPE$_sector_entity	} } } 
-
-				#Modded shipset compat, If you author a modded shipset or a patch for one please let me know on discord and I can add it to this switch (Bread™#7255)
-				#these ones should only fires if its not on a vanilla ring so it doesn't have to be 
-				machine_01 		= { 
-					if = {
-						limit = { has_machine_shipset_gigas_ring_active = yes } #After checking Corsair's machine shipset addon this one should work out of the box with nothing special
-						event_target:targetringworld = { 
-							set_planet_entity = { 
-								entity = machine_01_$SIZE$_$TYPE$_sector_entity 		
-							}
-						}
-						else = {
-							event_target:targetringworld = { 
-								set_planet_entity = { 
-									entity = mammalian_01_$SIZE$_$TYPE$_sector_entity 		
-								}
-							} 
-						}
-					}
-				}
-			]
-		}
-	}
-}
-
-giga_clear_orbital_arcology_modifiers = {
-	if = {
-		limit = { has_modifier = new_orbital_arcology_modifier }
-		remove_modifier = new_orbital_arcology_modifier
-	}
-	if = {
-		limit = { has_modifier = new_orbital_arcology_double_modifier}
-		remove_modifier = new_orbital_arcology_double_modifier
-	}
-	if = {
-		limit = { has_modifier = new_orbital_arcology_triple_modifier}
-		remove_modifier = new_orbital_arcology_triple_modifier
-	}
-	if = {
-		limit = { has_modifier = orbital_arcology_modifier }
-		remove_modifier = orbital_arcology_modifier
-	}
-	if = {
-		limit = { has_modifier = orbital_arcology_modifier_1 }
-		remove_modifier = orbital_arcology_modifier_1
-	}
-	if = {
-		limit = { has_modifier = orbital_arcology_modifier_2 }
-		remove_modifier = orbital_arcology_modifier_2
-	}
-	if = {
-		limit = { has_modifier = orbital_arcology_modifier_3 }
-		remove_modifier = orbital_arcology_modifier_3
-	}
-}
-
-# set buildings for elysium host planets
-giga_set_elysium_buildings = {
-	remove_all_buildings = yes
-			
-	if = {
-		limit = {
-			owner = { is_gestalt = no }
-		}
-		add_building = building_giga_elysium_host_capital
-		add_building = building_giga_elysium_host_jobs
-	}
-	else_if = {
-		limit = {
-			owner = { is_hive_empire = yes }
-		}
-		add_building = building_giga_elysium_host_hive_capital
-		add_building = building_giga_elysium_host_hive_jobs
-	}
-	else_if = {
-		limit = {
-			owner = { is_machine_empire = yes }
-		}
-		add_building = building_giga_elysium_host_machine_capital
-		add_building = building_giga_elysium_host_machine_jobs
-	}
-
-	validate_planet_buildings_and_districts = yes
-}
-
-giga_apply_stellar_ring_bonus = {
-	if = {
-		limit = {
-			is_a_habitable_planet_megastructure = yes
-		}
-		if = {
-			limit = {
-				not = {
-					has_deposit = d_giga_orbital_effects
-				}
-			}
-			add_deposit = d_giga_orbital_effects
-		}
-	}
-	else = {
-		remove_deposit = d_giga_orbital_effects
-	}
-}
-
-giga_apply_stellar_ring_bonus_to_system = {
-	solar_system = {
-		every_system_planet = {
-			giga_apply_stellar_ring_bonus = yes
-		}
-	}
-}
-
-add_hyperlane_safe = {
-	optimize_memory
-	
-	if = {
-		limit = {
-			$from$ = {
-				nor = {
-					is_same_value = prev.$to$
-					has_hyperlane_to = prev.$to$
-				}
-			}
-		}
-		add_hyperlane = {
-			from = $from$
-			to = $to$
-		}
-	}
-}
-
-remove_hyperlane_safe = {
-	optimize_memory
-
-	if = {
-		limit = {
-			$from$ = {
-				not = {
-					is_same_value = prev.$to$
-				}
-				has_hyperlane_to = prev.$to$
-			}
-		}
-		remove_hyperlane = {
-			from = $from$
-			to = $to$
-		}
-	}
-}
-
-set_or_change_variable = {
-	if = {
-		limit = {
-			not = {
-				is_variable_set = $which$
-			}
-		}
-		set_variable = {
-			which = $which$
-			value = $value$
-		}
-	}
-	else = {
-		change_variable = {
-			which = $which$
-			value = $value$
-		}
-	}
-}
-
-#I hate renaming systems - Bread
-#Resets the names of any object any the system
-#Fired on the solar_system scope
-giga_rename_system = {
-	optimize_memory
-	solar_system = {
-		save_global_event_target_as = rename_system
-		if = { #This block Renames the stars so they are in alignment with the galaxy map star names
-			limit = {			
-				NOT = {
-					giga_is_bitrinary = yes
-				}
-			}
-			system_star = { #Always the primary star
-				set_name = {
-					key = giga_rename_star
-					variable_string = "\\[rename_system.GetName\\]"
-				}
-				set_planet_flag = rename_primary_star
-			}
-		} else_if = {
-			limit = {
-				is_binary = yes
-			}
-			system_star = { #Always the primary star
-				set_name = {
-					key = giga_rename_star_b1
-					variable_string = "\\[rename_system.GetName\\]"
-				}
-				set_planet_flag = rename_primary_star
-			}
-			random_system_planet = { #Couldn't find a better way of doing this one
-				limit = {
-					is_star = yes
-					NOT = {
-						has_planet_flag = rename_primary_star
-					}
-				}
-				set_name = {
-					key = giga_rename_star_b2
-					variable_string = "\\[rename_system.GetName\\]"
-				}
-				set_planet_flag = rename_secondary_star
-			}
-		} else_if = {
-			limit = { 
-				is_trinary = yes 
-			}
-			system_star = {
-				set_name = {
-					key = giga_rename_star_t1
-					variable_string = "\\[rename_system.GetName\\]"
-				}
-				set_planet_flag = rename_primary_star
-			}
-			random_system_planet = {
-				limit = {
-					is_star = yes
-					NOT = {
-						has_planet_flag = rename_primary_star
-					}
-				}
-				set_name = {
-					key = giga_rename_star_b2
-					variable_string = "\\[rename_system.GetName\\]"
-				}
-				set_planet_flag = rename_secondary_star
-			}
-			random_system_planet = {
-				limit = {
-					is_star = yes
-					NOR = {
-						has_planet_flag = rename_primary_star
-						has_planet_flag = rename_secondary_star
-					}
-				}
-				set_name = {
-					key = giga_rename_star_t3
-					variable_string = "\\[rename_system.GetName\\]"
-				}
-				set_planet_flag = rename_tertiary_star
-			}
-		}
-
-		set_variable = { #Counts planets with no orbiting body
-			which = rename_system_planet_count
-			value = 0
-		}
-
-		every_system_planet = {
-			if = {
-				limit = {
-					OR = {
-						has_planet_flag = rename_secondary_star
-						has_planet_flag = rename_tertiary_star
-					}
-				}
-				set_variable = { #Counts planets that orbit the second/third star
-					which = rename_system_second_planet_count
-					value = 0
-				}
-			}
-			if = {
-				limit = {
-					OR = {
-						NOR = {
-							exists = orbit
-							is_star = yes
-						}
-						orbit = { has_planet_flag = rename_primary_star }
-					}
-				}
-				solar_system = {
-					change_variable = {
-						which = rename_system_planet_count
-						value = 1
-					}
-				}
-				set_variable = {
-					which = rename_system_planet_count
-					value = solar_system.rename_system_planet_count
-				}
-			}
-			else_if = {
-				limit = {
-					exists = orbit
-					orbit = { has_planet_flag = rename_secondary_star }
-				}
-				orbit = {
-					change_variable = {
-						which = rename_system_second_planet_count
-						value = 1
-					}
-				}
-				set_variable = {
-					which = rename_system_second_planet_count
-					value = orbit.rename_system_second_planet_count
-				}
-			}
-			else_if = {
-				limit = {
-					exists = orbit
-					orbit = { has_planet_flag = rename_tertiary_star }
-				}
-				orbit = {
-					change_variable = {
-						which = rename_system_second_planet_count
-						value = 1
-					}
-				}
-				set_variable = {
-					which = rename_system_second_planet_count
-					value = orbit.rename_system_second_planet_count
-				}
-			}
-			if = { 
-				limit = {
-					OR = {
-						AND = {
-							exists = orbit
-							orbit = { is_star = yes  }
-						}
-						NOT = { exists = orbit }
-					}
-				}
-				set_variable = {
-					which = rename_moon_count
-					value = 0
-				}
-			}
-			every_moon = {
-				limit = { orbit = { NOT = { is_star = yes} } }
-				orbit = {
-					change_variable = {
-						which = rename_moon_count
-						value = 1
-					}
-				}
-				set_variable = {
-					which = rename_moon_count
-					value = orbit.rename_moon_count
-				}
-			}
-		}
-		every_system_planet = { #Renames system planets if they orbit the main star, or have no star orbit ( sometimes the case with binary/trinary star systems )
-			limit = {
-				OR = {
-					AND = {
-						exists = orbit
-						orbit = { has_planet_flag = rename_primary_star }
-					}
-					NOR = { 
-						exists = orbit
-						is_star = yes
-					}
-				}
-			}
-			if = {
-				limit = {
-					NOT = { is_colony = yes }
-				}
-				random_list = { #Planets
-					0 = {
-						set_name = {
-							key = giga_rename_planet_1
-							variable_string = "\\[rename_system.GetName\\]"
-						}
-						modifier = { add = 1 check_variable = { value = 1 which = rename_system_planet_count } }
-					}
-					0 = {
-						set_name = {
-							key = giga_rename_planet_2
-							variable_string = "\\[rename_system.GetName\\]"
-						}
-						modifier = { add = 1 check_variable = { value = 2 which = rename_system_planet_count } }
-					}
-					0 = {
-						set_name = {
-							key = giga_rename_planet_3
-							variable_string = "\\[rename_system.GetName\\]"
-						}
-						modifier = { add = 1 check_variable = { value = 3 which = rename_system_planet_count } }
-					}
-					0 = {
-						set_name = {
-							key = giga_rename_planet_4
-							variable_string = "\\[rename_system.GetName\\]"
-						}
-						modifier = { add = 1 check_variable = { value = 4 which = rename_system_planet_count } }
-					}
-					0 = {
-						set_name = {
-							key = giga_rename_planet_5
-							variable_string = "\\[rename_system.GetName\\]"
-						}
-						modifier = { add = 1 check_variable = { value = 5 which = rename_system_planet_count } }
-					}
-					0 = {
-						set_name = {
-							key = giga_rename_planet_6
-							variable_string = "\\[rename_system.GetName\\]"
-						}
-						modifier = { add = 1 check_variable = { value = 6 which = rename_system_planet_count } }
-					}
-					0 = {
-						set_name = {
-							key = giga_rename_planet_7
-							variable_string = "\\[rename_system.GetName\\]"
-						}
-						modifier = { add = 1 check_variable = { value = 7 which = rename_system_planet_count } }
-					}
-					0 = {
-						set_name = {
-							key = giga_rename_planet_8
-							variable_string = "\\[rename_system.GetName\\]"
-						}
-						modifier = { add = 1 check_variable = { value = 8 which = rename_system_planet_count } }
-					}
-					0 = {
-						set_name = {
-							key = giga_rename_planet_9
-							variable_string = "\\[rename_system.GetName\\]"
-						}
-						modifier = { add = 1 check_variable = { value = 9 which = rename_system_planet_count } }
-					}
-					0 = {
-						set_name = {
-							key = giga_rename_planet_10
-							variable_string = "\\[rename_system.GetName\\]"
-						}
-						modifier = { add = 1 check_variable = { value = 10 which = rename_system_planet_count } }
-					}
-					0 = {
-						set_name = {
-							key = giga_rename_planet_11
-							variable_string = "\\[rename_system.GetName\\]"
-						}
-						modifier = { add = 1 check_variable = { value = 11 which = rename_system_planet_count } }
-					}
-					0 = {
-						set_name = {
-							key = giga_rename_planet_12
-							variable_string = "\\[rename_system.GetName\\]"
-						}
-						modifier = { add = 1 check_variable = { value = 12 which = rename_system_planet_count } }
-					}
-					0 = {
-						set_name = {
-							key = giga_rename_planet_13
-							variable_string = "\\[rename_system.GetName\\]"
-						}
-						modifier = { add = 1 check_variable = { value = 13 which = rename_system_planet_count } }
-					}
-					0 = {
-						set_name = {
-							key = giga_rename_planet_14
-							variable_string = "\\[rename_system.GetName\\]"
-						}
-						modifier = { add = 1 check_variable = { value = 14 which = rename_system_planet_count } }
-					}
-					0 = {
-						set_name = {
-							key = giga_rename_planet_15
-							variable_string = "\\[rename_system.GetName\\]"
-						}
-						modifier = { add = 1 check_variable = { value = 15 which = rename_system_planet_count } }
-					}
-				}
-			}
-		}
-		#Now onto handling binary and trinary orbiting planets 
-		every_system_planet = {
-			limit = {
-				exists = orbit
-				orbit = {
-					NOT = { has_planet_flag = rename_primary_star }
-					is_star = yes
-				}
-				NOT = { is_colony = yes }
-			}
-			orbit = { save_event_target_as = rename_parent_star}
-			random_list = { #Planets
-				0 = {
-					set_name = {
-						key = giga_rename_bitri_planet_1
-						variable_string = "\\[rename_parent_star.GetName\\]"
-					}
-					modifier = { add = 1 check_variable = { value = 1 which = rename_system_planet_count } }
-				}
-				0 = {
-					set_name = {
-						key = giga_rename_bitri_planet_2
-						variable_string = "\\[rename_parent_star.GetName\\]"
-					}
-					modifier = { add = 1 check_variable = { value = 2 which = rename_system_planet_count } }
-				}
-				0 = {
-					set_name = {
-						key = giga_rename_bitri_planet_3
-						variable_string = "\\[rename_parent_star.GetName\\]"
-					}
-					modifier = { add = 1 check_variable = { value = 3 which = rename_system_planet_count } }
-				}
-				0 = {
-					set_name = {
-						key = giga_rename_bitri_planet_4
-						variable_string = "\\[rename_parent_star.GetName\\]"
-					}
-					modifier = { add = 1 check_variable = { value = 4 which = rename_system_planet_count } }
-				}
-				0 = {
-					set_name = {
-						key = giga_rename_bitri_planet_5
-						variable_string = "\\[rename_parent_star.GetName\\]"
-					}
-					modifier = { add = 1 check_variable = { value = 5 which = rename_system_planet_count } }
-				}
-				0 = {
-					set_name = {
-						key = giga_rename_bitri_planet_6
-						variable_string = "\\[rename_parent_star.GetName\\]"
-					}
-					modifier = { add = 1 check_variable = { value = 6 which = rename_system_planet_count } }
-				}
-				0 = {
-					set_name = {
-						key = giga_rename_bitri_planet_7
-						variable_string = "\\[rename_parent_star.GetName\\]"
-					}
-					modifier = { add = 1 check_variable = { value = 7 which = rename_system_planet_count } }
-				}
-				0 = {
-					set_name = {
-						key = giga_rename_bitri_planet_8
-						variable_string = "\\[rename_parent_star.GetName\\]"
-					}
-					modifier = { add = 1 check_variable = { value = 8 which = rename_system_planet_count } }
-				}
-				0 = {
-					set_name = {
-						key = giga_rename_bitri_planet_9
-						variable_string = "\\[rename_parent_star.GetName\\]"
-					}
-					modifier = { add = 1 check_variable = { value = 9 which = rename_system_planet_count } }
-				}
-				0 = {
-					set_name = {
-						key = giga_rename_bitri_planet_10
-						variable_string = "\\[rename_parent_star.GetName\\]"
-					}
-					modifier = { add = 1 check_variable = { value = 10 which = rename_system_planet_count } }
-				}
-				0 = {
-					set_name = {
-						key = giga_rename_bitri_planet_11
-						variable_string = "\\[rename_parent_star.GetName\\]"
-					}
-					modifier = { add = 1 check_variable = { value = 11 which = rename_system_planet_count } }
-				}
-				0 = {
-					set_name = {
-						key = giga_rename_bitri_planet_12
-						variable_string = "\\[rename_parent_star.GetName\\]"
-					}
-					modifier = { add = 1 check_variable = { value = 12 which = rename_system_planet_count } }
-				}
-				0 = {
-					set_name = {
-						key = giga_rename_bitri_planet_13
-						variable_string = "\\[rename_parent_star.GetName\\]"
-					}
-					modifier = { add = 1 check_variable = { value = 13 which = rename_system_planet_count } }
-				}
-				0 = {
-					set_name = {
-						key = giga_rename_bitri_planet_14
-						variable_string = "\\[rename_parent_star.GetName\\]"
-					}
-					modifier = { add = 1 check_variable = { value = 14 which = rename_system_planet_count } }
-				}
-				0 = {
-					set_name = {
-						key = giga_rename_bitri_planet_15
-						variable_string = "\\[rename_parent_star.GetName\\]"
-					}
-					modifier = { add = 1 check_variable = { value = 15 which = rename_system_planet_count } }
-				}
-			}
-		}
-		#Renames moons and asteroids
-		every_system_planet = {
-			every_moon = {#Renames Moons to their host planet
-				limit = { orbit = { NOR = { is_star = yes } NOT = { is_colony = yes } } } 
-				prev = {
-					save_event_target_as = rename_m_previous_planet
-				}
-				random_list = {
-					0 = {
-						set_name = {
-							key = giga_rename_moon_1
-							variable_string = "\\[rename_m_previous_planet.GetName\\]"
-						}
-						modifier = { add = 1 check_variable = { value = 1 which = rename_moon_count } }
-					}
-					0 = {
-						set_name = {
-							key = giga_rename_moon_2
-							variable_string = "\\[rename_m_previous_planet.GetName\\]"
-						}
-						modifier = { add = 1 check_variable = { value = 2 which = rename_moon_count } }
-					}
-					0 = {
-						set_name = {
-							key = giga_rename_moon_3
-							variable_string = "\\[rename_m_previous_planet.GetName\\]"
-						}
-						modifier = { add = 1 check_variable = { value = 3 which = rename_moon_count } }
-					}
-					0 = {
-						set_name = {
-							key = giga_rename_moon_4
-							variable_string = "\\[rename_m_previous_planet.GetName\\]"
-						}
-						modifier = { add = 1 check_variable = { value = 4 which = rename_moon_count } }
-					}
-					0 = {
-						set_name = {
-							key = giga_rename_moon_5
-							variable_string = "\\[rename_m_previous_planet.GetName\\]"
-						}
-						modifier = { add = 1 check_variable = { value = 5 which = rename_moon_count } }
-					}
-				}
-			}
-			if = { #Thanks TTFT I totally didn't just steal this from your elysium / void dweller stuff
-				limit = { is_asteroid = yes }
-				random_list = { 
-					1 = { set_name = "giga_generic_asteroid_1" set_planet_flag = random_asteroid_name_1 modifier = { factor = 0 solar_system = { any_system_planet = { has_planet_flag = random_asteroid_name_1 } } } }
-					1 = { set_name = "giga_generic_asteroid_2" set_planet_flag = random_asteroid_name_2 modifier = { factor = 0 solar_system = { any_system_planet = { has_planet_flag = random_asteroid_name_2 } } } }
-					1 = { set_name = "giga_generic_asteroid_3" set_planet_flag = random_asteroid_name_3 modifier = { factor = 0 solar_system = { any_system_planet = { has_planet_flag = random_asteroid_name_3 } } } }
-					1 = { set_name = "giga_generic_asteroid_4" set_planet_flag = random_asteroid_name_4 modifier = { factor = 0 solar_system = { any_system_planet = { has_planet_flag = random_asteroid_name_4 } } } }
-					1 = { set_name = "giga_generic_asteroid_5" set_planet_flag = random_asteroid_name_5 modifier = { factor = 0 solar_system = { any_system_planet = { has_planet_flag = random_asteroid_name_5 } } } }
-					1 = { set_name = "giga_generic_asteroid_6" set_planet_flag = random_asteroid_name_6 modifier = { factor = 0 solar_system = { any_system_planet = { has_planet_flag = random_asteroid_name_6 } } } }
-					1 = { set_name = "giga_generic_asteroid_7" set_planet_flag = random_asteroid_name_7 modifier = { factor = 0 solar_system = { any_system_planet = { has_planet_flag = random_asteroid_name_7 } } } }
-					1 = { set_name = "giga_generic_asteroid_8" set_planet_flag = random_asteroid_name_8 modifier = { factor = 0 solar_system = { any_system_planet = { has_planet_flag = random_asteroid_name_8 } } } }
-					1 = { set_name = "giga_generic_asteroid_9" set_planet_flag = random_asteroid_name_9 modifier = { factor = 0 solar_system = { any_system_planet = { has_planet_flag = random_asteroid_name_9 } } } }
-					1 = { set_name = "giga_generic_asteroid_10" set_planet_flag = random_asteroid_name_10 modifier = { factor = 0 solar_system = { any_system_planet = { has_planet_flag = random_asteroid_name_10 } } } }
-					1 = { set_name = "giga_generic_asteroid_11" set_planet_flag = random_asteroid_name_11 modifier = { factor = 0 solar_system = { any_system_planet = { has_planet_flag = random_asteroid_name_11 } } } }
-					1 = { set_name = "giga_generic_asteroid_12" set_planet_flag = random_asteroid_name_12 modifier = { factor = 0 solar_system = { any_system_planet = { has_planet_flag = random_asteroid_name_12 } } } }
-					1 = { set_name = "giga_generic_asteroid_13" set_planet_flag = random_asteroid_name_13 modifier = { factor = 0 solar_system = { any_system_planet = { has_planet_flag = random_asteroid_name_13 } } } }
-					1 = { set_name = "giga_generic_asteroid_14" set_planet_flag = random_asteroid_name_14 modifier = { factor = 0 solar_system = { any_system_planet = { has_planet_flag = random_asteroid_name_14 } } } }
-					1 = { set_name = "giga_generic_asteroid_15" set_planet_flag = random_asteroid_name_15 modifier = { factor = 0 solar_system = { any_system_planet = { has_planet_flag = random_asteroid_name_15 } } } }
-					1 = { set_name = "giga_generic_asteroid_16" set_planet_flag = random_asteroid_name_16 modifier = { factor = 0 solar_system = { any_system_planet = { has_planet_flag = random_asteroid_name_16 } } } }
-					1 = { set_name = "giga_generic_asteroid_17" set_planet_flag = random_asteroid_name_17 modifier = { factor = 0 solar_system = { any_system_planet = { has_planet_flag = random_asteroid_name_17 } } } }
-					1 = { set_name = "giga_generic_asteroid_18" set_planet_flag = random_asteroid_name_18 modifier = { factor = 0 solar_system = { any_system_planet = { has_planet_flag = random_asteroid_name_18 } } } }
-					1 = { set_name = "giga_generic_asteroid_19" set_planet_flag = random_asteroid_name_19 modifier = { factor = 0 solar_system = { any_system_planet = { has_planet_flag = random_asteroid_name_19 } } } }
-					1 = { set_name = "giga_generic_asteroid_20" set_planet_flag = random_asteroid_name_20 modifier = { factor = 0 solar_system = { any_system_planet = { has_planet_flag = random_asteroid_name_20 } } } }
-					1 = { set_name = "giga_generic_asteroid_21" set_planet_flag = random_asteroid_name_21 modifier = { factor = 0 solar_system = { any_system_planet = { has_planet_flag = random_asteroid_name_21 } } } }
-					1 = { set_name = "giga_generic_asteroid_22" set_planet_flag = random_asteroid_name_22 modifier = { factor = 0 solar_system = { any_system_planet = { has_planet_flag = random_asteroid_name_22 } } } }
-					1 = { set_name = "giga_generic_asteroid_23" set_planet_flag = random_asteroid_name_23 modifier = { factor = 0 solar_system = { any_system_planet = { has_planet_flag = random_asteroid_name_23 } } } }
-					1 = { set_name = "giga_generic_asteroid_24" set_planet_flag = random_asteroid_name_24 modifier = { factor = 0 solar_system = { any_system_planet = { has_planet_flag = random_asteroid_name_24 } } } }
-					1 = { set_name = "giga_generic_asteroid_25" set_planet_flag = random_asteroid_name_25 modifier = { factor = 0 solar_system = { any_system_planet = { has_planet_flag = random_asteroid_name_25 } } } }
-				}
-			}
-		}
-	}
-}
-
-giga_schedule_job_refresh = {
-	planet_event = {
-		id = giga_util.001
-		days = $delay|3$
 	}
 }

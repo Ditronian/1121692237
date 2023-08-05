@@ -7,8 +7,7 @@ tremendous_ring_system_category = {
 	picture = GFX_evt_gas_giant
 	level = 6
 	spawn_chance = {
-		modifier = { add = 10 giga_is_gas_giant = yes has_ring = yes }
-		modifier = { factor = 0 has_deposit_for = shipclass_mining_station } #Science anomaly can't be done to a mining planet
+		modifier = { add = 10 is_planet_class = pc_gas_giant has_ring = yes }
 		modifier = { factor = 0 from.owner = { is_ai = yes } }
 		modifier = { factor = 0 solar_system = { cohesive_system = no } }
 	}
@@ -21,8 +20,7 @@ methane_oceans_category = {
 	picture = GFX_evt_cold_barren
 	level = 6
 	spawn_chance = {
-		modifier = { add = 10 giga_is_barren_cold = yes }
-		modifier = { factor = 0 has_deposit_for = shipclass_mining_station } #Science anomaly can't be done to a mining planet
+		modifier = { add = 10 is_planet_class = pc_barren_cold }
 		modifier = { factor = 0 from.owner = { is_ai = yes } }
 		modifier = { factor = 0 solar_system = { cohesive_system = no } }
 	}
@@ -35,7 +33,7 @@ nanite_deserts_category = {
 	picture = GFX_evt_desert
 	level = 7
 	spawn_chance = {
-		modifier = { add = 10 is_planet_class = pc_desert } #This one only really makes sense to me on a desert world proper
+		modifier = { add = 10 is_planet_class = pc_desert }
 		modifier = { factor = 0 from.owner = { is_ai = yes } }
 		modifier = { factor = 0 solar_system = { cohesive_system = no } }
 	}
@@ -48,8 +46,7 @@ coreless_planet_category = {
 	picture = GFX_evt_warm_barren
 	level = 6
 	spawn_chance = {
-		modifier = { add = 10 giga_is_barren = yes }
-		modifier = { factor = 0 has_deposit_for = shipclass_mining_station } #Science anomaly can't be done to a mining planet
+		modifier = { add = 10 is_planet_class = pc_barren }
 		modifier = { factor = 0 from.owner = { is_ai = yes } }
 		modifier = { factor = 0 solar_system = { cohesive_system = no } }
 	}
@@ -62,8 +59,7 @@ oxygen_world_category = {
 	picture = GFX_evt_frozen
 	level = 8
 	spawn_chance = {
-		modifier = { add = 10 giga_is_frozen = yes }
-		modifier = { factor = 0 has_deposit_for = shipclass_mining_station } #Science anomaly can't be done to a mining planet
+		modifier = { add = 10 is_planet_class = pc_frozen }
 		modifier = { factor = 0 from.owner = { is_ai = yes } }
 		modifier = { factor = 0 solar_system = { cohesive_system = no } }
 	}
@@ -76,7 +72,7 @@ abandoned_seat_category = {
 	picture = GFX_evt_tomb_world
 	level = 6
 	spawn_chance = {
-		modifier = { add = 10 giga_is_nuked = yes }
+		modifier = { add = 10 is_planet_class = pc_nuked }
 		modifier = { factor = 0 from.owner = { is_ai = yes } }
 		modifier = { factor = 0 solar_system = { cohesive_system = no } }
 	}
@@ -89,8 +85,7 @@ natural_network_category = {
 	picture = GFX_evt_tropical
 	level = 7
 	spawn_chance = {
-		modifier = { add = 10 giga_is_tropic = yes }
-		modifier = { factor = 0 has_deposit_for = shipclass_mining_station } #Science anomaly can't be done to a mining planet
+		modifier = { add = 10 is_planet_class = pc_tropical }
 		modifier = { factor = 0 from.owner = { is_ai = yes } }
 		modifier = { factor = 0 solar_system = { cohesive_system = no } }
 	}
@@ -103,8 +98,7 @@ hot_society_category = {
 	picture = GFX_evt_molten
 	level = 8
 	spawn_chance = {
-		modifier = { add = 10 giga_is_molten = yes }
-		modifier = { factor = 0 has_deposit_for = shipclass_mining_station } #Science anomaly can't be done to a mining planet
+		modifier = { add = 10 is_planet_class = pc_molten }
 		modifier = { factor = 0 from.owner = { is_ai = yes } }
 		modifier = { factor = 0 solar_system = { cohesive_system = no } }
 	}
@@ -117,7 +111,7 @@ scarred_planet_category = {
 	picture = GFX_evt_asteroid_field
 	level = 8
 	spawn_chance = {
-		modifier = { add = 10 giga_is_barren = yes }
+		modifier = { add = 10 is_planet_class = pc_barren }
 		modifier = { factor = 0 from.owner = { is_ai = yes } }
 		modifier = { factor = 0 solar_system = { cohesive_system = no } }
 	}
@@ -132,8 +126,7 @@ scarred_planet_category = {
  	desc = connected_asteroid_category_desc
  	picture = GFX_evt_mining_station
  	level = 7
-	#Telling the spawn chance which is defaulted to 0 to multiply by 0 was unneccessary
-	#don't even really need a "spawn_chance" at all see the sol anomalies form vanilla
+	spawn_chance = { modifier = { factor = 0 } }
  	on_success = { 1 = ehof_anomaly.09 }
  }
 
@@ -142,6 +135,7 @@ cataclysmic_star_category = {
 	desc = cataclysmic_star_category_desc
 	picture = GFX_evt_unknown_ships
 	level = 7
+	spawn_chance = { modifier = { factor = 0 } }
 	on_success = { 1 = ehof_anomaly.05 }
 }
 
@@ -150,6 +144,7 @@ intoxicated_world_category = {
 	desc = intoxicated_world_category_desc
 	picture = GFX_evt_red_toxic
 	level = 8
+	spawn_chance = { modifier = { factor = 0 } }
 	on_success = { 1 = ehof_anomaly.11 }
 }
 
@@ -160,25 +155,23 @@ code_1_cat = {
 	desc = "code_01_category_desc"
 	picture = GFX_evt_toxic
 	level = 5
-	should_ai_use = no
+	spawn_chance = { modifier = { factor = 0 } }
 	on_success = ehof_reality_code.101
-
 }
 
 code_2_cat = {
 	desc = "code_02_category_desc"
 	picture = GFX_evt_shattered_planet
 	level = 6
-	should_ai_use = no
+	spawn_chance = { modifier = { factor = 0 } }
 	on_success = ehof_reality_code.201
-	
 }
 
 code_3_cat = {
 	desc = "code_03_category_desc"
 	picture = GFX_evt_frozen
 	level = 7
-	should_ai_use = no
+	spawn_chance = { modifier = { factor = 0 } }
 	on_success = ehof_reality_code.301
 }
 
@@ -186,7 +179,7 @@ code_4_cat = {
 	desc = "code_04_category_desc"
 	picture = GFX_evt_molten
 	level = 8
-	should_ai_use = no
+	spawn_chance = { modifier = { factor = 0 } }
 	on_success = ehof_reality_code.401
 }
 
@@ -194,7 +187,7 @@ code_5_cat = {
 	desc = "code_05_category_desc"
 	picture = GFX_evt_gas_giant
 	level = 9
-	should_ai_use = no
+	spawn_chance = { modifier = { factor = 0 } }
 	on_success = ehof_reality_code.501
 }
 
@@ -202,6 +195,6 @@ code_6_cat = {
 	desc = "code_06_category_desc"
 	picture = GFX_evt_star_neutron
 	level = 10
-	should_ai_use = no
+	spawn_chance = { modifier = { factor = 0 } }
 	on_success = ehof_reality_code.601
 }

@@ -1,6 +1,6 @@
 #Failure
 giga_failure_chance_0 = {
-	potential = { event_target:giga_mega_manage_planet = { OR = { check_variable = { which = giga_failure_chance value <= 0 } check_variable = { which = acc_intensity value = 1 } check_variable = { which = acc_intensity value = 2 } } } }
+	potential = { event_target:giga_mega_manage_planet = { OR = { check_variable = { which = giga_failure_chance value <= 0 } check_variable = { which = acc_intensity value = 1 } } } }
 	allow = { hidden_trigger = { always = yes } }
 	effect = { custom_tooltip = "giga_failure_chance_0_tooltip" }
 }
@@ -164,9 +164,9 @@ giga_disco_lightshow = {
 		custom_tooltip = "giga_disco_lightshow"
 		hidden_effect = {
 			event_target:giga_mega_manage_planet = {
-				if = {
-					limit = { exists = orbit }
-					orbit = {
+				solar_system = {
+					random_system_planet = {
+						limit = { any_moon = { is_same_value = event_target:giga_mega_manage_planet } }
 						clear_disco_moon_modifiers = yes
 						add_modifier = { modifier = "disco_moon_modifier" days = -1 }
 						every_moon = {
@@ -217,9 +217,9 @@ giga_disco_repro = {
 		custom_tooltip = "giga_disco_repro"
 		hidden_effect = {
 			event_target:giga_mega_manage_planet = {
-				if = {
-					limit = { exists = orbit }
-					orbit = {
+				solar_system = {
+					random_system_planet = {
+						limit = { any_moon = { is_same_value = event_target:giga_mega_manage_planet } }
 						clear_disco_moon_modifiers = yes
 						add_modifier = { modifier = "disco_moon_repro_modifier" days = -1 }
 						every_moon = {
@@ -269,9 +269,9 @@ giga_disco_indoc = {
 		custom_tooltip = "giga_disco_indoc"
 		hidden_effect = {
 			event_target:giga_mega_manage_planet = {
-				if = {
-					limit = { exists = orbit }
-					orbit = {
+				solar_system = {
+					random_system_planet = {
+						limit = { any_moon = { is_same_value = event_target:giga_mega_manage_planet } }
 						clear_disco_moon_modifiers = yes
 						add_modifier = { modifier = "disco_moon_indoc_modifier" days = -1 }
 						every_moon = {
@@ -322,9 +322,9 @@ giga_disco_nonight = {
 		custom_tooltip = "giga_disco_nonight"
 		hidden_effect = {
 			event_target:giga_mega_manage_planet = {
-				if = {
-					limit = { exists = orbit }
-					orbit = {
+				solar_system = {
+					random_system_planet = {
+						limit = { any_moon = { is_same_value = event_target:giga_mega_manage_planet } }
 						clear_disco_moon_modifiers = yes
 						add_modifier = { modifier = "disco_moon_nonight_modifier" days = -1 }
 						every_moon = {
@@ -368,9 +368,9 @@ giga_disco_turn_off = {
 		custom_tooltip = "giga_disco_turnoff"
 		hidden_effect = {
 			event_target:giga_mega_manage_planet = {
-				if = {
-					limit = { exists = orbit }
-					orbit = {
+				solar_system = {
+					random_system_planet = {
+						limit = { any_moon = { is_same_value = event_target:giga_mega_manage_planet } }
 						clear_disco_moon_modifiers = yes
 						every_moon = {
 							limit = { NOT = { is_same_value = event_target:giga_mega_manage_planet } }
@@ -483,12 +483,6 @@ giga_dismantle_accelerator = {
 		event_target:giga_mega_manage_planet = {
 			solar_system = {
 				any_system_megastructure = {
-					OR = {
-						is_megastructure_type = particle_accelerator_1
-						is_megastructure_type = particle_accelerator_1_manage
-						is_megastructure_type = particle_accelerator_restored
-					}
-					exists = planet
 					planet = { is_same_value = event_target:giga_mega_manage_planet }
 				}
 			}
@@ -794,29 +788,13 @@ giga_acc_intensity_up = {
 		custom_tooltip = "giga_acc_intensity_up"
 		hidden_effect = {
 			event_target:giga_mega_manage_planet = {
-				# failure chance is 0 both for intensity 1 and 2
-				if = {
-					limit = {
-						check_variable = {
-							which = acc_intensity
-							value = 1
-						}
-					}
-					change_variable = {
-						which = acc_intensity
-						value = 1
-					}
+				change_variable = {
+					which = acc_intensity
+					value = 1
 				}
-				# else increase chance by 5
-				else = {
-					change_variable = {
-						which = acc_intensity
-						value = 1
-					}
-					change_variable = {
-						which = giga_failure_chance
-						value = 5
-					}
+				change_variable = {
+					which = giga_failure_chance
+					value = 5
 				}
 			}
 		}
@@ -842,29 +820,13 @@ giga_acc_intensity_down = {
 		custom_tooltip = "giga_acc_intensity_down"
 		hidden_effect = {
 			event_target:giga_mega_manage_planet = {
-				if = {
-					# chance should be 0% at 2 intensity not 1
-					limit = {
-						check_variable = {
-							which = acc_intensity
-							value = 2
-						}
-					}
-					subtract_variable = {
-						which = acc_intensity
-						value = 1
-					}
+				subtract_variable = {
+					which = acc_intensity
+					value = 1
 				}
-				# decrease chance by 5 until it's 0% at 2 intensity
-				else = {
-					subtract_variable = {
-						which = acc_intensity
-						value = 1
-					}
-					subtract_variable = {
-						which = giga_failure_chance
-						value = 5
-					}
+				subtract_variable = {
+					which = giga_failure_chance
+					value = 5
 				}
 			}
 		}

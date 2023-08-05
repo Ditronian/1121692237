@@ -19,11 +19,206 @@ random_list = {
 }
 
 ##############################################
+### Stars ####################################
+##############################################
+# Hidden planet (No entity)
+pc_giga_empty_space = {
+	entity = "giga_hidden"
+	picture = pc_giga_empty_space
+	atmosphere_color 		= hsv { 0.0 0.0 1.0 }
+	atmosphere_intensity 	= 1.0
+	atmosphere_width 		= 0.5
+
+	fixed_entity_scale = yes
+	entity_scale = 1
+	enable_tilt = no
+	min_distance_from_sun = @habitable_min_distance
+	max_distance_from_sun = @habitable_max_distance
+	spawn_odds = 0
+	city_color_lut = "gfx/portraits/misc/colorcorrection_arid.dds"
+	star = yes
+	colonizable = no
+	orbit_lines = no
+}
+
+# Brown Dwarf (Corrona)
+pc_t_star_big = {
+	entity = "t_star_class_star_big_entity"
+	entity_scale = 5.5
+	picture = "pc_browndwarf"
+	icon = GFX_brown_dwarf_icon
+	atmosphere_color 		= hsv { 0.87 0.6 0.4 }
+	atmosphere_intensity 	= 0.7
+	atmosphere_width 		= 0.7
+
+	star = yes
+	star_gfx = no
+	min_distance_from_sun = 0
+	max_distance_from_sun = 0
+	spawn_odds = 0
+	extra_orbit_size = 0
+	extra_planet_count = 0
+	chance_of_ring = 0
+	planet_size = { min = 30 max = 35 }
+	colonizable = no
+}
+
+# Penrose Sphere Blackhole
+pc_black_hole_giga = {
+	entity = "black_hole_giga_entity"
+	icon = GFX_planet_type_black_hole
+	entity_scale = 20.0
+	atmosphere_color 		= hsv { 0.075 0.13 1.5 }
+	atmosphere_intensity 	= 1.0
+	atmosphere_width 		= 1.0
+
+	star = yes
+	min_distance_from_sun = 0
+	max_distance_from_sun = 0
+	spawn_odds = 0
+	chance_of_ring = 0
+	planet_size = { min = 20 max = 35 }
+	colonizable = no
+}
+
+pc_pouchkinn_black_hole = {
+	entity = "pouchhole_giga_entity"
+	icon = GFX_planet_type_black_hole
+	entity_scale = 5.0
+	picture = pc_black_hole
+	atmosphere_color 		= hsv { 0.075 0.13 1.5 }
+	atmosphere_intensity 	= 1.0
+	atmosphere_width 		= 1.0
+
+	star = yes
+	min_distance_from_sun = 0
+	max_distance_from_sun = 0
+	spawn_odds = 0
+	chance_of_ring = 0
+	planet_size = { min = 20 max = 35 }
+	colonizable = no
+}
+
+# Custom black hole
+pc_ehof_black_hole = {
+	entity = "ehof_blackhole_entity"
+	icon = GFX_planet_type_black_hole
+	entity_scale = 20.0
+	picture = pc_black_hole
+	atmosphere_color 		= hsv { 0.075 0.13 1.5 }
+	atmosphere_intensity 	= 1.0
+	atmosphere_width 		= 1.0
+
+	star = yes
+	min_distance_from_sun = 0
+	max_distance_from_sun = 0
+	spawn_odds = 0
+	extra_orbit_size = 0
+	extra_planet_count = 0
+	chance_of_ring = 0
+	planet_size = 24
+	colonizable = no
+}
+
+
+pc_gigaignited_star = {
+	entity = "m_star_class_star_entity"
+	entity_scale = 14
+	picture = "pc_m_star"
+	icon = GFX_planet_type_m_star
+	atmosphere_color 		= hsv { 0.06 0.65 0.7 }
+	atmosphere_intensity 	= 0.6
+	atmosphere_width 		= 1.25
+
+	min_distance_from_sun = 40
+	max_distance_from_sun = 1000
+	spawn_odds = 0
+	star = yes
+	can_be_moon = no
+	chance_of_ring = 0.6
+	planet_size = { min = 35 max = 40 }
+	moon_size = { min = 8 max = 15 }
+	production_spawn_chance = 0.5
+	colonizable = no
+}
+
+# Preservation Sphere
+pc_whc_star = {
+	entity = "whc_star_class_star_entity"
+	entity_scale = 30.0
+	icon = GFX_planet_type_black_hole
+
+	atmosphere_color 		= hsv { 1.0 0.0 1.0 }
+	atmosphere_intensity 	= 0.0
+	atmosphere_width 		= 0.0
+
+	star = yes
+	min_distance_from_sun = 0
+	max_distance_from_sun = 0
+	spawn_odds = 0
+	extra_orbit_size = 0
+	extra_planet_count = 0
+	can_be_moon = no
+	chance_of_ring = 0
+	planet_size = 24
+	colonizable = no
+
+	modifier = {
+		planet_orbital_bombardment_damage = -0.5
+	}
+
+	can_be_invaded = no
+	show_health_bar_in_planet_view = yes
+}
+
+# White hole
+pc_wh_star = {
+	entity = "wh_star_class_star_entity"
+	entity_scale = 30.0
+	icon = GFX_planet_type_black_hole
+
+	atmosphere_color 		= hsv { 1.0 0.0 1.0 }
+	atmosphere_intensity 	= 0.0
+	atmosphere_width 		= 0.0
+
+	star = yes
+	min_distance_from_sun = 0
+	max_distance_from_sun = 0
+	spawn_odds = 0
+	extra_orbit_size = 0
+	extra_planet_count = 0
+	chance_of_ring = 0
+	planet_size = 24
+	colonizable = no
+}
+
+# White hole
+pc_whdyson_star = {
+	entity = "whdyson_star_class_star_entity"
+	entity_scale = 30.0
+	icon = GFX_planet_type_black_hole
+
+	atmosphere_color 		= hsv { 1.0 0.0 1.0 }
+	atmosphere_intensity 	= 0.0
+	atmosphere_width 		= 0.0
+
+	star = yes
+	min_distance_from_sun = 0
+	max_distance_from_sun = 0
+	spawn_odds = 0
+	extra_orbit_size = 0
+	extra_planet_count = 0
+	chance_of_ring = 0
+	planet_size = 24
+	colonizable = no
+}
+
+##############################################
 ### Habitable ################################
 ##############################################
 pc_equatorial_shipyard = {
 	is_artificial_planet = yes
-	ringworld = no # now used for mechanics too! #yes				# <<< This if for the preview entity, (ringworld = yes means there is no atmosphere background for preview)
+	ringworld = yes				# <<< This if for the preview entity, (ringworld = yes means there is no atmosphere background for preview)
 	preview_entity = "shipyard_preview_entity"
 	entity = "planetary_ring_game"
 	icon = GFX_ring_shipyard_icon
@@ -43,7 +238,7 @@ pc_equatorial_shipyard = {
 	colonizable = yes
 	starting_planet = no
 	orbit_lines = no
-	district_set = giga_equatorial_shipyard
+	district_set = giga_planet
 	modifier = {
 		planet_max_buildings_add = 12
 	}
@@ -73,7 +268,7 @@ pc_giga_planetary_computer = {
 	colonizable = yes
 	starting_planet = no
 	orbit_lines = yes
-	district_set = giga_planetary_computer
+	district_set = giga_planet
 
 	modifier = {
 		planet_max_buildings_add = 12
@@ -233,10 +428,11 @@ pc_squareworld_habitable = {
 
 pc_giga_penrose_habitable = {
 	is_artificial_planet = yes
-	ringworld = yes
+	ringworld = yes				# <<< This if for the preview entity, (ringworld = yes means there is no atmosphere background for preview)
 	entity = "penrose_sphere_ringworld"
 	preview_entity = "penrose_relic_full_entity"
 	picture = pc_ringworld
+	tile_set = pc_gaia
 	icon = GFX_penrose_ring_icon
 	entity_scale = 1
 	enable_tilt = no
@@ -266,14 +462,14 @@ pc_giga_penrose_habitable = {
 	carry_cap_per_free_district = @carry_cap_normal
 }
 
-# pre-rework elysium. Deprecated, but still present as ruins in Coritn
 pc_gigaorbital_ring = {
 	is_artificial_planet = yes
 	entity = "giga_orbital_habitat_entity"
-	ringworld = no # vanilla actually checks this for events now
+	ringworld = yes				# <<< This if for the preview entity, (ringworld = yes means there is no atmosphere background for preview)
 	preview_entity = "ringworld_01_damaged_full_entity"
-	picture = pc_giga_orbital
-	icon = GFX_giga_orbital_icon
+	picture = pc_orbital_elysium
+	tile_set = pc_continental
+	icon = GFX_elysium_icon
 	habitat = yes
 	atmosphere_color 		= hsv { 0.0 0.0 1.0 }
 	atmosphere_intensity 	= 1.0
@@ -294,7 +490,7 @@ pc_gigaorbital_ring = {
 	colonizable = yes
 	starting_planet = no
 	orbit_lines = yes
-	district_set = giga_ancient_elysium
+	district_set = giga_planet
 
 	carry_cap_per_free_district = @carry_cap_normal
 
@@ -373,10 +569,11 @@ pc_interstellar_ringworld_habitable = {
 }
 
 pc_flat_world = {
-	ringworld = no #yes				# <<< This if for the preview entity, (ringworld = yes means there is no atmosphere background for preview)
+	ringworld = yes				# <<< This if for the preview entity, (ringworld = yes means there is no atmosphere background for preview)
 	entity = "flat_earth_planet"
 	preview_entity = "flat_earth_planet_preview"
 	picture = pc_continental
+	tile_set = pc_continental
 	icon = GFX_flat_earth_icon
 	entity_scale = 5
 	enable_tilt = no
@@ -421,104 +618,9 @@ pc_katzenland = {
 	carry_cap_per_free_district = @carry_cap_normal
 
 	spawn_odds = 0
-	city_color_lut = "gfx/portraits/misc/colorcorrection_irradiated_desert.dds"
+	city_color_lut = "gfx/portraits/misc/colorcorrection_desert.dds"
 }
 
-pc_giga_elysium = {
-	is_artificial_planet = yes
-	entity = giga_elysium
-	ringworld = no #yes				# <<< This if for the preview entity, (ringworld = yes means there is no atmosphere background for preview)
-	preview_entity = ringworld_01_full_entity
-	picture = pc_giga_elysium
-	icon = GFX_giga_elysium_icon
-	habitat = yes
-	atmosphere_color 		= hsv { 0.0 0.0 1.0 }
-	atmosphere_intensity 	= 1.0
-	atmosphere_width 		= 0.5
-
-	fixed_entity_scale = yes
-	entity_scale = 1
-	place_entity_on_planet_plane = no
-	enable_tilt = no
-	min_distance_from_sun = @habitable_min_distance
-	max_distance_from_sun = @habitable_max_distance
-	spawn_odds = 0
-	show_city = no
-	city_color_lut = "gfx/portraits/misc/colorcorrection_arid.dds"
-	chance_of_ring = 0
-	planet_size = 5
-	moon_size = 1
-	ideal = yes
-	colonizable = yes
-	starting_planet = no
-	orbit_lines = no
-	has_colonization_influence_cost = no
-	district_set = giga_elysium
-
-	carry_cap_per_free_district = @carry_cap_low
-
-	modifier = {
-		planet_colony_development_speed_mult = 4.0
-		pop_cat_ruler_happiness = 0.1
-		planet_jobs_ruler_produces_mult = 0.1
-		planet_amenities_mult = 0.1
-	}
-}
-
-pc_giga_orbital = {
-	is_artificial_planet = yes
-	entity = giga_orbital_habitat_entity
-	#ringworld = yes				# <<< This if for the preview entity, (ringworld = yes means there is no atmosphere background for preview)
-	preview_entity = ringworld_01_damaged_full_entity
-	picture = pc_giga_orbital
-	icon = GFX_giga_orbital_icon
-	habitat = yes
-	atmosphere_color 		= hsv { 0.0 0.0 1.0 }
-	atmosphere_intensity 	= 1.0
-	atmosphere_width 		= 0.5
-
-	fixed_entity_scale = no
-	entity_scale = 1
-	place_entity_on_planet_plane = yes
-	enable_tilt = no
-	min_distance_from_sun = @habitable_min_distance
-	max_distance_from_sun = @habitable_max_distance
-	spawn_odds = 0
-	city_color_lut = gfx/portraits/misc/colorcorrection_continental.dds
-	chance_of_ring = 0
-	planet_size = { min = 16 max = 25 }
-	moon_size = { min = 12 max = 16 }
-	colonizable = yes
-	starting_planet = no
-	orbit_lines = yes
-	district_set = giga_orbital
-
-	carry_cap_per_free_district = @carry_cap_normal
-
-	modifier = {
-		pop_environment_tolerance = 0.8
-		planet_resettlement_unemployed_destination_mult = 1.0
-		district_giga_orbital_logistics_max = 10
-	}
-}
-
-pc_giga_orbital_site = {
-	entity = giga_hidden
-	picture = pc_giga_empty_space
-	atmosphere_color 		= hsv { 0.0 0.0 1.0 }
-	atmosphere_intensity 	= 1.0
-	atmosphere_width 		= 0.5
-
-	#fixed_entity_scale = yes
-	entity_scale = 1
-	enable_tilt = no
-	min_distance_from_sun = @habitable_min_distance
-	max_distance_from_sun = @habitable_max_distance
-	spawn_odds = 0
-	city_color_lut = gfx/portraits/misc/colorcorrection_arid.dds
-	colonizable = no
-	orbit_lines = yes
-}
 
 ##############################################
 ### Uninhabitable ############################
@@ -813,117 +915,6 @@ pc_ehof_unhabitat = {
 	spawn_odds = 0
 }
 
-pc_ringworld_habitable_shrouded = {
-	entity = "shrouded_habitable"
-	ringworld = yes
-	picture = pc_ringworld_section
-	icon = GFX_planet_type_ringworld
-	entity_scale = 1.0
-	enable_tilt = no
-	fixed_entity_scale = yes
-	atmosphere_color		= hsv { 0.50 0.2 0.8 }		#DONE
-	atmosphere_intensity	= 1.0
-	atmosphere_width		= 0.5
-	city_color_lut = "gfx/portraits/misc/colorcorrection_desert.dds"
-	extra_orbit_size = 0
-	extra_planet_count = 0
-	chance_of_ring = 0.0
-	planet_size = 10
-	moon_size = 1
-	colonizable = no
-	orbit_lines = no
-}
-
-pc_squareworld_shrouded_habitable = {
-	is_artificial_planet = yes
-	ringworld = yes				# <<< This if for the preview entity, (ringworld = yes means there is no atmosphere background for preview)
-	entity = "square_world_shrouded_habitable_planet"
-	picture = pc_squareworld_habitable
-	icon = GFX_planet_type_ringworld
-	entity_scale = 1.0
-	enable_tilt = no
-	fixed_entity_scale = yes
-	atmosphere_color 		= hsv { 0.0 0.0 1.0 }
-	atmosphere_intensity 	= 1.0
-	atmosphere_width 		= 0.5
-
-	city_color_lut = "gfx/portraits/misc/colorcorrection_continental.dds"
-	chance_of_ring = 0.0
-	planet_size = 10
-	moon_size = 1
-	colonizable = no
-	orbit_lines = no
-}
-
-pc_giga_penrose_shrouded_habitable = {
-	is_artificial_planet = yes
-	ringworld = yes
-	entity = "penrose_sphere_shrouded_ringworld"
-	picture = pc_ringworld
-	icon = GFX_penrose_ring_icon
-	entity_scale = 1
-	enable_tilt = no
-	fixed_entity_scale = yes
-	atmosphere_color 		= hsv { 0.0 0.0 1.0 }
-	atmosphere_intensity 	= 1.0
-	atmosphere_width 		= 0.5
-
-	city_color_lut = "gfx/portraits/misc/colorcorrection_continental.dds"
-	extra_orbit_size = 0
-	extra_planet_count = 0
-	chance_of_ring = 0.0
-	planet_size = 30
-	moon_size = 1
-	colonizable = no
-	starting_planet = no
-	orbit_lines = no
-}
-
-pc_shrouded_equatorial_shipyard = {
-	is_artificial_planet = yes
-	ringworld = yes				# <<< This if for the preview entity, (ringworld = yes means there is no atmosphere background for preview)
-	entity = "shrouded_planetary_ring_game"
-	icon = GFX_ring_shipyard_icon
-	picture = pc_molten
-	atmosphere_color 		= hsv { 0.50 0.2 0.8 }
-	atmosphere_intensity 	= 1.0
-	atmosphere_width 		= 0.5
-
-	show_city = no
-	entity_scale = 1.0
-	enable_tilt = no
-	fixed_entity_scale = yes
-	city_color_lut = "gfx/portraits/misc/colorcorrection_desert.dds"
-	chance_of_ring = 0.0
-	planet_size = 10
-	moon_size = 1
-	colonizable = no
-	orbit_lines = no
-}
-
-pc_interstellar_shrouded_ringworld_habitable = {
-	ringworld = yes				# <<< This if for the preview entity, (ringworld = yes means there is no atmosphere background for preview)
-	entity = "interstellar_shrouded_ringworld"
-	picture = pc_interstellar_ringworld_habitable
-	icon = GFX_interstellar_ring_icon
-	entity_scale = 1
-	enable_tilt = no
-	fixed_entity_scale = yes
-	atmosphere_color 		= hsv { 0.0 0.0 1.0 }
-	atmosphere_intensity 	= 1.0
-	atmosphere_width 		= 0.5
-
-	city_color_lut = "gfx/portraits/misc/colorcorrection_arid.dds"
-	extra_orbit_size = 0
-	extra_planet_count = 0
-	chance_of_ring = 0.0
-	planet_size = 10
-	moon_size = 1
-	colonizable = no
-	starting_planet = no
-	orbit_lines = no
-	is_artificial_planet = yes
-}
 random_list = {
 	name = "rl_destroyed"
 	planets = {

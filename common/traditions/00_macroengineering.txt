@@ -68,7 +68,7 @@ tr_macroengineering_waste_protocols = {
 	}
 
 	modifier = {
-		megastructures_upkeep_mult = -0.10
+		megastructure_upkeep_mult = -0.10
 	}
 
 	ai_weight = {

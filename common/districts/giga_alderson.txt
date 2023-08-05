@@ -32,16 +32,16 @@ district_giga_alderson_city = {
 	triggered_planet_modifier = {
 		modifier = {
 			planet_housing_add = 300
-			job_enforcer_add = 12
+			job_enforcer_add = 60
 		}
 	}
 
 	triggered_planet_modifier = { potential = { exists = owner owner = { has_valid_civic = civic_agrarian_idyll } }												modifier = { planet_housing_add = -60 } }
 	triggered_planet_modifier = { potential = { exists = owner owner = { is_regular_empire = yes is_fallen_empire = no } }										modifier = { job_clerk_add = 60 } }
-	triggered_planet_modifier = { potential = { exists = owner owner = { has_non_swapped_tradition = tr_prosperity_public_works } }								modifier = { planet_housing_add = 60 } }
+	triggered_planet_modifier = { potential = { exists = owner owner = { has_active_tradition = tr_prosperity_public_works } }								modifier = { planet_housing_add = 60 } }
 	triggered_planet_modifier = { potential = { exists = owner owner = { has_technology = tech_housing_1 } }													modifier = { planet_housing_add = 60 } }
 	triggered_planet_modifier = { potential = { exists = owner owner = { has_technology = tech_housing_2 NOT = { has_valid_civic = civic_agrarian_idyll } } }	modifier = { planet_housing_add = 60 } }
-	triggered_planet_modifier = { potential = { exists = owner owner = { has_non_swapped_tradition = tr_prosperity_interstellar_franchising } }					modifier = { job_clerk_add = 60 } }
+	triggered_planet_modifier = { potential = { exists = owner owner = { has_active_tradition = tr_prosperity_interstellar_franchising } }					modifier = { job_clerk_add = 60 } }
 	triggered_desc = {																																			text = "job_clerk_effect_desc" }
 
 	# Ecumenopolis Slice
@@ -89,13 +89,13 @@ district_giga_alderson_hive = {
 		modifier = {
 			planet_housing_add = 300
 			job_maintenance_drone_add = 216
-			job_patrol_drone_add = 12
+			job_patrol_drone_add = 60
 		}
 	}
 
 	triggered_planet_modifier = { potential = { exists = owner owner = { has_technology = tech_housing_1 } }						modifier = { planet_housing_add = 60 } }
 	triggered_planet_modifier = { potential = { exists = owner owner = { has_technology = tech_housing_2 } }						modifier = { planet_housing_add = 60 job_maintenance_drone_add = 72 } }
-	triggered_planet_modifier = { potential = { exists = owner owner = { has_swapped_tradition = tr_prosperity_extended_hives } }	modifier = { planet_housing_add = 60 } }
+	triggered_planet_modifier = { potential = { exists = owner owner = { has_active_tradition = tr_prosperity_extended_hives } }	modifier = { planet_housing_add = 60 } }
 	triggered_desc = {																												text = "job_maintenance_drone_effect_desc" }
 
 	# Ecumenopolis Slice
@@ -144,13 +144,13 @@ district_giga_alderson_nexus = {
 			planet_housing_add = 300
 			job_maintenance_drone_add = 180
 			job_technician_drone_add = 60
-			job_patrol_drone_add = 12
+			job_patrol_drone_add = 60
 		}
 	}
 
 	triggered_planet_modifier = { potential = { exists = owner owner = { has_technology = tech_housing_1 } }						modifier = { planet_housing_add = 60 } }
 	triggered_planet_modifier = { potential = { exists = owner owner = { has_technology = tech_housing_2 } }						modifier = { planet_housing_add = 60 job_maintenance_drone_add = 60 } }
-	triggered_planet_modifier = { potential = { exists = owner owner = { has_swapped_tradition = tr_prosperity_optimized_nexus } }	modifier = { planet_housing_add = 60 } }
+	triggered_planet_modifier = { potential = { exists = owner owner = { has_active_tradition = tr_prosperity_optimized_nexus } }	modifier = { planet_housing_add = 60 } }
 	triggered_desc = {																												text = "job_maintenance_drone_effect_desc" }
 
 	# Ecumenopolis Slice
@@ -168,6 +168,228 @@ district_giga_alderson_nexus = {
 	triggered_planet_modifier = { potential = { has_planet_flag = giga_alderson_machine }											modifier = { job_maintenance_drone_add = 270 } }
 	triggered_planet_modifier = { potential = { has_planet_flag = giga_alderson_machine }											modifier = { job_technician_drone_add = 90 } }
 }
+
+##################################
+### Industrial ###################
+##################################
+district_giga_alderson_industrial = {
+	base_buildtime = @giga_alderson_district_buildtime
+	is_capped_by_modifier = no
+
+	show_on_uncolonized = {
+		uses_district_set = giga_alderson
+		exists = from
+		has_planet_flag = giga_alderson_gaia
+	}
+
+	potential = {
+		uses_district_set = giga_alderson
+		exists = owner
+		has_planet_flag = giga_alderson_gaia
+	}
+
+	conversion_ratio = 1
+	convert_to = {
+		district_giga_alderson_city
+		district_giga_alderson_hive
+		district_giga_alderson_nexus
+		district_giga_alderson_commercial
+	}
+
+	resources = {
+		category = planet_districts
+		cost = {
+			minerals = @giga_alderson_cost
+			volatile_motes = @giga_alderson_cost_sr
+		}
+		upkeep = {
+			energy = @giga_alderson_maintenance
+			volatile_motes = @giga_alderson_maintenance_sr
+		}
+	}
+
+	triggered_planet_modifier = { modifier = { planet_housing_add = 120 } }
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes is_catalytic_empire = no is_crafter_empire = no }
+		}
+		modifier = {
+			job_artisan_add = 60
+			job_foundry_add = 60
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes is_catalytic_empire = no is_crafter_empire = yes }
+		}
+		modifier = {
+			job_artificer_add = 60
+			job_foundry_add = 60
+		}
+	}
+
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes is_catalytic_empire = no  }
+		}
+		modifier = {
+			job_alloy_drone_add = 120
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes is_catalytic_empire = no  }
+		}
+		modifier = {
+			job_fabricator_add = 120
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes is_crafter_empire = yes is_catalytic_empire = no }
+		}
+		modifier = {
+			job_artificer_add = 60
+			job_foundry_add = 60
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes is_crafter_empire = yes is_catalytic_empire = yes }
+		}
+		modifier = {
+			job_artificer_add = 60
+			job_catalytic_technician_add = 60
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes is_catalytic_empire = yes }
+		}
+		modifier = {
+			job_artisan_add = 60
+			job_catalytic_technician_add = 60
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes is_catalytic_empire = yes  }
+		}
+		modifier = {
+			job_catalytic_drone_add = 120
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_regular_empire = yes is_crafter_empire = yes }
+		}
+		text = job_artificer_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_regular_empire = yes is_crafter_empire = no }
+		}
+		text = job_artisan_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_machine_empire = yes
+				has_valid_civic = civic_machine_servitor
+			}
+		}
+		text = job_artisan_drone_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_regular_empire = yes is_catalytic_empire = no }
+		}
+		text = job_foundry_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_machine_empire = yes is_catalytic_empire = no }
+		}
+		text = job_fabricator_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+				is_catalytic_empire = yes
+			}
+		}
+		text = job_catalytic_technician_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+				is_catalytic_empire = yes
+			}
+		}
+		text = job_catalytic_drone_effect_desc
+	}
+
+
+	ai_weight = {
+		weight = 0
+
+		modifier = {
+			weight = 250
+			owner = { has_monthly_income = { resource = alloys value < 200 } }
+			owner = { has_monthly_income = { resource = consumer_goods value < 200 } }
+		}
+
+		modifier = {
+			factor = 0.01
+			OR = {
+				planet = { has_district = district_giga_alderson_mining }
+				planet = { has_district = district_giga_alderson_science }
+				planet = { has_district = district_giga_alderson_farming }
+				planet = { has_district = district_giga_alderson_admin }
+				planet = { has_district = district_giga_alderson_consumer }
+				planet = { has_district = district_giga_alderson_alloys }
+				planet = { has_district = district_giga_alderson_leisure }
+			}
+		}
+	}
+
+	ai_resource_production = {
+		energy = 10
+		trigger = { always = yes }
+	}
+}
+
 
 ##################################
 ### Energy #######################
@@ -226,6 +448,19 @@ district_giga_alderson_generator = {
 	triggered_desc = { trigger = { exists = owner owner = { is_gestalt = no is_fallen_empire_spiritualist = no } }					text = "job_technician_effect_desc" }
 	triggered_desc = { trigger = { exists = owner owner = { is_fallen_empire_spiritualist = yes } }									text = "job_fe_acolyte_generator_effect_desc" }
 
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+			}
+		}
+		modifier = {
+			job_technician_add = 90
+		}
+	}
+	
 	ai_weight = {
 		weight = 0
 
@@ -304,9 +539,8 @@ district_giga_alderson_commercial = {
 	triggered_planet_modifier = {
 		modifier = {
 			planet_housing_add = 120
-			job_merchant_add = 30
-			job_artisan_add = 30
-			job_clerk_add = 60
+			job_merchant_add = 40
+			job_clerk_add = 80
 		}
 	}
 
@@ -391,7 +625,7 @@ district_giga_alderson_mining = {
 	triggered_planet_modifier = { modifier = { planet_housing_add = 120 } }
 
 	triggered_planet_modifier = { potential = { exists = owner owner = { is_machine_empire = yes } }								modifier = { job_matter_synthesizer_drone_add = 120 } }
-	triggered_planet_modifier = { potential = { exists = owner owner = { is_hive_empire = yes } }									modifier = { planet_housing_add = 60 job_matter_synthesizer_drone_add = 180 } }
+	triggered_planet_modifier = { potential = { exists = owner owner = { is_hive_empire = yes } }									modifier = { planet_housing_add = 60 job_matter_synthesizer_drone_add = 120 } }
 	triggered_planet_modifier = { potential = { exists = owner owner = { is_gestalt = no is_fallen_empire_spiritualist = no } }		modifier = { job_matter_synthesizer_add = 120 } }
 	triggered_planet_modifier = { potential = { exists = owner owner = { is_fallen_empire_spiritualist = yes } }					modifier = { job_fe_acolyte_mine_add = 120 } }
 

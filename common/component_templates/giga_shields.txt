@@ -22,18 +22,14 @@ utility_component_template = {
 	}
 
 	ai_weight = {
-		weight = @ehof_t1_shield_weight
+		weight = @ehof_t1_weight
 		modifier = {
 			factor = 0.0
 			ehof_default_country = yes
 			OR =  {
-				no_resource_for_component = { RESOURCE = ehof_sr_sentient_metal }
-				no_resource_for_component = { RESOURCE = ehof_sr_negative_mass }
+				has_monthly_income = { resource = ehof_sr_sentient_metal value <= 0 }
+				has_monthly_income = { resource = ehof_sr_negative_mass value <= 0 }
 			}
-		}
-		inline_script = {
-			script = ship_components/weights/roles_stealth 
-			MULT = 0
 		}
 	}
 }
@@ -58,18 +54,14 @@ utility_component_template = {
 	}
 
 	ai_weight = {
-		weight = @ehof_t1_shield_weight
+		weight = @ehof_t1_weight
 		modifier = {
 			factor = 0.0
 			ehof_default_country = yes
 			OR =  {
-				no_resource_for_component = { RESOURCE = ehof_sr_sentient_metal }
-				no_resource_for_component = { RESOURCE = ehof_sr_negative_mass }
+				has_monthly_income = { resource = ehof_sr_sentient_metal value <= 0 }
+				has_monthly_income = { resource = ehof_sr_negative_mass value <= 0 }
 			}
-		}
-		inline_script = {
-			script = ship_components/weights/roles_stealth 
-			MULT = 0
 		}
 	}
 }
@@ -94,18 +86,14 @@ utility_component_template = {
 	}
 
 	ai_weight = {
-		weight = @ehof_t1_shield_weight
+		weight = @ehof_t1_weight
 		modifier = {
 			factor = 0.0
 			ehof_default_country = yes
 			OR =  {
-				no_resource_for_component = { RESOURCE = ehof_sr_sentient_metal }
-				no_resource_for_component = { RESOURCE = ehof_sr_negative_mass }
+				has_monthly_income = { resource = ehof_sr_sentient_metal value <= 0 }
+				has_monthly_income = { resource = ehof_sr_negative_mass value <= 0 }
 			}
-		}
-		inline_script = {
-			script = ship_components/weights/roles_stealth 
-			MULT = 0
 		}
 	}
 }
@@ -131,18 +119,14 @@ utility_component_template = {
 	}
 
 	ai_weight = {
-		weight = @ehof_t2_shield_weight
+		weight = @ehof_t2_weight
 		modifier = {
 			factor = 0.0
 			ehof_default_country = yes
 			OR =  {
-				no_resource_for_component = { RESOURCE = ehof_sr_sentient_metal }
-				no_resource_for_component = { RESOURCE = sr_dark_matter }
+				has_monthly_income = { resource = ehof_sr_sentient_metal value <= 0 }
+				has_monthly_income = { resource = sr_dark_matter value <= 0 }
 			}
-		}
-		inline_script = {
-			script = ship_components/weights/roles_stealth 
-			MULT = 0
 		}
 	}
 }
@@ -166,18 +150,14 @@ utility_component_template = {
 	}
 
 	ai_weight = {
-		weight = @ehof_t2_shield_weight
+		weight = @ehof_t2_weight
 		modifier = {
 			factor = 0.0
 			ehof_default_country = yes
 			OR =  {
-				no_resource_for_component = { RESOURCE = ehof_sr_sentient_metal }
-				no_resource_for_component = { RESOURCE = sr_dark_matter }
+				has_monthly_income = { resource = ehof_sr_sentient_metal value <= 0 }
+				has_monthly_income = { resource = sr_dark_matter value <= 0 }
 			}
-		}
-		inline_script = {
-			script = ship_components/weights/roles_stealth 
-			MULT = 0
 		}
 	}
 }
@@ -201,18 +181,14 @@ utility_component_template = {
 	}
 
 	ai_weight = {
-		weight = @ehof_t2_shield_weight
+		weight = @ehof_t2_weight
 		modifier = {
 			factor = 0.0
 			ehof_default_country = yes
 			OR =  {
-				no_resource_for_component = { RESOURCE = ehof_sr_sentient_metal }
-				no_resource_for_component = { RESOURCE = sr_dark_matter }
+				has_monthly_income = { resource = ehof_sr_sentient_metal value <= 0 }
+				has_monthly_income = { resource = sr_dark_matter value <= 0 }
 			}
-		}
-		inline_script = {
-			script = ship_components/weights/roles_stealth 
-			MULT = 0
 		}
 	}
 }

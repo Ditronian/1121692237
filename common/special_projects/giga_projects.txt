@@ -1,33 +1,4 @@
 special_project = {
-	key = "REANIMATE_MEOPA"
-	cost = 30000
-	tech_department = society_technology
-	picture = GFX_evt_excavation_team
-	timelimit = 1080
-
-	event_scope = ship_event
-
-	requirements = {
-		shipclass_science_ship = 1
-		leader = scientist
-		skill = 4
-	}
-
-	abort_trigger = {
-		NOT = { has_civic = civic_reanimated_armies }
-	}
-
-	on_success = {
-		owner = {
-			country_event = { id = giga_katzenland.011 }
-		}
-	}
-
-	on_fail = {
-	}
-}
-
-special_project = {
 	key = "FIND_OUT_FLUSION_GUN_PROJECT"
 	icon = "gfx/interface/icons/situation_log/situation_log_planet.dds"
 	cost = 1500
@@ -166,13 +137,6 @@ special_project = {
 				}
 			}
 			else_if = {
-				limit = { has_global_flag = giga_core_always_empty }
-				random_list = {
-					50 = { set_global_flag = giga_core_birch }
-					50 = { set_global_flag = giga_core_qso }
-				}
-			}
-			else_if = {
 				limit = { has_global_flag = giga_core_active }
 				set_global_flag = giga_core_qso
 			}
@@ -192,7 +156,6 @@ special_project = {
 						has_global_flag = giga_core_active
 						has_global_flag = giga_core_inactive_empty
 						has_global_flag = giga_core_inactive_aeternum
-						has_global_flag = giga_core_always_empty
 					}
 				}
 				random_list = {
@@ -356,6 +319,98 @@ special_project = {
 
 	on_success = {
 		ship_event = { id = ehof_anomaly.10006 }
+		if = {
+			limit = { from = { has_planet_flag = ehof_has_special_project } }
+			from = { remove_planet_flag = ehof_has_special_project }
+		}
+	}
+}
+
+special_project = {
+	key = "INVESTIGATE_RED_TOXIC"
+	days_to_research = 400
+	timelimit = -1
+	tech_department = physics_technology
+	picture = GFX_evt_red_toxic
+	event_scope = ship_event
+	location = yes
+
+	requirements = {
+		shipclass_science_ship = 1
+		leader = scientist
+	}
+
+	on_success = {
+		ship_event = { id = ehof_anomaly.10007 }
+		if = {
+			limit = { from = { has_planet_flag = ehof_has_special_project } }
+			from = { remove_planet_flag = ehof_has_special_project }
+		}
+	}
+}
+
+special_project = {
+	key = "EXPLORE_RED_TOXIC"
+	days_to_research = 400
+	timelimit = -1
+	tech_department = engineering_technology
+	picture = GFX_evt_red_toxic
+	event_scope = ship_event
+	location = yes
+
+	requirements = {
+		shipclass_science_ship = 1
+		leader = scientist
+	}
+
+	on_success = {
+		ship_event = { id = ehof_anomaly.10008 }
+		if = {
+			limit = { from = { has_planet_flag = ehof_has_special_project } }
+			from = { remove_planet_flag = ehof_has_special_project }
+		}
+	}
+}
+
+special_project = {
+	key = "FIND_SCOURGE_ORIGIN"
+	days_to_research = 500
+	timelimit = -1
+	tech_department = engineering_technology
+	picture = GFX_evt_red_toxic
+	event_scope = ship_event
+	location = yes
+
+	requirements = {
+		shipclass_science_ship = 1
+		leader = scientist
+	}
+
+	on_success = {
+		ship_event = { id = ehof_anomaly.10009 }
+		if = {
+			limit = { from = { has_planet_flag = ehof_has_special_project } }
+			from = { remove_planet_flag = ehof_has_special_project }
+		}
+	}
+}
+
+special_project = {
+	key = "EXPLORE_REPOSITORY"
+	days_to_research = 700
+	timelimit = -1
+	tech_department = engineering_technology
+	picture = GFX_evt_red_toxic
+	event_scope = ship_event
+	location = yes
+
+	requirements = {
+		shipclass_science_ship = 1
+		leader = scientist
+	}
+
+	on_success = {
+		ship_event = { id = ehof_anomaly.10010 }
 		if = {
 			limit = { from = { has_planet_flag = ehof_has_special_project } }
 			from = { remove_planet_flag = ehof_has_special_project }
@@ -612,59 +667,4 @@ special_project = {
 	location = yes
 
 	on_success = { owner = { country_event = { id = ehof_megastructure.0055 } } }
-}
-
-special_project = {
-	key = "STUDY_ARCANE_ARTIFACT_1"
-	days_to_research = 2000
-	timelimit = -1
-	tech_department = engineering_technology
-	picture = GFX_evt_physics_research
-	event_scope = planet_event
-	location = yes
-
-	on_success = {
-		owner = { country_event = { id = ehof_anomaly.4321 } }
-	}
-}
-
-special_project = {
-	key = "STUDY_ARCANE_ARTIFACT_2"
-	days_to_research = 2000
-	timelimit = -1
-	tech_department = engineering_technology
-	picture = GFX_evt_physics_research
-	event_scope = planet_event
-	location = yes
-
-	on_success = {
-		owner = { country_event = { id = ehof_anomaly.4323 } }
-	}
-}
-
-special_project = {
-	key = "EXPLORE_RUINED_EHOF"
-	days_to_research = 180
-	timelimit = -1
-	tech_department = physics_technology
-	picture = GFX_evt_ruined_system
-	event_scope = ship_event
-	requirements = { shipclass_science_ship = 1 leader = scientist }
-	location = yes
-
-	on_success = { owner = { country_event = { id = ehof_megastructure.0056 } } }
-}
-
-special_project = {
-	key = "STUDY_ARCANE_ARTIFACT_3"
-	days_to_research = 2000
-	timelimit = -1
-	tech_department = engineering_technology
-	picture = GFX_evt_physics_research
-	event_scope = planet_event
-	location = yes
-
-	on_success = {
-		owner = { country_event = { id = ehof_anomaly.4323 } }
-	}
 }

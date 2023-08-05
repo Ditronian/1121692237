@@ -11,24 +11,13 @@ country_event = {
 	}
 	
 	immediate = {
-		if = {
-			limit = { country_uses_food = yes }
-			give_technology = { tech = tech_hydroponics message = no }
-		}
-
 		capital_scope = {
 			solar_system = {
 				spawn_megastructure = { type = eq_shipyard_2 coords_from = prev }
 				every_system_planet = {
-					limit = { has_planet_flag = equatorial_shipyard_home_mining_target }
-					create_mining_station = { owner = root }
-				}
-				every_system_planet = {
-					limit = {
-						is_planet_class = pc_equatorial_shipyard
-						is_colony = no
+					if = { limit = { has_planet_flag = equatorial_shipyard_home_mining_target }
+						create_mining_station = { owner = root }
 					}
-					remove_planet = yes
 				}
 			}
 			# Clears the standard districts/deposits
@@ -37,62 +26,51 @@ country_event = {
 
 			# Gives correct city districts and hydroponics if organic
 			if = {
-				limit = { root = { is_machine_empire = yes } }
-				while = {
-					count = 3
-					add_district = district_giga_planet_nexus
+				limit = { root = { is_machine_empire = no } }
+				root = {
+					give_technology = { tech = tech_hydroponics message = no }
 				}
-			}
-			else_if = {
-				limit = { root = { is_hive_empire = yes } }
-				while = {
-					count = 3
+				if = {
+					limit = { root = { is_hive_empire = no } }
+					add_district = district_giga_planet_city
+					add_district = district_giga_planet_city
+					add_district = district_giga_planet_city
+				}
+				else = {
+					add_district = district_giga_planet_hive
+					add_district = district_giga_planet_hive
 					add_district = district_giga_planet_hive
 				}
+				add_building = building_giga_interstellar_hydroponic_farm
 			}
 			else = {
-				while = {
-					count = 3
-					add_district = district_giga_planet_city
+				add_district = district_giga_planet_nexus
+				add_district = district_giga_planet_nexus
+				add_district = district_giga_planet_nexus
+				if = {
+					limit = {
+						root = {
+							OR = {
+								has_valid_civic = civic_machine_servitor
+								has_valid_civic = civic_machine_assimilator
+							}
+						}
+					}
+					root = { give_technology = { tech = tech_hydroponics message = no } }
+					add_building = building_giga_interstellar_hydroponic_farm
 				}
 			}
 
 			# Mineral Building
 			add_building = building_giga_matter_synthesizer
-
-			# Hydroponics for food users
-			if = {
-				limit = { 
-					root = { 
-						or = {
-							has_country_flag = non_lithoid_subspecies
-							and = {
-								is_machine_empire = no
-								is_lithoid_empire = no
-							}
-						}
-					} 
-				}
-				add_building = building_giga_interstellar_hydroponic_farm
-			}
-
-			# CGs for normal empires
-			if = {
-				limit = { root = { is_gestalt = no } }
-				add_building = building_giga_equatorial_factory
-			}
+			
+			# Industrial Districts
+			add_district = district_industrial
+			add_district = district_industrial
 	
 			# Energy Districts
-			while = {
-				count = 2
-				add_district = district_giga_planet_geothermal
-			}
-
-			# Alloy Districts
-			while = {
-				count = 2
-				add_district = district_giga_planet_alloys
-			}
+			add_district = district_giga_planet_geothermal
+			add_district = district_giga_planet_geothermal
 
 			# Force Demotes the unemployed specialist pops
 			every_owned_pop = { clear_pop_category = yes }

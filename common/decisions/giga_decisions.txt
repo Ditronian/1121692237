@@ -1,252 +1,3 @@
-# Build Orbital Arcology
-decision_giga_build_orbital_arcology = {
-	owned_planets_only = yes
-	sound = event_construction
-	icon = decision_build_giga_orbital_arcology
-	prerequisites = { "giga_tech_orbital_arcologies" }
-	ai_weight = {
-		weight = 300
-		modifier = { factor = 0.1	solar_system = { any_neighbor_system = { exists = owner NOT = { owner = { is_same_value = from } } } } }
-		modifier = { factor = 0.5	solar_system = { any_neighbor_system = { any_neighbor_system = { exists = owner NOT = { owner = { is_same_value = from } } } } } }
-		modifier = { factor = 4		solar_system = { exists = owner is_same_value = owner.capital_scope.solar_system } }
-		modifier = {
-			factor = 3
-			solar_system = {
-				any_system_planet = {
-					AND = {
-						NOR = { 
-							has_planet_flag = orbital_arcology 
-							has_planet_flag = giga_drive_yard 
-						}
-						OR = {
-							is_planet_class = pc_city
-							is_planet_class = pc_giga_planetary_computer
-							count_owned_pop = { count >= 40 }
-						}
-					}
-				}
-			}
-		}
-		modifier = { factor = 0.00 from = { has_country_flag = has_recently_built_orbital_arcology } }
-	}
-
-	potential = {
-		exists = owner
-		# OR = {
-		# 	habitable_structure = no
-		# 	giga_habitable_structure = no
-		# 	is_planet_class = pc_giga_planetary_computer
-		# 	is_regular_giga_maginot_world = yes
-		# }
-		is_artificial = no
-
-		NOR = {
-			has_planet_flag = orbital_arcology 
-			has_planet_flag = giga_drive_yard
-		}
-	}
-
-	allow = {
-		custom_tooltip = {
-			fail_text = "requires_not_capped"
-			owner = {
-				OR = {
-					check_variable = { which = giga_orbital_arcologies_cap value = 0 }						# No Cap
-					check_variable = { which = giga_current_orbital_arcologies value < giga_orbital_arcologies_cap }
-				}
-			}
-		}
-	}
-
-	resources = {
-		category = giga_megastructures
-		cost = {
-			alloys = 200
-			multiplier = trigger:planet_size
-		}
-	}
-
-	effect = {
-		custom_tooltip = "decision_giga_build_orbital_arcology_effect"
-		hidden_effect = {
-			solar_system = {
-				spawn_megastructure = {
-					type = orbital_arcology_0
-					planet = ROOT
-					owner = space_owner
-				}
-				random_system_megastructure = {
-					limit = {
-						is_megastructure_type = orbital_arcology_0
-						planet = { is_same_value = ROOT } 
-					}
-					upgrade_megastructure_to = orbital_arcology_1
-				}
-			}
-		}
-	}
-
-	enactment_time = 0
-}
-
-# Upgrade Orbital Arcology
-decision_giga_upgrade_orbital_arcology = {
-	owned_planets_only = yes
-	sound = event_construction
-	icon = decision_enhance_orbital_arcology
-	prerequisites = { "giga_tech_enhance_orbital_arcologies" }
-	ai_weight = {
-		weight = 300
-		modifier = { factor = 0.1	solar_system = { any_neighbor_system = { exists = owner NOT = { owner = { is_same_value = from } } } } }
-		modifier = { factor = 0.5	solar_system = { any_neighbor_system = { any_neighbor_system = { exists = owner NOT = { owner = { is_same_value = from } } } } } }
-		modifier = { factor = 4		solar_system = { exists = owner is_same_value = owner.capital_scope.solar_system } }
-		modifier = {
-			factor = 3
-			solar_system = {
-				any_system_planet = {
-					AND = {
-						NOR = { 
-							has_planet_flag = orbital_arcology 
-							has_planet_flag = giga_drive_yard 
-						}
-						OR = {
-							is_planet_class = pc_city
-							is_planet_class = pc_giga_planetary_computer
-							count_owned_pop = { count >= 40 }
-						}
-					}
-				}
-			}
-		}
-		modifier = { factor = 0.00 from = { has_country_flag = has_recently_built_orbital_arcology } }
-	}
-
-	potential = {
-		exists = owner
-		# OR = {
-		# 	habitable_structure = no
-		# 	is_planet_class = pc_giga_planetary_computer
-		# }
-		is_artificial = no
-		has_planet_flag = orbital_arcology
-		solar_system = {
-			any_system_megastructure = {
-				is_megastructure_type = orbital_arcology_1
-				planet = { is_same_value = ROOT }
-				is_upgrading = no
-			}
-		}
-	}
-
-	allow = {
-		has_major_upgraded_capital = yes
-	}
-
-	resources = {
-		category = giga_megastructures
-		cost = {
-			alloys = 250
-			multiplier = trigger:planet_size
-		}
-	}
-
-	effect = {
-		custom_tooltip = "decision_giga_upgrade_orbital_arcology_effect"
-		hidden_effect = {
-			solar_system = {
-				random_system_megastructure = {
-					limit = {
-						is_megastructure_type = orbital_arcology_1
-						planet = { is_same_value = ROOT } 
-					}
-					upgrade_megastructure_to = orbital_arcology_2
-				}
-			}
-		}
-	}
-
-	enactment_time = 0
-}
-
-# Maximize Orbital Arcology
-decision_giga_maximize_orbital_arcology = {
-	owned_planets_only = yes
-	sound = event_construction
-	icon = decision_maximize_orbital_arcology
-	prerequisites = { "giga_tech_maximize_orbital_arcologies" }
-	ai_weight = {
-		weight = 300
-		modifier = { factor = 0.1	solar_system = { any_neighbor_system = { exists = owner NOT = { owner = { is_same_value = from } } } } }
-		modifier = { factor = 0.5	solar_system = { any_neighbor_system = { any_neighbor_system = { exists = owner NOT = { owner = { is_same_value = from } } } } } }
-		modifier = { factor = 4		solar_system = { exists = owner is_same_value = owner.capital_scope.solar_system } }
-		modifier = {
-			factor = 3
-			solar_system = {
-				any_system_planet = {
-					AND = {
-						NOR = { 
-							has_planet_flag = orbital_arcology 
-							has_planet_flag = giga_drive_yard 
-						}
-						OR = {
-							is_planet_class = pc_city
-							is_planet_class = pc_giga_planetary_computer
-							count_owned_pop = { count >= 40 }
-						}
-					}
-				}
-			}
-		}
-		modifier = { factor = 0.00 from = { has_country_flag = has_recently_built_orbital_arcology } }
-	}
-
-	potential = {
-		exists = owner
-		# OR = {
-		# 	habitable_structure = no
-		# 	is_planet_class = pc_giga_planetary_computer
-		# }
-		is_artificial = no
-		has_planet_flag = orbital_arcology
-		solar_system = {
-			any_system_megastructure = {
-				is_megastructure_type = orbital_arcology_2
-				planet = { is_same_value = ROOT }
-				is_upgrading = no
-			}
-		}
-	}
-	
-	allow = {
-		has_fully_upgraded_capital = yes
-	}
-
-	resources = {
-		category = giga_megastructures
-		cost = {
-			alloys = 300
-			multiplier = trigger:planet_size
-		}
-	}
-
-	effect = {
-		custom_tooltip = "decision_giga_maximize_orbital_arcology_effect"
-		hidden_effect = {
-			solar_system = {
-				random_system_megastructure = {
-					limit = {
-						is_megastructure_type = orbital_arcology_2
-						planet = { is_same_value = ROOT } 
-					}
-					upgrade_megastructure_to = orbital_arcology_3
-				}
-			}
-		}
-	}
-
-	enactment_time = 0
-}
-
 # Psychic Beacon (Illuminate)
 decision_psychic_illuminate = {
 	icon = decision_psychic_illuminate
@@ -258,7 +9,6 @@ decision_psychic_illuminate = {
 		OR = {
 			is_planet_class = pc_shrouded
 			has_modifier = beacon_shrouded_habitable_structure
-			is_giga_shrouded_ringworld = yes
 		}
 		solar_system.owner ={
 			is_same_value = from
@@ -268,7 +18,6 @@ decision_psychic_illuminate = {
 				has_megastructure = psychic_beacon_4
 			}
 		}
-		NOT = { has_planet_flag = paluushia_scaring_blokkats }
 	}
 
 	effect = {
@@ -293,110 +42,11 @@ decision_psychic_illuminate = {
 				limit = {
 					has_modifier = beacon_shrouded_habitable_structure
 				}
-				solar_system = {
-					random_system_ambient_object = {
-						limit = {
-							is_ambient_object_type = aeternum_consecrated_shroud
-						}
-						destroy_ambient_object = this
-					}
-				}
 				remove_modifier = beacon_shrouded_habitable_structure
 				save_event_target_as = giga_planet_illuminated
 				solar_system.owner = {
 					remove_country_flag = giga_psychic_beacon_illumiate
 					country_event = { id = giga_psychic_beacon.002 }
-				}
-			}
-			else_if = {
-				limit = { is_giga_shrouded_ringworld = yes }
-				if = {
-					limit = {
-						is_planet_class = pc_ringworld_habitable_shrouded
-					}
-					change_pc = pc_ringworld_habitable
-					if = {
-						limit = { from = { has_planet_flag = giga_ringworld_gar } }
-						giga_set_ringworld_graphical_culture = {
-							TARGET = this
-							SOURCE = solar_system.starbase.owner
-							SIZE = gargantuan
-							TYPE = gaia_habitable
-						}
-					}
-					else_if = {
-						limit = { from = { has_planet_flag = giga_ringworld_beh } }
-						giga_set_ringworld_graphical_culture = {
-							TARGET = this
-							SOURCE = solar_system.starbase.owner
-							SIZE = behemoth
-							TYPE = gaia_habitable
-						}
-					}
-					else_if = {
-						limit = { from = { has_planet_flag = giga_ringworld_tit } }
-						giga_set_ringworld_graphical_culture = {
-							TARGET = this
-							SOURCE = solar_system.starbase.owner
-							SIZE = titanic
-							TYPE = gaia_habitable
-						}
-					}
-					else = {
-						giga_set_ringworld_graphical_culture = {
-							TARGET = this
-							SOURCE = solar_system.starbase.owner
-							SIZE = vanilla
-							TYPE = gaia_habitable
-							VANILLA_TYPE = habitable
-						}
-					}
-					save_event_target_as = giga_planet_illuminated
-					root = { country_event = { id = giga_psychic_beacon.006 days = 2 } }
-				}
-				else_if = {
-					limit = { 		
-						is_planet_class = pc_squareworld_shrouded_habitable
-					}
-					change_pc = pc_squareworld_habitable #Not even the funny square is safe from me
-					save_event_target_as = giga_planet_illuminated
-					solar_system.owner = {
-						remove_country_flag = giga_psychic_beacon_illumiate
-						country_event = { id = giga_psychic_beacon.002 }
-					}
-				}
-				else_if = {
-					limit = {
-						is_planet_class = pc_giga_penrose_shrouded_habitable
-					}
-					change_pc = pc_giga_penrose_habitable
-					save_event_target_as = giga_planet_illuminated
-					solar_system.owner = {
-						remove_country_flag = giga_psychic_beacon_illumiate
-						country_event = { id = giga_psychic_beacon.002 }
-					}
-				}
-				else_if = {
-					limit = {
-						is_planet_class = pc_shrouded_equatorial_shipyard
-					}
-					change_pc = pc_equatorial_shipyard
-					save_event_target_as = giga_planet_illuminated
-					solar_system.owner = {
-						remove_country_flag = giga_psychic_beacon_illumiate
-						country_event = { id = giga_psychic_beacon.002 }
-					}
-				}
-				else_if = {
-					limit = {
-						is_planet_class = pc_interstellar_shrouded_ringworld_habitable
-					}
-					change_pc = pc_interstellar_ringworld_habitable
-					save_event_target_as = giga_planet_illuminated
-					solar_system.owner = {
-						remove_country_flag = giga_psychic_beacon_illumiate
-						country_event = { id = giga_psychic_beacon.002 }
-					}
 				}
 			}
 			else = {
@@ -422,9 +72,7 @@ decision_psionic_sublimation = {
 	ai_weight = { weight = 0 }
 
 	potential = {
-		exists = owner
 		owner = {
-			has_tradition = tr_psionics_psi_corps
 			has_technology = giga_tech_psychic_beacon
 			OR = {
 				has_megastructure = psychic_beacon_3
@@ -434,35 +82,8 @@ decision_psionic_sublimation = {
 	}
 
 	allow = {
-		OR = {
-			# normal psi corps building
-			has_building = building_psi_corps
-			# covenant buildings
-			has_building = building_composer_sanctum
-			has_building = building_eater_sanctum
-			has_building = building_instrument_sanctum
-			has_building = building_whisperers_sanctum
-			# equivalent on orbital ring
-			if = {
-				limit = {
-					exists = orbital_defence
-				}
-				orbital_defence = {
-					exists = starbase
-					starbase = {
-						OR = {
-							has_starbase_building = ring_psi_corps
-							is_starbase_building_building = ring_psi_corps
-						}
-					}
-				}
-			}
-		}
-		#any_owned_pop = { has_job = telepath }
-		num_assigned_jobs = {
-			job = telepath
-			value > 0
-		}
+		has_building = building_psi_corps
+		any_owned_pop = { has_job = telepath }
 	}
 
 	effect = {
@@ -530,7 +151,6 @@ decision_ringworld_arcology_project = {
 			has_modifier = resort_colony
 			has_modifier = penal_colony
 			has_modifier = slave_colony
-			ag_is_ancient_ringworld = yes
 			has_global_flag = cityring_disabled
 		}
 		is_planet_class = pc_ringworld_habitable
@@ -577,42 +197,73 @@ decision_ringworld_arcology_project = {
 			set_planet_flag = giga_archology
 			solar_system = { save_event_target_as = giga_system }
 			save_event_target_as = giga_planet
-			planet_event = { id = giga_dialog.2401 }	# Notification
 			owner = {
+				country_event = { id = giga_dialog.2401 }	# Notification
 				if = {
 					limit = { prev = { has_planet_flag = giga_ringworld_gar } }
-					giga_set_ringworld_graphical_culture = {
-						TARGET = prev
-						SOURCE = this
-						SIZE = gargantuan
-						TYPE = ecu_habitable
+					switch = {
+						trigger = graphical_culture
+						humanoid_01		= { prev = { set_planet_entity = { entity = "humanoid_01_gargantuan_ecu_habitable_sector_entity"	} } }
+						plantoid_01		= { prev = { set_planet_entity = { entity = "plantoid_01_gargantuan_ecu_habitable_sector_entity"	} } }
+						mammalian_01	= { prev = { set_planet_entity = { entity = "mammalian_01_gargantuan_ecu_habitable_sector_entity"	} } }
+						reptilian_01	= { prev = { set_planet_entity = { entity = "reptilian_01_gargantuan_ecu_habitable_sector_entity"	} } }
+						avian_01		= { prev = { set_planet_entity = { entity = "avian_01_gargantuan_ecu_habitable_sector_entity"		} } }
+						molluscoid_01	= { prev = { set_planet_entity = { entity = "molluscoid_01_gargantuan_ecu_habitable_sector_entity"	} } }
+						fungoid_01		= { prev = { set_planet_entity = { entity = "fungoid_01_gargantuan_ecu_habitable_sector_entity"		} } }
+						arthropoid_01	= { prev = { set_planet_entity = { entity = "arthropoid_01_gargantuan_ecu_habitable_sector_entity"	} } }
+						lithoid_01		= { prev = { set_planet_entity = { entity = "lithoid_01_gargantuan_ecu_habitable_sector_entity"		} } }
+						necroid_01		= { prev = { set_planet_entity = { entity = "necroid_01_gargantuan_ecu_habitable_sector_entity"		} } }
+						default 		= { prev = { set_planet_entity = { entity = "mammalian_01_gargantuan_ecu_habitable_sector_entity"	} } }
 					}
 				}
 				else_if = {
 					limit = { prev = { has_planet_flag = giga_ringworld_beh } }
-					giga_set_ringworld_graphical_culture = {
-						TARGET = prev
-						SOURCE = this
-						SIZE = behemoth
-						TYPE = ecu_habitable
+					switch = {
+						trigger = graphical_culture
+						humanoid_01		= { prev = { set_planet_entity = { entity = "humanoid_01_behemoth_ecu_habitable_sector_entity"		} } }
+						plantoid_01		= { prev = { set_planet_entity = { entity = "plantoid_01_behemoth_ecu_habitable_sector_entity"		} } }
+						mammalian_01	= { prev = { set_planet_entity = { entity = "mammalian_01_behemoth_ecu_habitable_sector_entity"		} } }
+						reptilian_01	= { prev = { set_planet_entity = { entity = "reptilian_01_behemoth_ecu_habitable_sector_entity"		} } }
+						avian_01		= { prev = { set_planet_entity = { entity = "avian_01_behemoth_ecu_habitable_sector_entity"			} } }
+						molluscoid_01	= { prev = { set_planet_entity = { entity = "molluscoid_01_behemoth_ecu_habitable_sector_entity"	} } }
+						fungoid_01		= { prev = { set_planet_entity = { entity = "fungoid_01_behemoth_ecu_habitable_sector_entity"		} } }
+						arthropoid_01	= { prev = { set_planet_entity = { entity = "arthropoid_01_behemoth_ecu_habitable_sector_entity"	} } }
+						lithoid_01		= { prev = { set_planet_entity = { entity = "lithoid_01_behemoth_ecu_habitable_sector_entity"		} } }
+						necroid_01		= { prev = { set_planet_entity = { entity = "necroid_01_behemoth_ecu_habitable_sector_entity"		} } }
+						default 		= { prev = { set_planet_entity = { entity = "mammalian_01_behemoth_ecu_habitable_sector_entity"		} } }
 					}
 				}
 				else_if = {
 					limit = { prev = { has_planet_flag = giga_ringworld_tit } }
-					giga_set_ringworld_graphical_culture = {
-						TARGET = prev
-						SOURCE = this
-						SIZE = titanic
-						TYPE = ecu_habitable
+					switch = {
+						trigger = graphical_culture
+						humanoid_01		= { prev = { set_planet_entity = { entity = "humanoid_01_titanic_ecu_habitable_sector_entity"		} } }
+						plantoid_01		= { prev = { set_planet_entity = { entity = "plantoid_01_titanic_ecu_habitable_sector_entity"		} } }
+						mammalian_01	= { prev = { set_planet_entity = { entity = "mammalian_01_titanic_ecu_habitable_sector_entity"		} } }
+						reptilian_01	= { prev = { set_planet_entity = { entity = "reptilian_01_titanic_ecu_habitable_sector_entity"		} } }
+						avian_01		= { prev = { set_planet_entity = { entity = "avian_01_titanic_ecu_habitable_sector_entity"			} } }
+						molluscoid_01	= { prev = { set_planet_entity = { entity = "molluscoid_01_titanic_ecu_habitable_sector_entity"		} } }
+						fungoid_01		= { prev = { set_planet_entity = { entity = "fungoid_01_titanic_ecu_habitable_sector_entity"		} } }
+						arthropoid_01	= { prev = { set_planet_entity = { entity = "arthropoid_01_titanic_ecu_habitable_sector_entity"		} } }
+						lithoid_01		= { prev = { set_planet_entity = { entity = "lithoid_01_titanic_ecu_habitable_sector_entity"		} } }
+						necroid_01		= { prev = { set_planet_entity = { entity = "necroid_01_titanic_ecu_habitable_sector_entity"		} } }
+						default 		= { prev = { set_planet_entity = { entity = "mammalian_01_titanic_ecu_habitable_sector_entity"		} } }
 					}
 				}
 				else = {
-					giga_set_ringworld_graphical_culture = {
-						TARGET = prev
-						SOURCE = this
-						SIZE = vanilla
-						TYPE = ecu_habitable
-						VANILLA_TYPE = habitable
+					switch = {
+						trigger = graphical_culture
+						humanoid_01		= { prev = { set_planet_entity = { entity = "humanoid_01_vanilla_ecu_habitable_entity"		} } }
+						plantoid_01		= { prev = { set_planet_entity = { entity = "plantoid_01_vanilla_ecu_habitable_entity"		} } }
+						mammalian_01	= { prev = { set_planet_entity = { entity = "mammalian_01_vanilla_ecu_habitable_entity"		} } }
+						reptilian_01	= { prev = { set_planet_entity = { entity = "reptilian_01_vanilla_ecu_habitable_entity"		} } }
+						avian_01		= { prev = { set_planet_entity = { entity = "avian_01_vanilla_ecu_habitable_entity"			} } }
+						molluscoid_01	= { prev = { set_planet_entity = { entity = "molluscoid_01_vanilla_ecu_habitable_entity"	} } }
+						fungoid_01		= { prev = { set_planet_entity = { entity = "fungoid_01_vanilla_ecu_habitable_entity"		} } }
+						arthropoid_01	= { prev = { set_planet_entity = { entity = "arthropoid_01_vanilla_ecu_habitable_entity"	} } }
+						lithoid_01		= { prev = { set_planet_entity = { entity = "lithoid_01_vanilla_ecu_habitable_entity"		} } }
+						necroid_01		= { prev = { set_planet_entity = { entity = "necroid_01_vanilla_ecu_habitable_entity"		} } }
+						default 		= { prev = { set_planet_entity = { entity = "mammalian_01_vanilla_ecu_habitable_entity"		} } }
 					}
 				}
 			}
@@ -641,8 +292,6 @@ decision_ringworld_upgrade = {
 		NOR = {
 			has_global_flag = upgrade_disabled
 			has_planet_flag = giga_ringworld_upgraded
-			ag_is_ancient_ringworld = yes
-			is_planet_class = pc_ringworld_shielded
 		}
 		is_planet_class = pc_ringworld_tech
 		solar_system.owner ={ is_same_value = from }
@@ -741,24 +390,13 @@ decision_harvest_matter_for_planetary_printing = {
 	ai_weight = { weight = 0 }
 
 	potential = {
-		exists = space_owner
-		space_owner = { is_ai = no }
-		is_star = no
-		is_colony = no
-		is_artificial = no
-		giga_habitable_structure = no
-		if = {
-			limit = { exists = owner }
-			NOT = {
-				owner = { is_country_type = primitive }
-				owner = { is_country_type = frameworld_outpost_country_type }
-			}
-		}
 		NOR = {
 			is_planet_class = pc_shielded
+			is_planet_class = pc_gas_giant
 			has_planet_flag = getting_harvested_for_printing
 			has_planet_flag = megastructure
 			has_planet_flag = has_megastructure
+			space_owner = { is_ai = yes }
 			has_planet_flag = holy_world_1
 			has_planet_flag = holy_world_2
 			has_planet_flag = holy_world_3
@@ -773,18 +411,21 @@ decision_harvest_matter_for_planetary_printing = {
 			is_planet_class = pc_ai
 			is_planet_class = pc_shrouded
 			is_planet_class = pc_gigabrown_dwarf
-			giga_is_gas_giant = yes
-			giga_is_birch_world = yes
+			is_planet_class = pc_birch
+			owner = { is_country_type = primitive }
 		}
+		is_star = no
+		is_colony = no
+		is_artificial = no
+		giga_habitable_structure = no
 	}
 
 	resources = {
-		category = giga_kilostructures
+		category = decisions
 		cost = {
 			alloys = 5000
 			energy = 15000
 		}
-		cost = { alloys = -1 multiplier = value:giga_ai_savings_cost|CATEGORY|military|RESOURCE|alloys|AMOUNT|5000| }
 	}
 
 	prerequisites = { giga_tech_planetary_matter_harvesting }
@@ -792,24 +433,9 @@ decision_harvest_matter_for_planetary_printing = {
 	effect = {
 		custom_tooltip = "decision_build_planetary_matter_harvester"
 		hidden_effect = {
-			from = {
-				giga_ai_savings_withdraw = { CATEGORY = resource RESOURCE = alloys AMOUNT = 5000 }
-			}
-			# remove terraforming modifiers
-			if = {
-				limit = { 
-					OR = {
-						has_modifier = terraforming_candidate
-						has_modifier = frozen_terraforming_candidate
-						has_modifier = toxic_terraforming_candidate
-					}
-				}
-				remove_modifier = terraforming_candidate
-				remove_modifier = frozen_terraforming_candidate
-				remove_modifier = toxic_terraforming_candidate
-			}
 			set_planet_flag = getting_harvested_for_printing
-			giga_set_has_mega_flag = yes
+			set_planet_flag = megastructure
+			set_planet_flag = has_megastructure
 			solar_system = {
 				spawn_megastructure = {
 					type = moon_printer_orbital_mass_harvester_0
@@ -898,7 +524,6 @@ decision_take_solakia_back = {
 	effect = {
 		custom_tooltip = decision_take_solakia_back_effect
 		hidden_effect = {
-			root.owner = { defect_sonya = yes }
 			set_planet_flag = seizing_solakia
 			if = {
 				limit = {
@@ -1110,372 +735,5 @@ decision_give_flusion_to_solakia = {
 				}
 			}
 		}
-	}
-}
-
-giga_dismantle_elysium = {
-	owned_planets_only = yes
-
-	enactment_time = 360
-	resources = {
-		category = decisions
-		cost = {
-			influence = 100
-		}
-	}
-
-	potential = {
-		is_planet_class = pc_giga_elysium
-
-		exists = owner
-		owner = {
-			not = { has_origin = origin_elysium } # elysium origin isn't allowed to take them down
-		}
-
-		exists = orbit
-		orbit = {
-			has_planet_flag = has_orbital_elysium
-		}
-	}
-
-	allow = {
-		orbit = {
-			is_colony = yes
-			is_under_colonization = no
-			exists = owner
-			owner = {
-				is_same_empire = root.owner
-			}
-		}
-	}
-
-	effect = {
-		orbit = {
-			# clear planet modifiers
-			remove_modifier = giga_elysium_host_planet
-			hidden_effect = {
-				remove_planet_flag = has_orbital_elysium
-				clear_variable = giga_elysium_admin
-				clear_variable = giga_elysium_stability
-			}
-
-			# restore buildings
-			if = {
-				limit = {
-					owner = {
-						is_hive_empire = yes
-					}
-				}
-				remove_building = building_giga_elysium_host_hive_jobs
-				if = {
-					limit = {
-						has_building = building_giga_elysium_host_hive_major_capital
-					}
-					remove_building = building_giga_elysium_host_hive_major_capital
-					add_building = building_hive_major_capital
-				}
-				else = {
-					remove_building = building_giga_elysium_host_hive_capital
-					add_building = building_hive_capital
-				}
-			}
-			else_if = {
-				limit = {
-					owner = {
-						is_machine_empire = yes
-					}
-				}
-				remove_building = building_giga_elysium_host_machine_jobs
-				if = {
-					limit = {
-						has_building = building_giga_elysium_host_machine_major_capital
-					}
-					remove_building = building_giga_elysium_host_machine_major_capital
-					add_building = building_machine_major_capital
-				}
-				else = {
-					remove_building = building_giga_elysium_host_machine_capital
-					add_building = building_machine_capital
-				}
-			}
-			else = {
-				remove_building = building_giga_elysium_host_jobs
-				if = {
-					limit = {
-						has_building = building_giga_elysium_host_major_capital
-					}
-					remove_building = building_giga_elysium_host_major_capital
-					add_building = building_major_capital
-				}
-				else = {
-					remove_building = building_giga_elysium_host_capital
-					add_building = building_capital
-				}
-			}
-			if = {
-				limit = {
-					has_building = building_giga_elysium_host_booster
-				}
-				remove_building = building_giga_elysium_host_booster
-			}
-			
-			# this will hopefully make the capitals switch if it's meant to be something other than these, and update the planet view
-			validate_planet_buildings_and_districts = yes
-		}
-
-		# get rid of the elysium
-		every_owned_pop = {
-			resettle_pop = {
-				pop = this
-				planet = root.orbit
-			}
-		}
-
-		hidden_effect = {
-			owner = {
-				country_event = {
-					id = giga_elysium.006
-					scopes = {
-						from = root
-						fromfrom = root.orbit
-					}
-				}
-			}
-
-			giga_remove_planet = yes
-			orbit = {
-				giga_clear_has_mega_flag = yes
-			}
-		}
-
-		custom_tooltip = giga_dismantle_elysium_tooltip
-	}
-
-	ai_weight = {
-		weight = 0
-
-		# empires which hate these should seek to take them down
-		modifier = {
-			exists = owner
-			owner = {
-				or = {
-					is_egalitarian = yes
-					is_cooperative = yes
-					has_valid_civic = civic_machine_servitor
-				}
-			}
-
-			weight = 1000
-		}
-	}
-}
-
-# Flood gigas habitats
-@expand_planetary_sea_length = 720
-
-decision_giga_flood_habitat = {
-	owned_planets_only = yes
-	icon = decision_satellite_in_orbit
-
-	enactment_time = @expand_planetary_sea_length
-
-	potential = {
-		# habitat has the vanilla decision, flooding the flat world is just silly
-		nor = {
-			is_planet_class = pc_habitat
-			is_planet_class = pc_flat_world
-		}
-		# but the rest of the gigas habitat types are fair game
-		# yes that includes the frameworld, though you can't do that with the origin as you can't take aquatic
-		is_giga_habitat = yes		
-
-		exists = owner
-		owner = {
-			has_ascension_perk = ap_hydrocentric
-		}
-		NOT = {
-			has_modifier = flooded_habitat
-		}
-	}
-
-	allow = {
-		custom_tooltip = {
-			fail_text = requires_free_ice_mining_station
-			owner = {
-				any_owned_starbase = {
-					has_starbase_building = ice_mining_station
-					solar_system = {
-						NOT = { has_star_flag = ice_mining_in_progress }
-					}
-				}
-			}
-		}
-	}
-
-	resources = {
-		category = decisions
-		cost = {
-			influence = 50
-			energy = 1000
-		}
-	}
-
-	on_queued = {
-		set_variable = {
-			which = decision_length
-			value = @expand_planetary_sea_length
-		}
-		export_modifier_to_variable = {
-			modifier = planet_decision_enact_speed_mult
-			variable = decision_mult_var
-		}
-		change_variable = {
-			which = decision_mult_var
-			value = 1
-		}
-		divide_variable = {
-			which = decision_length
-			value = decision_mult_var
-		}
-		change_variable = { #ideally, may as well refer to this in the final effect
-			which = decision_length
-			value = 1
-		}
-
-		owner = {
-			random_owned_starbase = {
-				limit = {
-					has_starbase_building = ice_mining_station
-					solar_system = {
-						NOT = { has_star_flag = ice_mining_in_progress }
-					}
-				}
-				solar_system = {
-					set_timed_star_flag = {
-						flag = ice_mining_in_progress
-						days = root.decision_length
-					}
-					set_timed_star_flag = {
-						flag = ice_mining@root
-						days = root.decision_length
-					}
-				}
-			}
-		}
-		clear_variable = decision_length
-		clear_variable = decision_mult_var
-	}
-
-	abort_trigger = {
-		NOT = {
-			owner = {
-				any_owned_starbase = {
-					has_starbase_building = ice_mining_station
-				}
-			}
-		}
-	}
-
-	on_unqueued = {
-		owner = {
-			random_owned_starbase = {
-				limit = {
-					solar_system = {
-						has_star_flag = ice_mining@root
-					}
-				}
-				solar_system = {
-					remove_star_flag = ice_mining@root
-					remove_star_flag = ice_mining_in_progress
-				}
-			}
-		}
-	}
-
-	abort_effect = {
-		owner = {
-			random_owned_starbase = {
-				limit = {
-					solar_system = {
-						has_star_flag = ice_mining@root
-					}
-				}
-				solar_system = {
-					remove_star_flag = ice_mining@root
-					remove_star_flag = ice_mining_in_progress
-				}
-			}
-		}
-		create_message = {
-			type = ICE_MINING_INTERRUPTED
-			localization = ICE_MINING_INTERRUPTED_HABITAT_DESC
-			days = 20
-			target = root
-		}
-	}
-
-	effect = {
-		custom_tooltip = decision_flood_habitat_tooltip
-
-		if = {
-			limit = {
-				is_planet_class = pc_giga_elysium
-			}
-			custom_tooltip = decision_giga_flood_habitat_elysium
-		}
-
-		hidden_effect = {
-			add_modifier = {
-				modifier = flooded_habitat
-				days = -1
-			}
-			ice_mining_depletion_effect = yes
-
-			if = {
-				limit = {
-					has_planet_flag = temp_ice_mine_exhausted_flag
-				}
-				event_target:mined_system.starbase = {
-					remove_starbase_building = {
-						building = ice_mining_station
-					}
-				}
-				create_message = {
-					type = ICE_MINING_HABITAT_SUCCESS
-					localization = ICE_MINING_HABITAT_SUCCESS_BUT_EXHAUSTED_DESC
-					days = 20
-					target = root
-					variable = {
-						type = name
-						localization = SYSTEM
-						scope = event_target:mined_system
-					}
-				}
-			}
-			else = {
-				create_message = {
-					type = ICE_MINING_HABITAT_SUCCESS
-					localization = ICE_MINING_HABITAT_SUCCESS_DESC
-					days = 20
-					target = root
-					variable = {
-						type = name
-						localization = SYSTEM
-						scope = event_target:mined_system
-					}
-				}
-			}
-			change_variable = {
-				which = ice_dumping_happened
-				value = 1
-			}
-
-			# special effects per hab type
-
-			# TODO: orbital entity swap for ocean planet texture
-		}
-	}
-	ai_weight = {
-		weight = 2
 	}
 }

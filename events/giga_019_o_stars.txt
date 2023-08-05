@@ -27,7 +27,6 @@ country_event = {
 						giga_is_bitrinary = no
 						has_no_non_gate_megastructure = yes
 						NOR = {
-							has_star_flag = giga_forbid_o_class
 							is_star_class = sc_black_hole
 							is_star_class = sc_neutron_star
 							is_star_class = sc_pulsar
@@ -59,7 +58,6 @@ country_event = {
 						giga_is_bitrinary = no
 						has_no_non_gate_megastructure = yes
 						NOR = {
-							has_star_flag = giga_forbid_o_class
 							is_star_class = sc_black_hole
 							is_star_class = sc_neutron_star
 							is_star_class = sc_pulsar
@@ -110,9 +108,9 @@ country_event = {
 						limit = { 
 							OR = {
 								is_colonizable = yes
-								giga_is_toxic = yes
-								giga_is_frozen = yes
-								giga_is_barren_cold = yes
+								is_planet_class = pc_toxic
+								is_planet_class = pc_frozen
+								is_planet_class = pc_barren_cold
 							}
 						}
 						random_list = {
@@ -145,13 +143,13 @@ ship_event = {
 	is_triggered_only = yes
 
 	trigger = {
-		controller = { NOT = { has_country_flag = found_giga_o_star_class } }
+		owner = { NOT = { has_country_flag = found_giga_o_star_class } }
 		from = {
 			has_star_flag = giga_o_star_system
 		}
 	}
 
-	immediate = { controller = { set_country_flag = found_giga_o_star_class } }
+	immediate = { owner = { set_country_flag = found_giga_o_star_class } }
 	option = { name = "giga_o_star.2000.a" }
 }
 

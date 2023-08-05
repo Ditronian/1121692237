@@ -23,7 +23,7 @@ weapon_component_template = {
 	hidden = yes
 	component_set = "LASER_AETERNUM"
 	projectile_gfx = "projectile_laser_aeternum"
-	tags = { weapon_type_anticompound weapon_type_energy }
+	tags = { weapon_type_energy }
 	
 	resources = {
 		category = ship_components
@@ -63,7 +63,7 @@ weapon_component_template = {
 	hidden = yes
 	component_set = "KINETIC_AETERNUM"
 	projectile_gfx = "projectile_kinetic_aeternum"
-	tags = { weapon_type_anticompound weapon_type_kinetic }
+	tags = { weapon_type_kinetic }
 	
 	resources = {
 		category = ship_components
@@ -103,7 +103,7 @@ weapon_component_template = {
 	hidden = yes
 	component_set = "AUTOCANNON_AETERNUM"
 	projectile_gfx = "projectile_autocannon_aeternum"
-	tags = { weapon_type_anticompound weapon_type_energy }
+	tags = { weapon_type_energy }
 	
 	resources = {
 		category = ship_components
@@ -144,7 +144,7 @@ weapon_component_template = {
 	hidden = yes
 	component_set = "ARC_EMITTER_AETERNUM"
 	projectile_gfx = "projectile_arc_emitter_aeternum"
-	tags = { weapon_type_anticompound weapon_type_energy }
+	tags = { weapon_type_energy }
 	
 	resources = {
 		category = ship_components
@@ -185,7 +185,7 @@ weapon_component_template = {
 	hidden = yes
 	component_set = "TITAN_LANCE_AETERNUM"
 	projectile_gfx = "projectile_titan_lance_aeternum"
-	tags = { weapon_type_anticompound weapon_type_energy }
+	tags = { weapon_type_energy }
 	
 	resources = {
 		category = ship_components
@@ -227,7 +227,7 @@ weapon_component_template = {
 	hidden = yes
 	component_set = "PLANET_LANCE_AETERNUM"
 	projectile_gfx = "giga_super_omega_laser_aet"
-	tags = { weapon_type_anticompound weapon_type_energy }
+	tags = { weapon_type_energy }
 
 	size_restriction = { giga_planet_behemoth }
 	
@@ -429,7 +429,7 @@ weapon_component_template = {
 	hidden = yes
 	component_set = "POINT_DEFENCE_AETERNUM"
 	projectile_gfx = "white_laser_pd"
-	tags = { weapon_type_anticompound weapon_type_energy weapon_type_point_defense }
+	tags = { weapon_type_energy weapon_type_point_defense }
 	ai_tags = { weapon_role_point_defense }
 	resources = {
 		category = ship_components
@@ -440,7 +440,6 @@ weapon_component_template = {
 			energy = 1
 		}
 	}
-	point_defence_targets = { "missile" "strike_craft" }
 }
 
 weapon_component_template = { # SHROUD
@@ -460,33 +459,4 @@ weapon_component_template = { # SHROUD
 	total_fire_time = 30
 
 	planet_destruction_gfx = "assimilation_nanobots_gfx"
-}
-
-#Herc balance part so they don't overflow
-#armor
-utility_component_template = {
-	key = "SHIELD_ARMOR_LOW_AETERNUM"
-	size = large
-	icon = "GFX_ship_part_shield_armor_aeternum"
-	icon_frame = 1
-	
-	modifier = {
-		ship_armor_add = -6000000
-		ship_shield_add = -8080000
-	}
-	
-	hidden = yes
-	component_set = "SHIELD_ARMOR_LOW_AETERNUM"
-	
-	resources = {
-		category = ship_components
-		cost = {
-			alloys = 150
-			exotic_gases = 4
-			volatile_motes = 4
-		}		
-		upkeep = {
-			energy = 10
-		}
-	}
 }

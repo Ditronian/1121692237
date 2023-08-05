@@ -93,12 +93,20 @@ objectTypes = {
 		meshsettings = {
 			name = "body"
 			index = 0
-			texture_diffuse = "ehof_p4_diffuse.dds"
-			texture_normal = "ehof_p4_normal.dds"
-			texture_specular = "ehof_p4_specular.dds"
+			texture_diffuse = "ehof_p2_diffuse.dds"
+			texture_normal = "ehof_p2_normal.dds"
+			texture_specular = "ehof_p2_specular.dds"
 			shader = OmniMeshShipRecolor
 		}
 
+		meshsettings = {
+			name = "body"
+			index = 1
+			texture_diffuse = "ehof_p2_diffuse.dds"
+			texture_normal = "ehof_p2_normal.dds"
+			texture_specular = "ehof_p2_specular.dds"
+			shader = OmniMeshShip
+		}
 	}
 
 	pdxmesh = {
@@ -108,18 +116,18 @@ objectTypes = {
 		meshsettings = {
 			name = "body"
 			index = 0
-			texture_diffuse = "ehof_p4_diffuse.dds"
-			texture_normal = "ehof_p4_normal.dds"
-			texture_specular = "ehof_p4_specular.dds"
+			texture_diffuse = "ehof_p2_diffuse.dds"
+			texture_normal = "ehof_p2_normal.dds"
+			texture_specular = "ehof_p2_specular.dds"
 			shader = OmniMeshShipRecolor
 		}
 
 		meshsettings = {
 			name = "body"
 			index = 1
-			texture_diffuse = "ehof_p4_diffuse.dds"
-			texture_normal = "ehof_p4_normal.dds"
-			texture_specular = "ehof_p4_specular.dds"
+			texture_diffuse = "ehof_p2_diffuse.dds"
+			texture_normal = "ehof_p2_normal.dds"
+			texture_specular = "ehof_p2_specular.dds"
 			shader = OmniMeshShip
 		}
 	}
@@ -196,14 +204,22 @@ objectTypes = {
 		file = "gfx/models/ships/megastructures/event_horizon_offset_facility/ehofmega_phase3_body_top.mesh"
 
 		meshsettings = {
-			name = "body_top"
+			name = "body"
 			index = 0
-			texture_diffuse = "ehof_p4_diffuse.dds"
-			texture_normal = "ehof_p4_normal.dds"
-			texture_specular = "ehof_p4_specular.dds"
+			texture_diffuse = "ehof_p3_diffuse.dds"
+			texture_normal = "ehof_p3_normal.dds"
+			texture_specular = "ehof_p3_specular.dds"
 			shader = OmniMeshShipRecolor
 		}
 
+		meshsettings = {
+			name = "body"
+			index = 1
+			texture_diffuse = "ehof_p3_diffuse.dds"
+			texture_normal = "ehof_p3_normal.dds"
+			texture_specular = "ehof_p3_specular.dds"
+			shader = OmniMeshShip
+		}
 	}
 
 	##############

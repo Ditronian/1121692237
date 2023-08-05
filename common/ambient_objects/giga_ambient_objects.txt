@@ -43,21 +43,6 @@ ambient_object = {
 }
 
 ambient_object = {
-	name = "giga_fe_shield"
-	entity = "nbd_shield_project_system_effect"
-	selectable = no
-	tooltip = "giga_fe_shield_tooltip"
-	show_name = yes
-}
-
-ambient_object = {
-	name = "aet_psi_storm_1"
-	entity = "aet_psi_storm_1_entity"
-	selectable = no
-	show_name = no
-}
-
-ambient_object = {
 	name = "giga_size_13_ring"
 	entity = "orbital_arcology_13_entity"
 	selectable = no
@@ -168,30 +153,30 @@ ambient_object = {
 	selectable = no
 	show_name = no
 }
-#Animate UV seems to be functioning properly nowadays without needing this, however using this causes a bit of shenanigans with mesh placement
-# # SM Forge to fix animate UV
-# ambient_object = {
-# 	name = "sm_forge_p2"
-# 	entity = "ehof_sm_forge_phase2_sphere_entity"
-# 	selectable = no
-# 	show_name = no
-# }
 
-# # SM Forge to fix animate UV
-# ambient_object = {
-# 	name = "sm_forge_p3"
-# 	entity = "ehof_sm_forge_phase3_sphere_entity"
-# 	selectable = no
-# 	show_name = no
-# }
+# SM Forge to fix animate UV
+ambient_object = {
+	name = "sm_forge_p2"
+	entity = "ehof_sm_forge_phase2_sphere_entity"
+	selectable = no
+	show_name = no
+}
 
-# # SM Forge to fix animate UV
-# ambient_object = {
-# 	name = "sm_forge_p4"
-# 	entity = "ehof_sm_forge_phase4_sphere_entity"
-# 	selectable = no
-# 	show_name = no
-# }
+# SM Forge to fix animate UV
+ambient_object = {
+	name = "sm_forge_p3"
+	entity = "ehof_sm_forge_phase3_sphere_entity"
+	selectable = no
+	show_name = no
+}
+
+# SM Forge to fix animate UV
+ambient_object = {
+	name = "sm_forge_p4"
+	entity = "ehof_sm_forge_phase4_sphere_entity"
+	selectable = no
+	show_name = no
+}
 
 # Fake CPlanet (Shader fix)
 ambient_object = {
@@ -273,156 +258,28 @@ ambient_object = {
 
 ambient_object = {
 	name = "giga_orbital_arcology_object"
-	entity = "giga_hidden"
+	entity = "orbital_arcology_object_entity"
 	selectable = no
 	show_name = no
 }
 
 ambient_object = {
 	name = "giga_planetary_drive_yard_object"
-	entity = "giga_hidden"
+	entity = "planetary_drive_yard_full_entity"
 	selectable = no
 	show_name = no
 }
 
 ambient_object = {
 	name = "giga_planetary_drive_yard_fortress_object"
-	entity = "giga_hidden"
+	entity = "planetary_drive_yard_full_fortress_entity"
 	selectable = no
 	show_name = no
 }
 
 ambient_object = {
 	name = "giga_planetary_drive_yard_shipyard_object"
-	entity = "giga_hidden"
+	entity = "planetary_drive_yard_full_shipyard_entity"
 	selectable = no
 	show_name = no
-}
-
-ambient_object = {
-	name = "aeternum_consecrated_shroud"
-	entity = "aeternum_consecrated_shroud_entity"
-	selectable = no
-	show_name = no
-}
-#######################
-######Phase1 EHOF######
-#######################
-ambient_object = { 
-	name = "ehof_megastructure_phase1_idle"
-	entity = "ehof_megastructure_phase1_entity" 
-	selectable = no 
-	show_name = no 
-}
-
-ambient_object = { 
-	name = "ehof_megastructure_phase1_activating" 
-	entity = "ehof_megastructure_phase1_activating_entity" 
-	selectable = no 
-	show_name = no 
-}
-
-ambient_object = { 
-	name = "ehof_megastructure_phase1_active" 
-	entity = "ehof_megastructure_phase1_active_entity" 
-	selectable = no 
-	show_name = no 
-}
-
-ambient_object = { 
-	name = "ehof_megastructure_phase1_decommissioned" 
-	entity = "ehof_megastructure_phase1_entity" 
-	selectable = no 
-	show_name = no 
-}
-#######################
-######Phase2 EHOF######
-#######################
-ambient_object = { 
-	name = "ehof_megastructure_phase2_idle" 
-	entity = "ehof_megastructure_phase2_entity" 
-	selectable = no 
-	show_name = no 
-}
-
-ambient_object = { 
-	name = "ehof_megastructure_phase2_activating" 
-	entity = "ehof_megastructure_phase2_activating_entity" 
-	selectable = no 
-	show_name = no 
-}
-
-ambient_object = { 
-	name = "ehof_megastructure_phase2_active"
-	entity = "ehof_megastructure_phase2_active_entity" 
-	selectable = no 
-	show_name = no 
-
-}
-
-ambient_object = { 
-	name = "ehof_megastructure_phase2_decommissioned" 
-	entity = "ehof_megastructure_phase2_entity" 
-	selectable = no 
-	show_name = no 
-}
-#######################
-######Phase3 EHOF######
-#######################
-ambient_object = { 
-	name = "ehof_megastructure_phase3_idle" 
-	entity = "ehof_megastructure_phase3_entity" 
-	selectable = no 
-	show_name = no 
-}
-
-ambient_object = { 
-	name = "ehof_megastructure_phase3_activating" 
-	entity = "ehof_megastructure_phase3_activating_entity" 
-	selectable = no 
-	show_name = no 
-}
-
-ambient_object = { 
-	name = "ehof_megastructure_phase3_active" 
-	entity = "ehof_megastructure_phase3_active_entity" 
-	selectable = no 
-	show_name = no 
-}
-
-ambient_object = {
-	name = "ehof_megastructure_phase3_decommissioned" 
-	entity = "ehof_megastructure_phase3_entity" 
-	selectable = no 
-	show_name = no 
-}
-
-#######################
-######Phase4 EHOF######
-#######################
-ambient_object = { 
-	name = "ehof_megastructure_phase4_idle" 
-	entity = "ehof_megastructure_phase4_entity" 
-	selectable = no 
-	show_name = no 
-}
-
-ambient_object = { 
-	name = "ehof_megastructure_phase4_activating" 
-	entity = "ehof_megastructure_phase4_activating_entity" 
-	selectable = no 
-	show_name = no 
-}
-
-ambient_object = { 
-	name = "ehof_megastructure_phase4_active" 
-	entity = "ehof_megastructure_phase4_active_entity" 
-	selectable = no 
-	show_name = no 
-}
-ambient_object = { 
-	name = "ehof_megastructure_phase4_decommissioned" 
-	entity = "ehof_megastructure_phase4_entity" 
-	selectable = no 
-	show_name = no 
 }

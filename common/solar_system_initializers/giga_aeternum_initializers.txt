@@ -18,9 +18,9 @@ giga_black_hole_aeternum_initializer = {
 	planet = {
 		name = "Aiondia"
 		class = "pc_birch"
-		orbit_distance = 0.00001
+		orbit_distance = 0
 		orbit_angle = 1
-		size = 500
+		size = 1
 		has_ring = no
 		init_effect = {
 			set_planet_entity = {
@@ -29,7 +29,8 @@ giga_black_hole_aeternum_initializer = {
 			save_global_event_target_as = aeternum_birch_world
 			set_planet_flag = aeternum_birch_world
 			create_birch_aeternum = yes
-			giga_birch_setup = yes
+			add_deposit = d_birch_structure			# Min/Max modifier desposit
+			add_deposit = d_birch_extraction		# Min/Max modifier desposit
 			add_building = building_system_capital
 		}
 	}
@@ -46,7 +47,8 @@ giga_black_hole_aeternum_initializer = {
 				graphical_culture = avian_01
 			}
 			set_planet_flag = forbid_guillis_planet_modifiers
-			set_planet_flag = megastructure
+			set_planet_flag = megastructure			# Vanilla uses to check if a megastrucure can be built here
+			set_planet_flag = has_megastructure		# Vanilla uses to check if an orbital station can be built here
 		}
 	}
 
@@ -61,7 +63,8 @@ giga_black_hole_aeternum_initializer = {
 				graphical_culture = avian_01
 			}
 			set_planet_flag = forbid_guillis_planet_modifiers
-			set_planet_flag = megastructure
+			set_planet_flag = megastructure			# Vanilla uses to check if a megastrucure can be built here
+			set_planet_flag = has_megastructure		# Vanilla uses to check if an orbital station can be built here
 		}
 	}
 
@@ -76,7 +79,8 @@ giga_black_hole_aeternum_initializer = {
 				graphical_culture = avian_01
 			}
 			set_planet_flag = forbid_guillis_planet_modifiers
-			set_planet_flag = megastructure
+			set_planet_flag = megastructure			# Vanilla uses to check if a megastrucure can be built here
+			set_planet_flag = has_megastructure		# Vanilla uses to check if an orbital station can be built here
 		}
 	}
 
@@ -91,7 +95,8 @@ giga_black_hole_aeternum_initializer = {
 				graphical_culture = avian_01
 			}
 			set_planet_flag = forbid_guillis_planet_modifiers
-			set_planet_flag = megastructure
+			set_planet_flag = megastructure			# Vanilla uses to check if a megastrucure can be built here
+			set_planet_flag = has_megastructure		# Vanilla uses to check if an orbital station can be built here
 		}
 	}
 
@@ -106,7 +111,8 @@ giga_black_hole_aeternum_initializer = {
 				graphical_culture = avian_01
 			}
 			set_planet_flag = forbid_guillis_planet_modifiers
-			set_planet_flag = megastructure
+			set_planet_flag = megastructure			# Vanilla uses to check if a megastrucure can be built here
+			set_planet_flag = has_megastructure		# Vanilla uses to check if an orbital station can be built here
 		}
 	}
 
@@ -121,7 +127,8 @@ giga_black_hole_aeternum_initializer = {
 				graphical_culture = avian_01
 			}
 			set_planet_flag = forbid_guillis_planet_modifiers
-			set_planet_flag = megastructure
+			set_planet_flag = megastructure			# Vanilla uses to check if a megastrucure can be built here
+			set_planet_flag = has_megastructure		# Vanilla uses to check if an orbital station can be built here
 		}
 	}
 
@@ -136,7 +143,8 @@ giga_black_hole_aeternum_initializer = {
 				graphical_culture = avian_01
 			}
 			set_planet_flag = forbid_guillis_planet_modifiers
-			set_planet_flag = megastructure
+			set_planet_flag = megastructure			# Vanilla uses to check if a megastrucure can be built here
+			set_planet_flag = has_megastructure		# Vanilla uses to check if an orbital station can be built here
 		}
 	}
 
@@ -151,7 +159,8 @@ giga_black_hole_aeternum_initializer = {
 				graphical_culture = avian_01
 			}
 			set_planet_flag = forbid_guillis_planet_modifiers
-			set_planet_flag = megastructure
+			set_planet_flag = megastructure			# Vanilla uses to check if a megastrucure can be built here
+			set_planet_flag = has_megastructure		# Vanilla uses to check if an orbital station can be built here
 		}
 	}
 
@@ -166,7 +175,8 @@ giga_black_hole_aeternum_initializer = {
 				graphical_culture = avian_01
 			}
 			set_planet_flag = forbid_guillis_planet_modifiers
-			set_planet_flag = megastructure
+			set_planet_flag = megastructure			# Vanilla uses to check if a megastrucure can be built here
+			set_planet_flag = has_megastructure		# Vanilla uses to check if an orbital station can be built here
 		}
 	}
 
@@ -181,7 +191,8 @@ giga_black_hole_aeternum_initializer = {
 				graphical_culture = avian_01
 			}
 			set_planet_flag = forbid_guillis_planet_modifiers
-			set_planet_flag = megastructure
+			set_planet_flag = megastructure			# Vanilla uses to check if a megastrucure can be built here
+			set_planet_flag = has_megastructure		# Vanilla uses to check if an orbital station can be built here
 		}
 	}
 
@@ -196,7 +207,8 @@ giga_black_hole_aeternum_initializer = {
 				graphical_culture = avian_01
 			}
 			set_planet_flag = forbid_guillis_planet_modifiers
-			set_planet_flag = megastructure
+			set_planet_flag = megastructure			# Vanilla uses to check if a megastrucure can be built here
+			set_planet_flag = has_megastructure		# Vanilla uses to check if an orbital station can be built here
 		}
 	}
 
@@ -211,7 +223,8 @@ giga_black_hole_aeternum_initializer = {
 				graphical_culture = avian_01
 			}
 			set_planet_flag = forbid_guillis_planet_modifiers
-			set_planet_flag = megastructure
+			set_planet_flag = megastructure			# Vanilla uses to check if a megastrucure can be built here
+			set_planet_flag = has_megastructure		# Vanilla uses to check if an orbital station can be built here
 		}
 	}
 
@@ -223,7 +236,6 @@ giga_black_hole_aeternum_initializer = {
 		size = 35
 		has_ring = no
 		init_effect = {
-			giga_set_has_mega_flag = yes
 			create_aeternite_home_platform = yes
 			spawn_aeternite_colossus_fleet = yes
 			save_global_event_target_as = aet_core_star_1
@@ -262,10 +274,6 @@ giga_black_hole_aeternum_initializer = {
 		init_effect = {
 			create_aeternite_home_platform = yes
 			save_global_event_target_as = aet_core_gasgiant_1
-			if = {
-				limit = { has_global_flag = giga_core_aeternum_4 }
-				spawn_aeternite_herc_fleet = yes
-			}
 		}
 	}
 
@@ -285,7 +293,6 @@ giga_black_hole_aeternum_initializer = {
 				modifier = orbital_arcology_modifier_3
 				days = -1
 			}
-			set_planet_flag = giga_planetary_computer
 			spawn_aeternite_troop_fleet = yes
 			create_aeternite_home_platform = yes
 			save_global_event_target_as = aet_core_planet_2
@@ -300,7 +307,6 @@ giga_black_hole_aeternum_initializer = {
 		size = 35
 		has_ring = no
 		init_effect = {
-			giga_set_has_mega_flag = yes
 			create_aeternite_home_platform = yes
 			spawn_aeternite_colossus_fleet = yes
 			save_global_event_target_as = aet_core_star_2
@@ -339,10 +345,6 @@ giga_black_hole_aeternum_initializer = {
 		init_effect = {
 			create_aeternite_home_platform = yes
 			save_global_event_target_as = aet_core_gasgiant_2
-			if = {
-				limit = { has_global_flag = giga_core_aeternum_4 }
-				spawn_aeternite_herc_fleet = yes
-			}
 		}
 	}
 
@@ -362,7 +364,6 @@ giga_black_hole_aeternum_initializer = {
 				modifier = orbital_arcology_modifier_3
 				days = -1
 			}
-			set_planet_flag = giga_planetary_computer
 			spawn_aeternite_troop_fleet = yes
 			create_aeternite_home_platform = yes
 			save_global_event_target_as = aet_core_planet_4
@@ -382,15 +383,6 @@ giga_black_hole_aeternum_initializer = {
 
 		spawn_megastructure = { type = "yggdrasil_orchid_3" coords_from = event_target:aet_core_gasgiant_1 owner = event_target:birch_aeternum }
 		spawn_megastructure = { type = "yggdrasil_orchid_ruined" coords_from = event_target:aet_core_gasgiant_2 owner = event_target:birch_aeternum }
-
-		if = {
-			limit = { has_global_flag = giga_core_aeternum_4 }
-			spawn_megastructure = { type = "acot_dark_matter_obelisk_core_oe" coords_from = event_target:aet_core_planet_1 owner = event_target:birch_aeternum }
-			spawn_megastructure = { type = "acot_dark_matter_obelisk_core_oe" coords_from = event_target:aet_core_planet_2 owner = event_target:birch_aeternum }
-			spawn_megastructure = { type = "acot_dark_matter_obelisk_core_oe" coords_from = event_target:aet_core_planet_3 owner = event_target:birch_aeternum }
-			spawn_megastructure = { type = "acot_dark_matter_obelisk_core_oe" coords_from = event_target:aet_core_planet_4 owner = event_target:birch_aeternum }
-
-		}
 
 		save_global_event_target_as = giga_core_system
 		every_system_planet = {
@@ -429,7 +421,6 @@ giga_inner_1_aeternum_initializer = {
 		size = 30
 		has_ring = no
 		init_effect = {
-			giga_set_has_mega_flag = yes
 			save_event_target_as = aet_1_star
 			spawn_aeternite_guardian_fleet = yes
 		}
@@ -461,7 +452,6 @@ giga_inner_2_aeternum_initializer = {
 		size = 30
 		has_ring = no
 		init_effect = {
-			giga_set_has_mega_flag = yes
 			save_event_target_as = aet_2_star
 		}
 	}
@@ -627,7 +617,6 @@ giga_inner_3_aeternum_initializer = {
 		size = 30
 		has_ring = no
 		init_effect = {
-			giga_set_has_mega_flag = yes
 			save_event_target_as = aet_3_star
 			while = {
 				count = 50
@@ -735,7 +724,6 @@ giga_inner_4_aeternum_initializer = {
 		size = 30
 		has_ring = no
 		init_effect = {
-			giga_set_has_mega_flag = yes
 			spawn_aeternite_guardian_fleet = yes
 			save_event_target_as = aet_4_star
 			while = {
@@ -862,7 +850,6 @@ giga_inner_5_aeternum_initializer = {
 		size = 30
 		has_ring = no
 		init_effect = {
-			giga_set_has_mega_flag = yes
 			save_event_target_as = aet_5_star
 		}
 	}
@@ -927,7 +914,6 @@ giga_inner_6_aeternum_initializer = {
 		size = 30
 		has_ring = no
 		init_effect = {
-			giga_set_has_mega_flag = yes
 			save_event_target_as = aet_6_star
 			while = {
 				count = 100

@@ -4,7 +4,6 @@
 @giga_gas_giant_habitat_upkeep_energy_medium 	= 2
 @giga_gas_giant_habitat_upkeep_energy_heavy 	= 3
 @giga_gas_giant_habitat_district_buildtime		= 220
-@giga_gas_giant_habitat_upkeep_sr 				= 1
 
 ##################################
 ### Housing ######################
@@ -12,17 +11,16 @@
 district_giga_gas_giant_habitat_city = {
 	base_buildtime = @giga_gas_giant_habitat_district_buildtime
 	is_capped_by_modifier = no
-	exempt_from_ai_planet_specialization = yes
 
 	show_on_uncolonized = {
 		exists = from
-		from = { is_gestalt = no }
+		from = { is_regular_empire = yes }
 		uses_district_set = giga_gas_giant_habitat
 	}
 
 	potential = {
 		exists = owner
-		owner = { is_gestalt = no }
+		owner = { is_regular_empire = yes }
 		uses_district_set = giga_gas_giant_habitat
 	}
 
@@ -89,7 +87,7 @@ district_giga_gas_giant_habitat_city = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { has_active_tradition = tr_mercantile_trickle_up_economics }
+			owner = { has_active_tradition = tr_prosperity_interstellar_franchising }
 		}
 		modifier = { job_clerk_add = 1 }
 	}
@@ -98,10 +96,10 @@ district_giga_gas_giant_habitat_city = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { is_bugged_rooftop_farmers = yes }
+			owner = { has_valid_civic = civic_rooftop_farmers }
 		}
 		modifier = {
-			job_farmer_add = 1
+			job_farmer_add = 2
 		}
 	}
 	
@@ -109,23 +107,30 @@ district_giga_gas_giant_habitat_city = {
 	triggered_desc = {
 		trigger = {
 			exists = owner
-			owner = { is_gestalt = no }
+			owner = { is_regular_empire = yes }
 		}
 		text = "job_clerk_effect_desc"
 	}
 	triggered_desc = {
 		trigger = {
 			exists = owner
-			owner = { is_bugged_rooftop_farmers = yes }
+			owner = { has_valid_civic = civic_rooftop_farmers }
 		}
 		text = "job_farmer_effect_desc"
+	}
+	
+	ai_weight = {
+		weight = 0
+		modifier = {
+			weight = 300
+			free_housing < 2
+		}
 	}
 }
 
 district_giga_gas_giant_habitat_hive = {
 	base_buildtime = @giga_gas_giant_habitat_district_buildtime
 	is_capped_by_modifier = no
-	exempt_from_ai_planet_specialization = yes
 
 	show_on_uncolonized = {
 		exists = from
@@ -194,12 +199,19 @@ district_giga_gas_giant_habitat_hive = {
 	triggered_desc = {
 		text = "job_maintenance_drone_effect_desc"
 	}
+	
+	ai_weight = {
+		weight = 0
+		modifier = {
+			weight = 300
+			free_housing < 2
+		}
+	}
 }
 
 district_giga_gas_giant_habitat_nexus = {
 	base_buildtime = @giga_gas_giant_habitat_district_buildtime
 	is_capped_by_modifier = no
-	exempt_from_ai_planet_specialization = yes
 
 	show_on_uncolonized = {
 		exists = from
@@ -269,6 +281,14 @@ district_giga_gas_giant_habitat_nexus = {
 	triggered_desc = {
 		text = "job_maintenance_drone_effect_desc"
 	}
+
+	ai_weight = {
+		weight = 0
+		modifier = {
+			weight = 300
+			free_housing < 1
+		}
+	}
 }
 
 ##################################
@@ -316,201 +336,64 @@ district_giga_gas_giant_habitat_industrial = {
 		planet_housing_add = 3
 	}
 
-	triggered_planet_modifier = { 
-		potential = { 
-			exists = owner 
-			owner = { 
-				is_gestalt = no 
-				is_crafter_empire = no 
-			} 
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
 		}
-		modifier = { 
-			job_artisan_add = 1 
+		modifier = {
+			job_artisan_add = 1
+			job_foundry_add = 1
 		}
 	}
 
-	triggered_planet_modifier = { 
-		potential = { 
-			exists = owner 
-			owner = { 
-				is_gestalt = no 
-				is_crafter_empire = yes 
-			} 
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
 		}
-		modifier = { 
-			job_artificer_add = 1 
-		} 
+		modifier = {
+			job_alloy_drone_add = 2
+		}
 	}
 
-	triggered_planet_modifier = { 
-		potential = { 
-			exists = owner 
-			owner = { 
-				is_gestalt = no 
-				is_catalytic_empire = no 
-			} 
-		}
-		modifier = { 
-			job_foundry_add = 1 
-		} 
-	}
-
-	triggered_planet_modifier = { 
-		potential = { 
-			exists = owner 
-			owner = { 
-				is_gestalt = no 
-				is_catalytic_empire = yes 
-			} 
-		}
-		modifier = { 
-			job_catalytic_technician_add = 1 
-		} 
-	}
-
-	triggered_planet_modifier = { 
-		potential = { 
-			exists = owner 
-			owner = { 
-				is_hive_empire = yes 
-				is_catalytic_empire = no 
-			} 
-		}
-		modifier = { 
-			job_alloy_drone_add = 2 
-		}
-	}
-	
-	triggered_planet_modifier = { 
-		potential = { 
-			exists = owner 
-			owner = { 
-				is_machine_empire = yes is_catalytic_empire = no 
-			} 
-		}
-		modifier = { 
-			job_fabricator_add = 2 
-		} 
-	}
-	
-	triggered_planet_modifier = { 
-		potential = { 
-			exists = owner 
-			owner = { 
-				is_gestalt = yes 
-				is_catalytic_empire = yes 
-			} 
-		}
-		modifier = { 
-			job_catalytic_drone_add = 2 
-		} 
-	}
-
-	triggered_planet_modifier = { 
-		potential = { 
-			exists = owner 
-			owner = { 
-				is_machine_empire = yes 
-				is_catalytic_empire = no 
-				has_valid_civic = civic_machine_servitor 
-			} 
-		}
-		modifier = { 
-			job_fabricator_add = -1 
-			job_artisan_drone_add = 1 
-		} 
-	}
-
-	triggered_planet_modifier = { 
-		potential = { 
-			exists = owner 
-			owner = { 
-				is_machine_empire = yes 
-				is_catalytic_empire = yes 
-				has_valid_civic = civic_machine_servitor 
-			} 
-		}
-		modifier = { 
-			job_catalytic_drone_add = -1 
-			job_artisan_drone_add = 1 
-		} 
-	}
-
-	triggered_planet_modifier = { 
-		potential = { 
-			exists = owner 
-			owner = { 
-				is_machine_empire = yes 
-				has_edict = industrial_maintenance 
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_machine_empire = yes
+				NOT = { has_valid_civic = civic_machine_servitor }
 			}
 		}
 		modifier = {
-			job_maintenance_drone_add = 1 
+			job_fabricator_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_machine_empire = yes
+				has_valid_civic = civic_machine_servitor
+			}
+		}
+		modifier = {
+			job_fabricator_add = 1
+			job_artisan_drone_add = 1
 		}
 	}
 
 	# Designation Job Changes
 	triggered_planet_modifier = {
-		potential = { 
-			has_designation = col_giga_gas_giant_habitat_foundry 
-			exists = owner 
-			owner = { 
-				is_gestalt = no 
-				is_crafter_empire = no 
-				is_catalytic_empire = no 
-			} 
+		potential = {
+			has_designation = col_giga_gas_giant_habitat_foundry
+			exists = owner
+			owner = { is_regular_empire = yes }
 		}
 		modifier = {
-			job_artisan_add = -1 
-			job_foundry_add = 1 
-		}
-	}
-
-	triggered_planet_modifier = {
-		potential = { 
-			has_designation = col_giga_gas_giant_habitat_foundry 
-			exists = owner 
-			owner = { 
-				is_gestalt = no 
-				is_crafter_empire = yes 
-				is_catalytic_empire = no 
-			} 
-		}
-		modifier = { 
-			job_artificer_add = -1 
-			job_foundry_add = 1 
-		}
-	}
-
-	triggered_planet_modifier = {
-		potential = { 
-			has_designation = col_giga_gas_giant_habitat_foundry 
-			exists = owner 
-			owner = { 
-				is_gestalt = no 
-				is_crafter_empire = no 
-				is_catalytic_empire = yes 
-			} 
-		}
-		modifier = { 
-			job_artisan_add = -1 
-			job_catalytic_technician_add = 1 
-		}
-	}
-
-	triggered_planet_modifier = {
-		potential = { 
-			has_designation = col_giga_gas_giant_habitat_foundry 
-			exists = owner 
-			owner = { 
-				is_gestalt = no 
-				is_crafter_empire = yes 
-				is_catalytic_empire = yes 
-			} 
-		}
-		modifier = { 
-			job_artificer_add = -1 
-			job_catalytic_technician_add = 1 
+			job_artisan_add = -1
+			job_foundry_add = 1
 		}
 	}
 
@@ -518,15 +401,11 @@ district_giga_gas_giant_habitat_industrial = {
 		potential = {
 			has_designation = col_giga_gas_giant_habitat_factory
 			exists = owner
-			owner = {
-				is_gestalt = no
-				is_crafter_empire = no
-				is_catalytic_empire = yes
-			}
+			owner = { is_regular_empire = yes }
 		}
 		modifier = {
 			job_artisan_add = 1
-			job_catalytic_technician_add = -1
+			job_foundry_add = -1
 		}
 	}
 
@@ -535,146 +414,81 @@ district_giga_gas_giant_habitat_industrial = {
 			has_designation = col_giga_gas_giant_habitat_factory
 			exists = owner
 			owner = {
-				is_gestalt = no
-				is_crafter_empire = yes
-				is_catalytic_empire = yes
+				is_machine_empire = yes
+				country_uses_consumer_goods = yes
 			}
 		}
 		modifier = {
-			job_artificer_add = 1
-			job_catalytic_technician_add = -1
+			job_artisan_drone_add = 1
+			job_alloy_drone_add = -1
 		}
 	}
 
-	triggered_planet_modifier = {
-		potential = { 
-			has_designation = col_giga_gas_giant_habitat_factory 
-			exists = owner 
-			owner = { 
-				is_machine_empire = yes 
-				has_valid_civic = civic_machine_servitor 
-				is_catalytic_empire = no 
-			} 
-		}
-		modifier = { 
-			job_artisan_drone_add = 1 
-			job_fabricator_add = -1 
-		}
-	}
-
-	triggered_planet_modifier = {
-		potential = { 
-			has_designation = col_giga_gas_giant_habitat_factory 
-			exists = owner 
-			owner = { 
-				is_machine_empire = yes 
-				has_valid_civic = civic_machine_servitor 
-				is_catalytic_empire = yes 
-			} 
-		}
-		modifier = { 
-			job_artisan_drone_add = 1 
-			job_catalytic_drone_add = -1 
-		}
-	}
-
-	triggered_desc = { 
+	triggered_desc = {
 		trigger = {
 			exists = owner
-			owner = { 
-				is_gestalt = no 
-				is_crafter_empire = no 
-			} 
+			owner = { is_regular_empire = yes }
 		}
-		text = job_artisan_effect_desc 
+		text = job_artisan_effect_desc
 	}
 
-	triggered_desc = { 
-		trigger = { 
-			exists = owner 
-			owner = { 
-				is_gestalt = no 
-				has_civic = civic_crafters 
-			} 
-		}
-		text = job_artificer_effect_desc 
-	}
-	
-	triggered_desc = { 
-		trigger = { 
-			exists = owner 
-			owner = { 
-				is_machine_empire = yes 
-				has_valid_civic = civic_machine_servitor 
-			} 
-		}
-		text = job_artisan_drone_effect_desc 
-	}
-	
-	triggered_desc = { 
-		trigger = { 
-			exists = owner 
+	triggered_desc = {
+		trigger = {
+			exists = owner
 			owner = {
-				is_gestalt = no 
-				is_catalytic_empire = no 
-			} 
+				is_machine_empire = yes
+				has_valid_civic = civic_machine_servitor
+			}
 		}
-		text = job_foundry_effect_desc 
+		text = job_artisan_drone_effect_desc
 	}
-	
-	triggered_desc = { 
-		trigger = { 
-			exists = owner 
-			owner = { 
-				is_gestalt = no 
-				is_catalytic_empire = yes 
-			} 
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_regular_empire = yes }
 		}
-		text = job_catalytic_technician_effect_desc 
+		text = job_foundry_effect_desc
 	}
-	
-	triggered_desc = { 
-		trigger = { 
-			exists = owner 
-			owner = { 
-				is_machine_empire = yes 
-				is_catalytic_empire = no 
-			} 
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_machine_empire = yes }
 		}
-		text = job_fabricator_effect_desc 
+		text = job_fabricator_effect_desc
 	}
-	
-	triggered_desc = { 
-		trigger = { 
-			exists = owner 
-			owner = { 
-				is_hive_empire = yes 
-				is_catalytic_empire = no 
-			} 
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_hive_empire = yes }
 		}
-		text = job_alloy_drone_effect_desc 
+		text = job_alloy_drone_effect_desc
 	}
-	
-	triggered_desc = { 
-		trigger = { 
-			exists = owner 
-			owner = { 
-				is_gestalt = yes 
-				is_catalytic_empire = yes 
-			} 
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_machine_empire = yes
+				has_edict = industrial_maintenance
+			}
 		}
-		text = job_catalytic_drone_effect_desc 
+		modifier = {
+			job_maintenance_drone_add = 1
+		}
 	}
-	
-	triggered_desc = { 
-		trigger = { 
-			exists = owner 
-			owner = { 
-				is_machine_empire = yes 
-				has_edict = industrial_maintenance 
-			} 
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_machine_empire = yes
+				has_edict = industrial_maintenance
+			}
 		}
-		text = job_maintenance_drone_effect_desc 
+		text = job_maintenance_drone_effect_desc
 	}
 }
 
@@ -766,6 +580,20 @@ district_giga_gas_giant_habitat_wind = {
 		}
 		text = "job_technician_drone_effect_desc"
 	}
+
+	ai_weight = {
+		weight = 0
+
+		modifier = {
+			weight = 250
+			owner = { has_monthly_income = { resource = energy value < 200 } }
+		}
+	}
+
+	ai_resource_production = {
+		energy = 24
+		trigger = { always = yes }
+	}
 }
 
 ##################################
@@ -790,7 +618,6 @@ district_giga_gas_giant_habitat_science = {
 		}
 		upkeep = {
 			energy = @giga_gas_giant_habitat_upkeep_energy_medium
-			exotic_gases = @giga_gas_giant_habitat_upkeep_sr
 		}
 	}
 
@@ -810,7 +637,7 @@ district_giga_gas_giant_habitat_science = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { is_gestalt = no }
+			owner = { is_regular_empire = yes }
 		}
 		modifier = { job_researcher_add = 3 }
 	}
@@ -835,7 +662,7 @@ district_giga_gas_giant_habitat_science = {
 	triggered_desc = {
 		trigger = {
 			exists = owner
-			owner = { is_gestalt = no }
+			owner = { is_regular_empire = yes }
 		}
 		text = "job_researcher_effect_desc"
 	}
@@ -852,6 +679,22 @@ district_giga_gas_giant_habitat_science = {
 			owner = { is_machine_empire = yes }
 		}
 		text = "job_calculator_effect_desc"
+	}
+
+	ai_weight = {
+		weight = 0
+
+		modifier = {
+			weight = 250
+			owner = { has_monthly_income = { resource = consumer_goods value > 5 } }
+		}
+	}
+
+	ai_resource_production = {
+		physics_research = 12
+		society_research = 12
+		engineering_research = 12
+		trigger = { always = yes }
 	}
 }
 
@@ -897,14 +740,14 @@ district_giga_gas_giant_habitat_exotic = {
 			exists = owner
 			owner = { is_gestalt = no }
 		}
-		modifier = { job_giga_gas_harvester_add = 3 }
+		modifier = { job_giga_gas_harvester_fixed_add = 3 }
 	}
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
 			owner = { is_gestalt = yes }
 		}
-		modifier = { job_giga_gas_harvesting_drone_add = 3 }
+		modifier = { job_giga_gas_harvester_drone_fixed_add = 3 }
 	}
 	# descriptions
 	triggered_desc = {
@@ -919,6 +762,20 @@ district_giga_gas_giant_habitat_exotic = {
 			exists = owner
 			owner = { is_gestalt = yes }
 		}
-		text = "job_giga_gas_harvesting_drone_effect_desc"
+		text = "job_giga_gas_harvester_drone_effect_desc"
+	}
+
+	ai_weight = {
+		weight = 0
+
+		modifier = {
+			weight = 250
+			owner = { has_monthly_income = { resource = exotic_gases value < 2 } }
+		}
+	}
+
+	ai_resource_production = {
+		exotic_gases = 6
+		trigger = { always = yes }
 	}
 }

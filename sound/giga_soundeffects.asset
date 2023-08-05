@@ -11,6 +11,8 @@ category = {
 		pc_interstellar_ringworld_habitable
 		pc_melted_frozen
 		pc_metallic_hydrogen
+		quasi_stellar_obliterator_windup
+		quasi_stellar_obliterator_fire
 		pc_ringworld_machine
 		pc_ringworld_city
 		pc_ringworld_hive
@@ -18,16 +20,7 @@ category = {
 		pc_alderson_slice_gaia
 		pc_alderson_slice_ecu
 		pc_katzenland
-	}
-}
-
-category = {
-	name = "Giga_event"
-	soundeffects = {
-		quasi_stellar_obliterator_windup
-		quasi_stellar_obliterator_fire
 		event_aeternum_intel_popup
-		event_corrona_skeletor
 	}
 }
 
@@ -217,7 +210,7 @@ soundeffect = {
 	volume = 0.25
 	loop = no
 	sounds = {
-		sound = pc_toxoid_01 #Randomly done differently than the other 2 in vanilla
+		sound = pc_toxic_01
 		sound = pc_gas_giant_01
 		sound = pc_toxic_02
 		sound = pc_gas_giant_02

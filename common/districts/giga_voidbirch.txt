@@ -4,10 +4,10 @@
 @void_birch_maintenance_sr = 0
 @void_birch_build_time = 3600
 
-district_giga_birch_void_structure = {
+district_void_birch_structure = {
 	base_buildtime = @void_birch_build_time
+	ai_weight = { weight = 1000 }
 	is_capped_by_modifier = yes
-	icon = district_void_birch_structure
 
 	show_on_uncolonized = { uses_district_set = acot_giga_void_sphere }
 
@@ -19,91 +19,31 @@ district_giga_birch_void_structure = {
 		upkeep = { energy = @void_birch_maintenance }
 	}
 
-	triggered_planet_modifier = {
-		potential = { always = yes }
-		giga_birch_district_insula_max = 1
-		giga_birch_district_insula_per_pop = 0.01
-	}
-	triggered_desc = {
-		trigger = { always = yes }
-		text = giga_birch_district_insula_tooltip
-	}
+	triggered_planet_modifier = { planet_housing_add = 200 }
 
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { is_gestalt = no }
-		}
-		job_giga_birch_structure_manager_add = 1
-		job_giga_birch_structure_manager_per_pop = 0.01
+	triggered_planet_modifier = { potential = { exists = owner owner = { is_regular_empire = yes } }	modifier = { job_structure_manager_add = 1	job_structure_manager_per_pop = 0.01 } }
+	triggered_planet_modifier = { potential = { exists = owner owner = { is_hive_empire = yes } }		modifier = { job_structure_mind_add = 1		job_structure_mind_per_pop = 0.01 } }
+	triggered_planet_modifier = { potential = { exists = owner owner = { is_machine_empire = yes } }	modifier = { job_structure_process_add = 1	job_structure_process_per_pop = 0.01 } }
 
-		job_acot_enforcer_per_pop = 0.06
-	}
-	# triggered_desc = {
-	# 	trigger = { exists = owner owner = { is_gestalt = no } }
-	# 	text = job_giga_birch_structure_manager_effect_desc
-	# }
-	# triggered_desc = {
-	# 	trigger = { exists = owner owner = { is_gestalt = no } }
-	# 	text = job_acot_enforcer_effect_desc
-	# }
+	triggered_desc = {	trigger = { exists = owner owner = { is_regular_empire = yes } }	text = "jobs_structure_desc" }
+	triggered_desc = {	trigger = { exists = owner owner = { is_hive_empire = yes } }		text = "jobs_structure_mind_desc" }
+	triggered_desc = {	trigger = { exists = owner owner = { is_machine_empire = yes } }	text = "jobs_structure_process_desc" }
 
+	# 75 JOBS PER DISTRICT
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { is_gestalt = yes }
-		}
-		job_giga_birch_structure_manager_drone_add = 1
-		job_giga_birch_structure_manager_drone_per_pop = 0.01
-
-		job_acot_enforcer_drone_per_pop = 0.06
-	}
-	# triggered_desc = {
-	# 	trigger = { exists = owner owner = { is_gestalt = yes } }
-	# 	text = job_giga_birch_structure_manager_drone_effect_desc
-	# }
-	# triggered_desc = {
-	# 	trigger = { exists = owner owner = { is_gestalt = yes } }
-	# 	text = job_acot_enforcer_drone_effect_desc
-	# }
-
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { is_gestalt = no }
+			owner = { is_regular_empire = yes }
 		}
 		modifier = {
-			job_acot_overlord_add = 1
-			job_acot_overseer_per_pop = 0.03
+			job_acot_overlord_add = 5
+			job_acot_overseer_add = 20
+			job_acot_giga_fortress_operator_add = 5
+			job_acot_voidsphere_labman_add = 15
+			job_acot_voidsphere_forgeman_add = 15
+			job_acot_voidsphere_siloman_add = 15
 		}
 	}
-	# triggered_desc = {
-	# 	trigger = { exists = owner owner = { is_gestalt = no } }
-	# 	text = job_acot_overlord_effect_desc
-	# }
-	# triggered_desc = {
-	# 	trigger = { exists = owner owner = { is_gestalt = no } }
-	# 	text = job_acot_overseer_effect_desc
-	# }
-
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { is_hive_empire = yes }
-		}
-		modifier = {
-			job_acot_overlord_drone_add = 1
-			job_acot_overseer_drone_per_pop = 0.03
-		}
-	}
-	# triggered_desc = {
-	# 	trigger = { exists = owner owner = { is_hive_empire = yes } }
-	# 	text = job_acot_overlord_drone_effect_desc
-	# }
-	# triggered_desc = {
-	# 	trigger = { exists = owner owner = { is_hive_empire = yes } }
-	# 	text = job_acot_overseer_drone_effect_desc
-	# }
 
 	triggered_planet_modifier = {
 		potential = {
@@ -111,33 +51,42 @@ district_giga_birch_void_structure = {
 			owner = { is_machine_empire = yes }
 		}
 		modifier = {
-			job_acot_overlord_droid_add = 1
-			job_acot_overseer_droid_per_pop = 0.03
+			job_acot_overlord_drone_add = 5
+			job_acot_overseer_drone_add = 20
+			job_acot_giga_fortress_operator_drone_add = 5
+			job_acot_voidsphere_labdrone_add = 15
+			job_acot_voidsphere_forgedrone_add = 15
+			job_acot_voidsphere_silodrone_add = 15
+		}
+	}	
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			job_acot_overlord_droid_add = 5
+			job_acot_overseer_droid_add = 20
+			job_acot_giga_fortress_operator_drone_add = 5
+			job_acot_voidsphere_labdrone_add = 15
+			job_acot_voidsphere_forgedrone_add = 15
+			job_acot_voidsphere_silodrone_add = 15
 		}
 	}
-	# triggered_desc = {
-	# 	trigger = { exists = owner owner = { is_machine_empire = yes } }
-	# 	text = job_acot_overlord_drone_effect_desc
-	# }
-	# triggered_desc = {
-	# 	trigger = { exists = owner owner = { is_machine_empire = yes } }
-	# 	text = job_acot_overseer_droid_effect_desc
-	# }
 }
 
-district_giga_birch_void_orykta = {
+district_void_birch_extraction = {
 	base_buildtime = @void_birch_build_time
+	ai_weight = { weight = 1 }
 	is_capped_by_modifier = yes
-	icon = district_void_birch_extraction
 
 	show_on_uncolonized = {
 		uses_district_set = acot_giga_void_sphere
-		has_district = district_giga_birch_void_structure
 	}
 
 	potential = {
 		uses_district_set = acot_giga_void_sphere
-		has_district = district_giga_birch_void_structure
 	}
 
 	resources = {
@@ -153,68 +102,41 @@ district_giga_birch_void_orykta = {
 		}
 	}
 
-	planet_modifier = {
-		giga_birch_district_insula_tag = 1
-	}
+	triggered_planet_modifier = { potential = { exists = owner owner = { is_regular_birch_empire = yes } }		modifier = { job_void_bore_manager_add = 1 } }
+	triggered_planet_modifier = { potential = { exists = owner owner = { is_regular_birch_empire = yes } }		modifier = { job_void_penrose_manager_add = 1 } }
+	triggered_planet_modifier = { potential = { exists = owner owner = { is_regular_birch_empire = yes } }		modifier = { job_void_bore_manager_per_pop = 0.01 } }
+	triggered_planet_modifier = { potential = { exists = owner owner = { is_regular_birch_empire = yes } }		modifier = { job_void_penrose_manager_per_pop = 0.01 } }
 
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { is_gestalt = no }
-		}
+	triggered_planet_modifier = { potential = { exists = owner owner = { is_hive_empire = yes } }			modifier = { job_void_bore_mind_add = 1 } }
+	triggered_planet_modifier = { potential = { exists = owner owner = { is_hive_empire = yes } }			modifier = { job_void_penrose_mind_add = 1 } }
+	triggered_planet_modifier = { potential = { exists = owner owner = { is_hive_empire = yes } }			modifier = { job_void_bore_mind_per_pop = 0.01 } }
+	triggered_planet_modifier = { potential = { exists = owner owner = { is_hive_empire = yes } }			modifier = { job_void_penrose_mind_per_pop = 0.01 } }
 
-		job_acot_giga_fortress_operator_add = 1
-		job_acot_overseer_add = 2
-		job_acot_enforcer_add = 2
+	triggered_planet_modifier = { potential = { exists = owner owner = { is_machine_empire = yes } }		modifier = { job_void_bore_process_add = 1 } }
+	triggered_planet_modifier = { potential = { exists = owner owner = { is_machine_empire = yes } }		modifier = { job_void_penrose_process_add = 1 } }
+	triggered_planet_modifier = { potential = { exists = owner owner = { is_machine_empire = yes } }		modifier = { job_void_bore_process_per_pop = 0.01 } }
+	triggered_planet_modifier = { potential = { exists = owner owner = { is_machine_empire = yes } }		modifier = { job_void_penrose_process_per_pop = 0.01 } }
 
-		job_acot_voidsphere_forgeman_add = 75
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { is_hive_empire = yes }
-		}
-
-		job_acot_giga_fortress_operator_drone_add = 1
-		job_acot_overseer_drone_add = 2
-		job_acot_enforcer_drone_add = 2
-
-		job_acot_voidsphere_forgedrone_add = 75
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { is_machine_empire = yes }
-		}
-
-		job_acot_giga_fortress_operator_drone_add = 1
-		job_acot_overseer_droid_add = 2
-		job_acot_enforcer_drone_add = 2
-
-		job_acot_voidsphere_forgedrone_add = 75
-	}
-
-	on_queued 	= { giga_birch_district_queued   = { category = insula type = void_orykta } }
-	on_unqueued = { giga_birch_district_unqueued = { category = insula type = void_orykta } }
-	on_built 	= { giga_birch_district_built 	 = { category = insula type = void_orykta } }
-	on_destroy 	= { giga_birch_district_destroy  = { category = insula type = void_orykta } }
+	triggered_desc = { trigger = { exists = owner owner = { is_machine_empire = yes } }						text = "jobs_extraction_process_desc" }
+	triggered_desc = { trigger = { exists = owner owner = { is_hive_empire = yes } }						text = "jobs_extraction_mind_desc" }
+	triggered_desc = { trigger = { exists = owner owner = { is_regular_birch_empire = yes } }						text = "jobs_extraction_desc" }
 }
 
-district_giga_birch_void_ktisma = {
+district_void_birch_nidavellir = {
 	base_buildtime = @void_birch_build_time
-	is_capped_by_modifier = yes
-	icon = district_void_birch_nidavellir
+	ai_weight = { weight = 1 }
+	is_capped_by_modifier = no
 
 	show_on_uncolonized = {
 		uses_district_set = acot_giga_void_sphere
-		has_district = district_giga_birch_void_structure
+		from = { has_technology = giga_tech_birch_world_3 }
+		has_district = district_void_birch_structure
 	}
 
 	potential = {
 		uses_district_set = acot_giga_void_sphere
-		has_district = district_giga_birch_void_structure
+		owner = { has_technology = giga_tech_birch_world_3 }
+		has_district = district_void_birch_structure
 	}
 
 	resources = {
@@ -234,90 +156,37 @@ district_giga_birch_void_ktisma = {
 		}
 	}
 
-	planet_modifier = {
-		giga_birch_district_insula_tag = 1
+	triggered_planet_modifier = { 
+		potential = { exists = owner owner = { is_regular_empire = yes } }
+		modifier = { job_acot_enforcer_add = 15 job_acot_voidsphere_siloman_add = 60 } 
 	}
-
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { is_gestalt = no }
-		}
-
-		job_acot_giga_fortress_operator_add = 1
-		job_acot_overseer_add = 2
-		job_acot_enforcer_add = 2
-
-		job_acot_voidsphere_siloman_add = 70
-		job_acot_transmute_man_add = 5
+	
+	triggered_planet_modifier = { 
+		potential = { exists = owner owner = { is_hive_empire = yes } }
+		modifier = { job_acot_enforcer_drone_add = 15 job_acot_voidsphere_silodrone_add = 60 } 
 	}
-
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { is_hive_empire = yes }
-		}
-
-		job_acot_giga_fortress_operator_drone_add = 1
-		job_acot_overseer_drone_add = 2
-		job_acot_enforcer_drone_add = 2
-
-		job_acot_voidsphere_silodrone_add = 70
-		job_acot_transmute_drone_add = 5
+	
+	triggered_planet_modifier = { 
+		potential = { exists = owner owner = { is_machine_empire = yes } }
+		modifier = { job_acot_enforcer_drone_add = 15 job_acot_voidsphere_silodrone_add = 60 } 
 	}
-
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { is_machine_empire = yes }
-		}
-
-		job_acot_giga_fortress_operator_drone_add = 1
-		job_acot_overseer_droid_add = 2
-		job_acot_enforcer_drone_add = 2
-
-		job_acot_voidsphere_silodrone_add = 70
-		job_acot_transmute_drone_add = 5
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			has_global_flag = @giga_amb_flag
-			exists = owner
-			owner = { is_gestalt = no }
-		}
-		job_acot_voidsphere_siloman_add = -5
-		job_giga_megaengineering_overseer_acot_alpha_add = 5
-	}
-	triggered_planet_modifier = {
-		potential = {
-			has_global_flag = @giga_amb_flag
-			exists = owner
-			owner = { is_gestalt = yes }
-		}
-		job_acot_voidsphere_silodrone_add = -5
-		job_giga_megaengineering_overseer_drone_acot_alpha_add = 5
-	}
-
-	on_queued 	= { giga_birch_district_queued   = { category = insula type = void_ktisma } }
-	on_unqueued = { giga_birch_district_unqueued = { category = insula type = void_ktisma } }
-	on_built 	= { giga_birch_district_built 	 = { category = insula type = void_ktisma } }
-	on_destroy 	= { giga_birch_district_destroy  = { category = insula type = void_ktisma } }
 }
 
-district_giga_birch_void_physma = {
+district_void_birch_matrioshka = {
 	base_buildtime = @void_birch_build_time
-	is_capped_by_modifier = yes
-	icon = district_void_birch_matrioshka
+	ai_weight = { weight = 1 }
+	is_capped_by_modifier = no
 
 	show_on_uncolonized = {
 		uses_district_set = acot_giga_void_sphere
-		has_district = district_giga_birch_void_structure
+		from = { has_technology = giga_tech_birch_world_2 }
+		has_district = district_void_birch_structure
 	}
 
 	potential = {
 		uses_district_set = acot_giga_void_sphere
-		has_district = district_giga_birch_void_structure
+		owner = { has_technology = giga_tech_birch_world_2 }
+		has_district = district_void_birch_structure
 	}
 
 	resources = {
@@ -341,51 +210,18 @@ district_giga_birch_void_physma = {
 		}
 	}
 
-	planet_modifier = {
-		giga_birch_district_insula_tag = 1
+	triggered_planet_modifier = { 
+		potential = { exists = owner owner = { is_regular_empire = yes } }
+		modifier = { job_acot_enforcer_add = 15 job_acot_voidsphere_labman_add = 60 } 
 	}
-
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { is_gestalt = no }
-		}
-
-		job_acot_giga_fortress_operator_add = 1
-		job_acot_overseer_add = 2
-		job_acot_enforcer_add = 2
-
-		job_acot_voidsphere_labman_add = 75
+	
+	triggered_planet_modifier = { 
+		potential = { exists = owner owner = { is_hive_empire = yes } }
+		modifier = { job_acot_enforcer_drone_add = 15 job_acot_voidsphere_labdrone_add = 60 } 
 	}
-
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { is_hive_empire = yes }
-		}
-
-		job_acot_giga_fortress_operator_drone_add = 1
-		job_acot_overseer_drone_add = 2
-		job_acot_enforcer_drone_add = 2
-
-		job_acot_voidsphere_labdrone_add = 75
+	
+	triggered_planet_modifier = { 
+		potential = { exists = owner owner = { is_machine_empire = yes } }
+		modifier = { job_acot_enforcer_drone_add = 15 job_acot_voidsphere_labdrone_add = 60 } 
 	}
-
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { is_machine_empire = yes }
-		}
-
-		job_acot_giga_fortress_operator_drone_add = 1
-		job_acot_overseer_droid_add = 2
-		job_acot_enforcer_drone_add = 2
-
-		job_acot_voidsphere_labdrone_add = 75
-	}
-
-	on_queued 	= { giga_birch_district_queued   = { category = insula type = void_physma } }
-	on_unqueued = { giga_birch_district_unqueued = { category = insula type = void_physma } }
-	on_built 	= { giga_birch_district_built 	 = { category = insula type = void_physma } }
-	on_destroy 	= { giga_birch_district_destroy  = { category = insula type = void_physma } }
 }

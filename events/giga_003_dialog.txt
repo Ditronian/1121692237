@@ -237,7 +237,7 @@ country_event = {
 	desc = "giga_dialog.502.desc"
 	picture = GFX_evt_sapient_AI
 	show_sound = event_dyson_sphere_build_upgrade_frame
-	location = event_target:giga_system
+	location = fromfrom.planet
 	is_triggered_only = yes
 	option = { name = "giga_dialog.502.a" }
 }
@@ -249,7 +249,7 @@ country_event = {
 	desc = "giga_dialog.503.desc"
 	picture = GFX_evt_sapient_AI
 	show_sound = event_dyson_sphere_build_upgrade_panel
-	location = event_target:giga_system
+	location = fromfrom.planet
 	is_triggered_only = yes
 	option = { name = "giga_dialog.503.a" }
 }
@@ -261,7 +261,7 @@ country_event = {
 	desc = "giga_dialog.504.desc"
 	picture = GFX_evt_sapient_AI
 	show_sound = event_dyson_sphere_build_upgrade_panel
-	location = event_target:giga_system
+	location = fromfrom.planet
 	is_triggered_only = yes
 	option = { name = "giga_dialog.504.a" }
 }
@@ -273,7 +273,7 @@ country_event = {
 	desc = "giga_dialog.505.desc"
 	picture = GFX_evt_sapient_AI
 	show_sound = event_dyson_sphere_build_upgrade_panel
-	location = event_target:giga_system
+	location = fromfrom.planet
 	is_triggered_only = yes
 	option = { name = "giga_dialog.505.a" }
 }
@@ -285,7 +285,7 @@ country_event = {
 	desc = "giga_dialog.506.desc"
 	picture = GFX_evt_sapient_AI
 	show_sound = event_dyson_sphere_build_upgrade_panel
-	location = event_target:giga_system
+	location = fromfrom.planet
 	is_triggered_only = yes
 	option = { name = "giga_dialog.506.a" }
 }
@@ -297,7 +297,7 @@ country_event = {
 	desc = "giga_dialog.507.desc"
 	picture = GFX_evt_sapient_AI
 	show_sound = event_dyson_sphere_build_upgrade_panel
-	location = event_target:giga_system
+	location = fromfrom.planet
 	is_triggered_only = yes
 	option = { name = "giga_dialog.501.a" }
 }
@@ -309,7 +309,7 @@ country_event = {
 	desc = "giga_dialog.508.desc"
 	picture = GFX_evt_sapient_AI
 	show_sound = event_dyson_sphere_build_complete
-	location = event_target:giga_system
+	location = fromfrom.planet
 	is_triggered_only = yes
 	option = { name = "giga_dialog.508.a" }
 }
@@ -526,28 +526,6 @@ country_event = {
 	location = event_target:giga_planet
 	is_triggered_only = yes
 	option = { name = "giga_dialog.902.a" }
-}
-
-country_event = {
-	id = giga_dialog.903
-	title = "giga_dialog.903.name"
-	desc = "giga_dialog.903.desc"
-	picture = GFX_evt_ringworld
-	show_sound = event_dyson_sphere_build_complete
-	location = event_target:giga_planet
-	is_triggered_only = yes
-	option = { name = "giga_dialog.903.a" }
-}
-
-country_event = {
-	id = giga_dialog.904
-	title = "giga_dialog.904.name"
-	desc = "giga_dialog.904.desc"
-	picture = GFX_evt_ringworld
-	show_sound = event_dyson_sphere_build_complete
-	location = event_target:giga_planet
-	is_triggered_only = yes
-	option = { name = "giga_dialog.904.a" }
 }
 
 ####################################################
@@ -1409,7 +1387,7 @@ country_event = {
 ####################################################
 ### Ecumenopolis Ringworld #########################
 ####################################################
-planet_event = {
+country_event = {
 	id = giga_dialog.2401
 	title = "giga_dialog.2401.name"
 	desc = "giga_dialog.2401.desc"
@@ -1504,9 +1482,9 @@ country_event = {
 		name = "giga_dialog.2501.c"
 		custom_tooltip = "giga_dialog.2501.c.tooltip"
 		trigger = {
-			OR = {
-				is_gestalt = no
-				has_valid_civic = civic_machine_servitor
+			NOR = {
+				is_hive_empire = yes
+				is_machine_empire = yes
 			}
 		}
 		allow = { has_ascension_perk = ap_arcology_project }
@@ -1933,7 +1911,7 @@ country_event = {
 
 	option = {
 		name = "giga_dialog.2809.a"
-		event_target:systemcraft_surrender_empire = { set_subject_of = { who = root preset = preset_vassal } }
+		event_target:systemcraft_surrender_empire = { set_subject_of = { who = root subject_type = vassal } }
 	}
 
 	option = { name = "giga_dialog.2809.b" }
@@ -1976,35 +1954,23 @@ country_event = {
 				if = {
 					limit = { root = { has_country_flag = giga_interstellar_east } }
 					spawn_system = { hyperlane = yes min_distance >= 5 max_distance <= 5 min_orientation_angle = 0	max_orientation_angle = 0	initializer = "spacehabitat_init" }
-					root = { remove_country_flag = giga_interstellar_east }
 				}
 				else_if = {
 					limit = { root = { has_country_flag = giga_interstellar_north } }
 					spawn_system = { hyperlane = yes min_distance >= 5 max_distance <= 5 min_orientation_angle = 90	max_orientation_angle = 90	initializer = "spacehabitat_init" }
-					root = { remove_country_flag = giga_interstellar_north }
 				}
 				else_if = {
 					limit = { root = { has_country_flag = giga_interstellar_west } }
 					spawn_system = { hyperlane = yes min_distance >= 5 max_distance <= 5 min_orientation_angle = 180	max_orientation_angle = 180	initializer = "spacehabitat_init" }
-					root = { remove_country_flag = giga_interstellar_west }
 				}
 				else_if = {
 					limit = { root = { has_country_flag = giga_interstellar_south } }
 					spawn_system = { hyperlane = yes min_distance >= 5 max_distance <= 5 min_orientation_angle = 270	max_orientation_angle = 270	initializer = "spacehabitat_init" }
-					root = { remove_country_flag = giga_interstellar_south }
-				}
-				last_created_system = {
-					create_starbase = {
-						size = starbase_outpost
-						owner = root
-					}
-					set_surveyed = { surveyed = yes }
-					every_system_planet = { set_surveyed = { surveyed = yes } }
 				}
 				# random_system = {
 				# 	limit = { has_star_flag = habitat_hyperlane_needed }
 				# 	remove_star_flag = habitat_hyperlane_needed
-				# 	add_hyperlane_safe = { from = prev to = this }
+				# 	add_hyperlane = { from = prev to = this }
 				# 	every_system_planet = { set_surveyed = { surveyed = yes surveyor = root } }
 				# 	create_starbase = { size = starbase_outpost owner = root }
 				# }
@@ -2084,7 +2050,7 @@ country_event = {
 	desc = "giga_dialog.3003.desc"
 	picture = GFX_evt_space_debris
 	show_sound = event_dyson_sphere_build_complete
-	location = event_target:giga_system
+	location = event_target:giga_planet
 	is_triggered_only = yes
 	option = { name = "giga_dialog.3003.a" }
 }
@@ -2157,9 +2123,7 @@ country_event = {
 		portrait = event_target:garyx_species
 		room = garyx_room
 	}
-	immediate = {
-		set_country_flag = squareworld_tech_possible
-	}
+
 	option = {
 		name = "giga_dialog.3007.a"
 		add_research_option = giga_tech_event_squareworld
@@ -2430,7 +2394,6 @@ country_event = {
 					add_deposit = d_depletedstripmine_deposit
 					remove_planet_flag = depletedstripmine
 					set_planet_flag = stripminedplanet
-					create_mining_station = { owner = root }
 				}
 			}
 		}
@@ -2553,166 +2516,41 @@ country_event = {
 			event_target:giga_system = {
 
 				# Destroy System
-				every_system_megastructure = {
-					limit = {
-						NOR = {
-							mega_blokkats_wont_stripmine = yes
-							is_megastructure_type = quasi_stellar_marker_star_firing
-							is_megastructure_type = quasi_stellar_marker_cluster_firing
-							is_megastructure_type = blokkat_harvester_charged_mothership
-							is_megastructure_type = blokkat_harvester_charged
-							is_megastructure_type = blokkat_harvester_charging_up_mothership
-							is_megastructure_type = blokkat_harvester_charging_up
-						}
-					}
-					remove_megastructure = this
-				}
-	
+				every_system_megastructure = { remove_megastructure = this }
 				giga_remove_system_debris = yes
-				every_fleet_in_system = {
-					limit = { owner = { NOT = { is_immune_to_giga_hyperweapon = yes } } } 
-					destroy_fleet = this 
-				}
+				every_fleet_in_system = { destroy_fleet = this }
 				star = { change_pc = pc_neutron_star }
-				set_asteroid_belt = {
-					radius = 0
-				}
-
-				# remove planets and change types
 				every_system_planet = {
 					limit = { is_star = no }
 					if = {
 						limit = {
 							OR = {
-								is_asteroid = yes
-								is_giga_habitat = yes
-								is_non_giga_habitat = yes
+								is_planet_class = pc_asteroid
+								is_planet_class = pc_gigaorbital_ring
+								is_planet_class = pc_gigaorbital_ring_ruined
+								is_planet_class = pc_flat_world
 							}
 						}
-						random_list = {
-							0 = { modifier = { add = 1 is_asteroid = yes } }
-							4 = { set_planet_flag = giga_suppressor_remove }
-						}
+						remove_planet = yes
 					}
-					if = { limit = { giga_is_gas_giant = yes }			set_planet_size = 5 change_pc = pc_molten }
-					else_if = { limit = { is_planet_class = pc_ice_asteroid } 	set_planet_size = 1 change_pc = pc_asteroid }
-					else_if = { limit = { planet_size <7 }						set_planet_size = 2 change_pc = pc_asteroid }
-					else_if = { limit = { planet_size <= 10 planet_size >= 7 }	change_planet_size = -5 change_pc = pc_asteroid }
-					else_if = { limit = { planet_size > 10 } 					change_planet_size = -5 }
+					if = { limit = { is_planet_class = pc_gas_giant }	set_planet_size = 5 change_pc = pc_molten }
+					if = { limit = { planet_size <= 10 }				change_planet_size = -5 change_pc = pc_asteroid }
+					if = { limit = { planet_size > 10 } 				change_planet_size = -5 }
 					if = {
 						limit = {
 							NOR = {
-								is_asteroid = yes
-								giga_is_gas_giant = yes
-								giga_is_molten = yes
+								is_planet_class = pc_gas_giant
+								is_planet_class = pc_asteroid
+								is_planet_class = pc_molten
 								is_planet_class = pc_shattered
 								is_planet_class = pc_broken
 							}
 						}
 						change_pc = pc_molten
 					}
+					set_deposit = d_iodizium_deposit
 				}
 
-				# if every target is going to be removed, save one!
-				if = {
-					limit = {
-						# if every prospective planet has a science deposit
-						not = {
-							any_system_planet = {
-								is_star = no
-								not = { has_planet_flag = giga_suppressor_remove }
-							}
-						}
-					}
-					random_system_planet = {
-						limit = {
-							is_star = no
-							has_planet_flag = giga_suppressor_remove
-						}
-						remove_planet_flag = giga_suppressor_remove
-					}
-				}
-
-				# set deposits
-				every_system_planet = {
-					limit = { 
-						is_star = no 
-						not = { has_planet_flag = giga_suppressor_remove }
-					}
-					clear_deposits = yes
-
-					random_list = {
-						5 = {}
-						3 = {
-							add_deposit = d_physics_2
-						}
-						3 = {
-							add_deposit = d_energy_1
-						}
-						4 = {
-							add_deposit = d_energy_2
-						}
-						2 = {
-							add_deposit = d_energy_3
-						}
-						2 = {
-							add_deposit = d_iodizium_deposit_1
-						}
-						1 = {
-							add_deposit = d_iodizium_deposit_1
-							add_deposit = d_iodizium_deposit_1
-						}
-					}
-				}
-
-				# make sure at least one planet is receptive to iodizium
-				if = {
-					limit = {
-						# if every prospective planet has a science deposit
-						not = {
-							any_system_planet = {
-								is_star = no
-								not = { has_planet_flag = giga_suppressor_remove }
-								not = {
-									has_deposit_for = shipclass_research_station
-								}
-							}
-						}
-					}
-					# pick one of them and clear it to make way
-					random_system_planet = {
-						limit = {
-							is_star = no
-							not = { has_planet_flag = giga_suppressor_remove }
-						}
-						clear_deposits = yes
-					}
-				}
-
-				# seed the non-random iodizium
-				while = {
-					count = 3
-					random_system_planet = {
-						limit = {
-							is_star = no
-							not = { has_planet_flag = giga_suppressor_remove }
-							not = {
-								has_deposit_for = shipclass_research_station
-							}
-						}
-						add_deposit = d_iodizium_deposit_1
-					}
-				}
-
-				# remove the marked planets
-				every_system_planet = {
-					limit = { 
-						has_planet_flag = giga_suppressor_remove
-					}
-					giga_remove_planet = yes
-				}
-
-				# kaboom!
 				create_ambient_object = {
 					type = "explosion_particle_object"
 					location = star
@@ -2740,7 +2578,6 @@ country_event = {
 		hidden_effect = {
 			add_resource = { influence = 200 }
 			event_target:giga_system = {
-				set_star_class = sc_black_hole
 				every_system_planet = {
 					if = {
 						limit = { is_star = yes }
@@ -2749,7 +2586,7 @@ country_event = {
 					else_if = {
 						limit = {
 							NOR = {
-								giga_is_gas_giant = yes
+								is_planet_class = pc_gas_giant
 								is_planet_class = pc_asteroid
 								is_planet_class = pc_broken
 								is_planet_class = pc_shattered
@@ -3138,8 +2975,6 @@ country_event = {
 	is_triggered_only = yes
 	option = { name = "giga_dialog.4105.a" }
 }
-
-# 5000 used for Maginot
 
 ############################################################################################################################################################
 #################################################################### Non-Megastructures ####################################################################
@@ -3823,225 +3658,4 @@ country_event = {
 	is_triggered_only = yes
 	after = { clear_global_event_target = giga_system }
 	option = { name = "giga_dialog.13404.a" }
-}
-
-####################################################
-### Orbital Ring ##################################
-####################################################
-country_event = {
-	id = giga_dialog.13500
-	title = "giga_dialog.13500.name"
-	desc = "giga_dialog.13500.desc"
-	picture = GFX_evt_orbital_ring
-	show_sound = event_construction
-	location = event_target:orbital_ring_planet
-	is_triggered_only = yes
-	option = { name = "giga_dialog.13500.a" }
-}
-
-#Crystal drill volcano
-planet_event = {
-	id = giga_dialog.13501
-	hide_window = yes
-	is_triggered_only = yes
-
-	trigger = {
-		is_colony = yes
-		exists = owner
-		exists = orbital_defence
-		orbital_defence = { starbase = { has_starbase_building = ring_giga_crystals_hub } }
-	}
-
-	immediate = {
-		random_list = {
-			2 = {
-				add_blocker = { type = d_active_volcano }
-				add_planet_devastation = 7
-			}
-			1 = {
-				add_blocker = { type = d_active_volcano }
-				add_blocker = { type = d_active_volcano }
-				add_planet_devastation = 14
-			}
-		}
-		planet_event = { id = giga_dialog.13501 days = 2700 random = 3600 }
-	}
-}
-
-#Motes sinkhole
-planet_event = {
-	id = giga_dialog.13502
-	hide_window = yes
-	is_triggered_only = yes
-
-	trigger = {
-		is_colony = yes
-		exists = owner
-		exists = orbital_defence
-		orbital_defence = { starbase = { has_starbase_building = ring_giga_motes_hub } }
-	}
-
-	immediate = {
-		random_list = {
-			2 = {
-				add_blocker = { type = d_deep_sinkhole }
-				add_blocker = { type = d_deep_sinkhole }
-				add_planet_devastation = 7
-			}
-			1 = {
-				add_blocker = { type = d_deep_sinkhole }
-				add_blocker = { type = d_deep_sinkhole }
-				add_blocker = { type = d_deep_sinkhole }
-				add_blocker = { type = d_deep_sinkhole }
-				add_planet_devastation = 14
-			}
-		}
-		planet_event = { id = giga_dialog.13502 days = 2700 random = 3600 }
-	}
-}
-
-#Gasses swamp
-planet_event = {
-	id = giga_dialog.13503
-	hide_window = yes
-	is_triggered_only = yes
-
-	trigger = {
-		is_colony = yes
-		exists = owner
-		exists = orbital_defence
-		orbital_defence = { starbase = { has_starbase_building = ring_giga_gas_hub } }
-	}
-
-	immediate = {
-		random_list = {
-			2 = {
-				add_blocker = { type = d_noxious_swamp }
-				add_blocker = { type = d_noxious_swamp }
-				add_planet_devastation = 7
-			}
-			1 = {
-				add_blocker = { type = d_noxious_swamp }
-				add_blocker = { type = d_noxious_swamp }
-				add_blocker = { type = d_noxious_swamp }
-				add_blocker = { type = d_noxious_swamp }
-				add_planet_devastation = 14
-			}
-		}
-		planet_event = { id = giga_dialog.13503 days = 2700 random = 3600 }
-	}
-}
-
-####################################################
-### Stellar Ring Habitat ###########################
-####################################################
-country_event = {
-	id = giga_dialog.13601
-	title = "giga_dialog.13601.name"
-	desc = "giga_dialog.13601.desc"
-	picture = GFX_evt_megastructure_construction
-	show_sound = event_dyson_sphere_build_start
-	location = event_target:giga_planet
-	is_triggered_only = yes
-	option = { name = "giga_dialog.13601.a" }
-}
-
-country_event = {
-	id = giga_dialog.13602
-	title = "giga_dialog.13602.name"
-	desc = "giga_dialog.13602.desc"
-	picture = GFX_evt_mining_station
-	show_sound = event_dyson_sphere_build_upgrade_panel
-	location = event_target:giga_planet
-	is_triggered_only = yes
-	option = { name = "giga_dialog.13602.a" }
-}
-
-country_event = {
-	id = giga_dialog.13603
-	title = "giga_dialog.13603.name"
-	desc = "giga_dialog.13603.desc"
-	picture = GFX_evt_ringworld
-	show_sound = event_dyson_sphere_build_upgrade_panel
-	location = event_target:giga_planet
-	is_triggered_only = yes
-	option = { name = EXCELLENT }
-}
-
-country_event = {
-	id = giga_dialog.13604
-	title = "giga_dialog.13604.name"
-	desc = {
-		trigger = {
-			not = { has_civic = civic_machine_servitor }
-		}
-		text = "giga_dialog.13604.desc"
-	}
-	desc = {
-		trigger = {
-			has_civic = civic_machine_servitor
-		}
-		text = "giga_dialog.13604.desc.servitor"
-	}
-	picture = GFX_evt_ringworld
-	show_sound = event_dyson_sphere_build_complete
-	location = event_target:giga_planet
-	is_triggered_only = yes
-	option = { default_hide_option = yes name = MARVELOUS }
-	option = { 
-		trigger = {
-			has_civic = civic_machine_servitor
-		} 
-		name = giga_dialog.13604.servitor 
-	}
-}
-
-# Ruined orbital
-ship_event = {
-	id = giga_dialog.13605
-	title = "giga_dialog.13605.name"
-	desc = "giga_dialog.13605.desc"
-	picture = GFX_evt_space_debris
-	show_sound = event_radio_chatter
-	location = from
-	is_triggered_only = yes
-
-	trigger = {
-		owner = { NOT = { has_country_flag = encountered_ruined_orbital } }
-		from = { any_system_megastructure = { is_megastructure_type = stellar_ring_habitat_ruined } }
-	}
-
-	immediate = { owner = { set_country_flag = encountered_ruined_orbital } }
-	option = { default_hide_option = yes name = FASCINATING }
-	option = { 
-		trigger = {
-			owner = {
-				or = {
-					check_variable = {
-						which = giga_current_stellar_ring
-						value > 0
-					}
-					any_planet_within_border = {
-						is_planet_class = pc_giga_orbital
-					}
-				}
-			}
-		}
-		name = "giga_dialog.13605.a" 
-	}
-}
-
-# Repaired orbital
-country_event = {
-	id = giga_dialog.13606
-	title = "giga_dialog.13606.name"
-	desc = "giga_dialog.13606.desc"
-	picture = GFX_evt_ringworld
-	show_sound = event_dyson_sphere_build_complete
-	location = event_target:giga_planet
-	is_triggered_only = yes
-	option = {
-		name = EXCELLENT
-		hidden_effect = { set_timed_country_flag = { flag = giga_repaired_mega_no_dialog days = 10 } }
-	}
 }

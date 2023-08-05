@@ -93,9 +93,10 @@ planet_event = {
 	is_triggered_only = yes
 
 	immediate = {
-		owner = {
-			set_country_flag = encountered_ruined_orbital
-		}
+		remove_modifier = orbital_elysium
+		change_pc = pc_gigaorbital_ring_ruined
+		remove_planet_flag = cat_orbital_elysium
+		remove_modifier = strange_pouchkinn_lab
 		create_ambient_object = {
 			type = "explosion_particle_object"
 			location = this
@@ -110,13 +111,6 @@ planet_event = {
 			entity_scale_to_size = yes
 			scale = 1
 		}
-		solar_system = {
-			spawn_megastructure = {
-				type = stellar_ring_habitat_ruined
-				planet = prev
-			}
-		}
-		giga_remove_planet = yes
 	}
 
 	option = {
@@ -401,7 +395,7 @@ country_event = {
 
 	option = {
 		name = "giga_pouchkinn.110.a"
-		hidden_effect = { country_event = { id = giga_pouchkinn.112 } set_country_flag = pouchkinn_tech_possible }
+		hidden_effect = { country_event = { id = giga_pouchkinn.112 } }
 	}
 
 	option = {
@@ -414,8 +408,8 @@ country_event = {
 		hidden_effect = {
 			random_list = {
 				20 = { country_event = { id = giga_pouchkinn.114 } }
-				50 = { country_event = { id = giga_pouchkinn.115 } set_country_flag = pouchkinn_tech_possible set_country_flag = pouchkinn_lifespan_possible }
-				30 = { country_event = { id = giga_pouchkinn.116 } set_country_flag = pouchkinn_tech_possible }
+				50 = { country_event = { id = giga_pouchkinn.115 } }
+				30 = { country_event = { id = giga_pouchkinn.116 } }
 			}
 		}
 	}
@@ -436,7 +430,6 @@ country_event = {
 			class = scientist
 			gender = male
 			species = event_target:pouchkinn_species
-			immortal = yes
 			name = "Weeny Pouchkinn"
 			skill = 8
 			traits = {
@@ -507,6 +500,7 @@ country_event = {
 		random_planet_within_border = {
 			limit = { has_planet_flag = cat_orbital_elysium }
 			remove_modifier = strange_pouchkinn_lab_activated
+			remove_modifier = orbital_elysium
 			remove_planet_flag = cat_orbital_elysium
 			change_pc = pc_pouchkinn_black_hole
 			add_deposit = d_pouchkinn_deposit
@@ -530,9 +524,11 @@ country_event = {
 	is_triggered_only = yes
 
 	immediate = {
-		set_country_flag = encountered_ruined_orbital
 		random_planet_within_border = {
 			limit = { has_planet_flag = cat_orbital_elysium }
+			remove_modifier = orbital_elysium
+			remove_planet_flag = cat_orbital_elysium
+			change_pc = pc_gigaorbital_ring_ruined
 			create_ambient_object = {
 				type = "explosion_particle_object"
 				location = this
@@ -544,13 +540,6 @@ country_event = {
 				entity_scale_to_size = yes
 				scale = 1
 			}
-			solar_system = {
-				spawn_megastructure = {
-					type = stellar_ring_habitat_ruined
-					planet = prev
-				}
-			}
-			giga_remove_planet = yes
 		}
 	}
 

@@ -14,15 +14,14 @@ ship_event = {
 	is_triggered_only = yes
 
 	trigger = {
-		NOT = { has_global_flag = meopa_spawned_as_fe }
-		controller = { NOT = { has_country_flag = encountered_paluush } }
+		owner = { NOT = { has_country_flag = encountered_paluush } }
 		from = {
 			has_star_flag = giga_system_six
 			any_system_planet = { has_planet_flag = paluushia }
 		}
 	}
 
-	immediate = { controller = { set_country_flag = encountered_paluush } }
+	immediate = { owner = { set_country_flag = encountered_paluush } }
 	option = { name = "giga_paluush.001.a" }
 }
 
@@ -84,12 +83,11 @@ event = {
 	is_triggered_only = yes
 
 	trigger = {
-		exists = event_target:paluushia
 		event_target:paluushia = {
 			NOR = { 
 				has_planet_flag = paluushia_scaring_blokkats
 				has_planet_flag = grandbunny_defeated
-				is_planet_class = pc_shrouded
+				is_planet_class = pc_shrouded 
 			}
 			OR = {
 				is_colony = no
@@ -122,7 +120,7 @@ country_event = {
 
 	trigger = {
 		NOT = { is_country = event_target:paluush_portrait }
-		any_owned_species = { is_species = paluush_species }
+		any_owned_pop = { is_species = paluush_species }
 	}
 
 	immediate = {
@@ -260,9 +258,9 @@ planet_event = {
 		solar_system = {
 			random_fleet_in_system = {
 				limit = {
-					exists = controller
+					exists = owner
 					exists = orbit
-					controller = { is_same_value = root.from }
+					owner = { is_same_value = root.from }
 					orbit = { is_same_value = root }
 				}
 
@@ -375,7 +373,7 @@ event = {
 			}
 			remove_country_flag = atomic_age
 			set_country_flag = machine_age
-			set_pre_ftl_age = machine_age
+			set_primitive_age = machine_age
 		}
 	}
 }
@@ -510,10 +508,7 @@ ship_event = {
 	show_sound = event_ghost_town
 	location = from
 	is_triggered_only = yes
-	trigger = {
-		NOT = { has_global_flag = meopa_spawned_as_fe }
-		from = { has_planet_flag = katzenland } 
-	}
+	trigger = { from = { has_planet_flag = katzenland } }
 
 	option = {
 		name = "giga_katzenland.001.a"
@@ -825,10 +820,6 @@ fleet_event = {
 			}
 		}
 		owner = {
-			if = {
-				limit = { has_valid_civic = civic_reanimated_armies } #Meopa
-				country_event = { id = giga_katzenland.010 days = 90 }
-			}
 			set_country_flag = found_katzenland_katzens
 			small_artifact_reward = yes
 			if = {
@@ -862,10 +853,6 @@ fleet_event = {
 			}
 		}
 		owner = {
-			if = {
-				limit = { has_valid_civic = civic_reanimated_armies } #Meopa
-				country_event = { id = giga_katzenland.010 days = 90 }
-			}
 			hidden_effect = {
 				if = {
 					limit = {
@@ -909,138 +896,6 @@ fleet_event = {
 	}
 }
 
-#REANIMATORS REVIVE MEOPA (this is such a meme)
-country_event = {
-	id = giga_katzenland.010
-	title = "giga_katzenland.010.name"
-	desc = "giga_katzenland.010.desc"
-	is_triggered_only = yes
-	picture = GFX_evt_society_research
-	show_sound = event_necrophage
-
-	option = {
-		name = "giga_katzenland.010.a"
-		trigger = {
-			has_civic = civic_reanimated_armies
-		}
-		enable_special_project = {
-			name = "REANIMATE_MEOPA"
-			location = event_target:katzenland
-			owner = root
-		}
-	}
-
-	option = {
-		name = "giga_katzenland.010.b"
-	}
-}
-
-#HES BACK
-country_event = {
-	id = giga_katzenland.011
-	title = "giga_katzenland.011.name"
-	desc = "giga_katzenland.011.desc"
-	is_triggered_only = yes
-	picture = GFX_evt_conclave
-	show_sound = event_necrophage
-
-	immediate = {
-		create_species = {
-			name = "Revived Katzen"
-			plural = "Revived Katzens"
-			class = POUCHKINN
-			portrait = meoparevived
-			effect = {
-				save_global_event_target_as = meopaspecies
-			}
-		}
-	}
-
-	option = {
-		name = "giga_katzenland.011.a"
-		custom_tooltip = "giga_katzenland.011.a.tooltip"
-		hidden_effect = {
-			create_leader = {
-				class = admiral
-				gender = male
-				species = event_target:meopaspecies
-				name = "Meopa"
-				skill = 6
-				set_age = 11235
-				immortal = yes
-				traits = {
-					trait = leader_trait_stubborn
-					trait = leader_trait_aggressive
-					trait = leader_trait_unyielding
-					trait = katzen_trait_nukelad
-					trait = katzen_trait_meopa_revived
-				}
-				effect = {
-					save_global_event_target_as = meopa_admiral
-					set_leader_flag = revived_meopa
-				}
-			}
-			create_leader = {
-				class = general
-				gender = male
-				species = event_target:meopaspecies
-				name = "Meopa"
-				skill = 6
-				set_age = 11235
-				immortal = yes
-				traits = {
-					trait = leader_trait_stubborn
-					trait = leader_trait_butcher
-					trait = katzen_trait_nukelad_general
-					trait = katzen_trait_meopa_revived
-				}
-				effect = {
-					save_global_event_target_as = meopa_general
-					set_leader_flag = revived_meopa
-				}
-			}
-			create_leader = {
-				class = governor
-				gender = male
-				species = event_target:meopaspecies
-				name = "Meopa"
-				skill = 6
-				set_age = 11235
-				immortal = yes
-				traits = {
-					trait = leader_trait_stubborn
-					trait = leader_trait_environmental_engineer
-					trait = leader_trait_army_veteran
-					trait = katzen_trait_meopa_revived
-				}
-				effect = {
-					save_global_event_target_as = meopa_governor
-					set_leader_flag = revived_meopa
-				}
-			}
-		}
-	}
-}
-
-country_event = {
-	id = giga_katzenland.012
-	hide_window = yes
-	is_triggered_only = yes
-
-	trigger = {
-		from = { has_leader_flag = revived_meopa }
-		NOT = { has_country_flag = meopa_died }
-	}
-
-	immediate = {
-		set_country_flag = meopa_died
-		every_owned_leader = {
-			limit = { has_leader_flag = revived_meopa }
-			kill_leader = { show_notification = yes }
-		}
-	}
-}
-
 namespace = giga_flusion
 
 #######################################################
@@ -1050,16 +905,9 @@ namespace = giga_flusion
 ship_event = {
 	id = giga_flusion.001
 	title = "giga_flusion.001.name"
-	desc = {
-		text = "giga_flusion.001.desc"
-		trigger = { NOT = { has_global_flag = meopa_spawned_as_fe } }
-	}
-	desc = { #Something is missing...
-		text = "giga_flusion.001.nokatzens.desc"
-		trigger = { has_global_flag = meopa_spawned_as_fe }
-	}
+	desc = "giga_flusion.001.desc"
 	picture = GFX_evt_assembly_fight
-	show_sound = event_pre_ftl_civilization
+	show_sound = event_primitive_civilization
 	location = from
 	is_triggered_only = yes
 	trigger = {
@@ -1078,9 +926,8 @@ ship_event = {
 	}
 
 	immediate = {
-		if = {
-			limit = { NOT = { has_global_flag = meopa_spawned_as_fe } }
-			owner = { set_country_flag = found_flusion_katzens }
+		owner = {
+			set_country_flag = found_flusion_katzens
 		}
 	}
 
@@ -1154,8 +1001,7 @@ country_event = {
 	is_triggered_only = yes
 
 	trigger = {
-		NOR = {
-			any_country = { has_country_flag = giga_meopa_fe }
+		NOT = {
 			has_global_flag = katzenartig_imperium_happened
 		}
 		from = {
@@ -1325,9 +1171,7 @@ country_event = {
 	picture = GFX_evt_relic_world_street
 	show_sound = event_radio_chatter
 	is_triggered_only = yes
-	immediate = {
-		set_country_flag = katzen_atomic_munitions_possible
-	}
+
 	option = {
 		name = "giga_flusion.005.a"
 		add_research_option = tech_katzen_atomic_munitions
@@ -1352,11 +1196,10 @@ country_event = {
 
 	option = {
 		name = "giga_flusion.005.b"
-		remove_country_flag = katzen_atomic_munitions_possible
 	}
 }
 
-#Pre-FTL Flusion Health
+#Flusion Textures
 event = {
 	id = giga_flusion.100
 	hide_window = yes
@@ -1366,11 +1209,9 @@ event = {
 		NOT = {
 			has_global_flag = katzenartig_imperium_happened #Won't happen if Katzenartig got to space
 		}
-		exists = event_target:gigaflusion
-		event_target:gigaflusion = {
+		any_galaxy_planet = {
 			AND = {
 				has_planet_flag = gigaflusion
-				exists = owner
 				owner = {
 					NOT = {
 						has_country_flag = flusion_primitives #Not owned by primitives anymore
@@ -1386,65 +1227,19 @@ event = {
 	immediate = {
 		event_target:gigaflusion = {
 			remove_planet_flag = kaiser_wc
-			if = {
-				limit = {
-					has_modifier = katzen_orbital_bombardment_shield
-				}
-				remove_modifier = katzen_orbital_bombardment_shield
-			}
-
-			solar_system = {
-				every_system_planet = {
-					limit = {
-						has_planet_flag = muno_project_event
-					}
-					remove_planet_flag = muno_project_event
-				}
-
-				if = {
-					limit = { #Flusion got nuked
-						event_target:gigaflusion = {
-							has_planet_flag = gigaflusion
-							is_planet_class = pc_nuked
-						}
-					}
-					every_megastructure = { #Destroy the project
-						limit = {
-							is_megastructure_type = flusion_attack_moon_0
-						}
-						delete_megastructure = THIS
-					}
-				}
-				else_if = { #Flusion got invaded and Katzens nuked it
-					limit = {
-						event_target:gigaflusion = {
-							has_planet_flag = gigaflusion
-							is_planet_class = pc_katzenland
-						}
-					}
-					event_target:gigaflusion = { set_planet_flag = flusion_nuked }
-					remove_modifier = culture_shock_machine_age
-					remove_modifier = culture_shock_atomic_age
-					remove_modifier = culture_shock_early_space_age
-					every_megastructure = { #Destroy the project
-						limit = {
-							is_megastructure_type = flusion_attack_moon_0
-						}
-						delete_megastructure = THIS
-					}
-				}
-				else = { # Flusion got destroyed but is none of the above
-					event_target:gigaflusion = { set_planet_flag = flusion_nuked }
-					every_megastructure = { #Destroy the project
-						limit = {
-							is_megastructure_type = flusion_attack_moon_0
-						}
-						delete_megastructure = THIS
-					}
-				}
-			}
 		}
-
+		every_galaxy_planet = {
+			limit = {
+				has_modifier = katzen_orbital_bombardment_shield
+			}
+			remove_modifier = katzen_orbital_bombardment_shield
+		}
+		every_galaxy_planet = { #No more project
+			limit = {
+				has_planet_flag = muno_project_event
+			}
+			remove_planet_flag = muno_project_event
+		}
 		every_country = { #Remove the invasion modifier
 			limit = {
 				has_modifier = planning_flusionian_invasion
@@ -1457,6 +1252,38 @@ event = {
 			}
 			remove_country_flag = planning_flusionfall
 			country_event = { id = giga_flusion.333 }
+		}
+		if = {
+			limit = { #Flusion got nuked
+				any_galaxy_planet = {
+					has_planet_flag = gigaflusion
+					is_planet_class = pc_nuked
+				}
+			}
+			random_megastructure = { #Destroy the project
+				limit = {
+					is_megastructure_type = flusion_attack_moon_0
+				}
+				delete_megastructure = THIS
+			}
+		}
+		else_if = { #Flusion got invaded and Katzens nuked it
+			limit = {
+				any_galaxy_planet = {
+					has_planet_flag = gigaflusion
+					is_planet_class = pc_katzenland
+				}
+			}
+			remove_modifier = culture_shock_machine_age
+			remove_modifier = culture_shock_atomic_age
+			remove_modifier = culture_shock_early_space_age
+			set_planet_flag = flusion_nuked
+			random_megastructure = { #Destroy the project
+				limit = {
+					is_megastructure_type = flusion_attack_moon_0
+				}
+				delete_megastructure = THIS
+			}
 		}
 	}
 }
@@ -1569,7 +1396,6 @@ planet_event = {
 				OR = {
 					is_planet_class = pc_gigaorbital_ring
 					is_planet_class = pc_habitat
-					is_planet_class = pc_giga_elysium
 				}
 			}
 			remove_planet = yes
@@ -1644,7 +1470,7 @@ planet_event = { #trigger the Mondkanone immediately if guaranteed
 			}
 		}
 		event_target:gigamuno = {
-			giga_set_has_mega_flag = yes
+			set_planet_flag = has_megastructure
 		}
 		event_target:flusion_primitives_country = {
 			random_owned_megastructure = {
@@ -1685,8 +1511,9 @@ planet_event = {
 	}
 
 	trigger = {
-		NOT = { has_global_flag = meopa_spawned_as_fe }
-		NOT = { has_global_flag = warmoon_disabled }
+		NOT = {
+			has_global_flag = warmoon_disabled
+		}
 		solar_system = {
 			exists = owner
 			owner = { ehof_default_country = yes }
@@ -1724,7 +1551,7 @@ planet_event = {
 			}
 		}
 		event_target:gigamuno = {
-			giga_set_has_mega_flag = yes
+			set_planet_flag = has_megastructure
 		}
 		event_target:flusion_primitives_country = {
 			random_owned_megastructure = {
@@ -2153,17 +1980,17 @@ country_event = {
 			event_target:flusion_primitives_country = {
 				set_country_flag = kaiser_dead #:(
 			}
-			event_target:gigaflusion = {
-				solar_system = {
-					every_megastructure = { #Destroy the project
-						limit = { is_megastructure_type = flusion_attack_moon_0 }
-						delete_megastructure = THIS
-					}
-					every_system_planet = {
-						limit = { has_planet_flag = muno_project_event }
-						remove_planet_flag = muno_project_event
-					}
+			random_megastructure = { #Destroy the project
+				limit = {
+					is_megastructure_type = flusion_attack_moon_0
 				}
+				delete_megastructure = THIS
+			}
+			every_galaxy_planet = { #No more project
+				limit = {
+					has_planet_flag = muno_project_event
+				}
+				remove_planet_flag = muno_project_event
 			}
 		}
 	}
@@ -2453,7 +2280,7 @@ country_event = { #Demolition succesful
 			delete_megastructure = THIS
 		}
 		event_target:gigamuno = {
-			giga_clear_has_mega_flag = yes
+			remove_planet_flag = has_megastructure
 		}
 	}
 
@@ -2462,14 +2289,7 @@ country_event = { #Demolition succesful
 		add_resource = {
 			influence = 50
 			alloys = 1500
-		}
-		if = {
-			limit = {
-				has_ancrel = yes
-			}
-			add_resource = {
-				minor_artifacts = 100
-			}
+			minor_artifacts = 10
 		}
 		hidden_effect = {
 			random_list = { #Kaiser blames everyone, nuclear war ensues (typical Kaiser)
@@ -2504,7 +2324,7 @@ country_event = { #Nuclear War
 			giga_achievement_sound = yes
 		}
 		event_target:gigaflusion = {
-			nuke_pre_ftls_effect = yes
+			nuke_primitives_effect = yes
 			set_planet_entity = {
 				entity = flusion_planet_nuked_entity
 			}
@@ -2655,17 +2475,17 @@ country_event = { #Invasion successful!
 	is_triggered_only = yes
 
 	immediate = {
-		event_target:gigaflusion = {
-			if = {
-				limit = { has_modifier = katzen_orbital_bombardment_shield }
-				remove_modifier = katzen_orbital_bombardment_shield
+		random_megastructure = { #Destroy the project
+			limit = {
+				is_megastructure_type = flusion_attack_moon_0
 			}
-			solar_system = {
-				every_megastructure = { # destroy the project
-					limit = { is_megastructure_type = flusion_attack_moon_0 }
-					delete_megastructure = THIS
-				}
+			delete_megastructure = THIS
+		}
+		every_galaxy_planet = {
+			limit = {
+				has_modifier = katzen_orbital_bombardment_shield
 			}
+			remove_modifier = katzen_orbital_bombardment_shield
 		}
 	}
 
@@ -2924,7 +2744,7 @@ ship_event = {
 	show_sound = event_radio_chatter
 
 	trigger = {
-		controller = {
+		owner = {
 			NOT = {
 				has_country_flag = knows_muno_attack_moon
 			}
@@ -2937,12 +2757,12 @@ ship_event = {
 		}
 	}
 
-	immediate = { controller = { set_country_flag = knows_muno_attack_moon } }
+	immediate = { owner = { set_country_flag = knows_muno_attack_moon } }
 
 	option = { #Yay!
 		name = "giga_flusion.405.a"
 		trigger = {
-			controller = {
+			owner = {
 				NOR = {
 					has_valid_civic = civic_fanatic_purifiers
 					has_valid_civic = civic_hive_devouring_swarm
@@ -2955,7 +2775,7 @@ ship_event = {
 	option = { #Nay!
 		name = "giga_flusion.405.b"
 		trigger = {
-			controller = {
+			owner = {
 				OR = {
 					has_valid_civic = civic_fanatic_purifiers
 					has_valid_civic = civic_hive_devouring_swarm

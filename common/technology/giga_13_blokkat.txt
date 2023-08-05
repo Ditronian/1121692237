@@ -6,9 +6,7 @@ giga_tech_blokkat_sociology_study = {
 	is_rare = yes
 	weight = 0
 	is_reverse_engineerable = no
-	potential = {
-		has_country_flag = blokkat_sociology_possible
-	}
+
 	modifier = {
 		country_society_tech_research_speed = 0.10
 	}
@@ -54,9 +52,7 @@ giga_tech_blokkat_dimension_study = {
 	is_rare = yes
 	weight = 0
 	is_reverse_engineerable = no
-	potential = {
-		has_country_flag = blokkat_dimensions_possible
-	}
+
 	modifier = {
 		country_society_tech_research_speed = 0.10
 	}
@@ -102,9 +98,7 @@ giga_tech_blokkat_armor_study = {
 	is_rare = yes
 	weight = 0
 	is_reverse_engineerable = no
-	potential = {
-		has_country_flag = blokkat_armor_study_possible
-	}
+
 	modifier = {
 		ship_hull_mult = 0.10
 	}
@@ -150,9 +144,7 @@ giga_tech_blokkat_scrap_uses = {
 	is_rare = yes
 	weight = 0
 	is_reverse_engineerable = no
-	potential = {
-		has_country_flag = blokkat_scrap_possible
-	}
+
 	modifier = {
 		ship_weapon_damage = 0.10
 	}
@@ -235,9 +227,7 @@ giga_tech_blokkat_laser = {
 	is_rare = yes
 	weight = 0
 	is_reverse_engineerable = no
-	potential = {
-		has_country_flag = blokkat_laser_possible
-	}
+
 	modifier = {
 		weapon_type_energy_weapon_damage_mult = 0.15
 	}
@@ -256,9 +246,7 @@ giga_tech_blokkat_missile = {
 	is_rare = yes
 	weight = 0
 	is_reverse_engineerable = no
-	potential = {
-		has_country_flag = blokkat_missile_possible
-	}
+
 	modifier = {
 		weapon_type_explosive_weapon_damage_mult = 0.15
 	}
@@ -268,7 +256,7 @@ giga_tech_blokkat_missile = {
 	}
 }
 
-#STRIKECRAFT
+#MISSILE
 giga_tech_blokkat_strikecraft = {
 	cost = 1500000
 	area = physics
@@ -277,9 +265,7 @@ giga_tech_blokkat_strikecraft = {
 	is_rare = yes
 	weight = 0
 	is_reverse_engineerable = no
-	potential = {
-		has_country_flag = blokkat_strikecraft_possible
-	}
+
 	modifier = {
 		weapon_type_strike_craft_weapon_damage_mult = 0.20
 	}
@@ -298,9 +284,7 @@ giga_tech_blokkat_armor = {
 	is_rare = yes
 	weight = 0
 	is_reverse_engineerable = no
-	potential = {
-		has_country_flag = blokkat_armor_possible
-	}
+
 	modifier = {
 		ship_armor_mult = 0.20
 	}
@@ -319,9 +303,7 @@ giga_tech_blokkat_shield = {
 	is_rare = yes
 	weight = 0
 	is_reverse_engineerable = no
-	potential = {
-		has_country_flag = blokkat_shield_possible
-	}
+
 	modifier = {
 		ship_shield_mult = 0.20
 	}
@@ -340,9 +322,7 @@ giga_tech_blokkat_pd = {
 	is_rare = yes
 	weight = 0
 	is_reverse_engineerable = no
-	potential = {
-		has_country_flag = blokkat_pd_possible
-	}
+
 	modifier = {
 		weapon_type_point_defense_weapon_damage_mult = 0.20
 		weapon_type_point_defense_weapon_fire_rate_mult = 0.20
@@ -362,9 +342,7 @@ giga_tech_blokkat_plasma = {
 	is_rare = yes
 	weight = 0
 	is_reverse_engineerable = no
-	potential = {
-		has_country_flag = blokkat_plasma_possible
-	}
+
 	modifier = {
 		weapon_type_energy_weapon_fire_rate_mult = 0.15
 	}
@@ -384,9 +362,7 @@ giga_tech_blokkat_emitter = {
 	is_rare = yes
 	weight = 0
 	is_reverse_engineerable = no
-	potential = {
-		has_country_flag = blokkat_emitter_possible
-	}
+
 	modifier = {
 		ship_armor_penetration_mult = 0.10
 	}
@@ -406,9 +382,7 @@ giga_tech_blokkat_obliterator = {
 	is_rare = yes
 	weight = 0
 	is_reverse_engineerable = no
-	potential = {
-		has_country_flag = blokkat_obliterator_possible
-	}
+
 	modifier = {
 		ship_weapon_range_mult = 0.10
 	}
@@ -427,12 +401,10 @@ giga_tech_blokkat_booster = {
 	is_rare = yes
 	weight = 0
 	is_reverse_engineerable = no
-	potential = {
-		has_country_flag = blokkat_booster_possible
-	}
+
 	modifier = {
 		country_energy_produces_mult = 0.15
-		megastructures_energy_upkeep_mult = -0.10
+		megastructure_energy_upkeep_mult = -0.10
 	}
 
 	prereqfor_desc = {
@@ -450,9 +422,7 @@ giga_tech_blokkat_afterburner = {
 	is_rare = yes
 	weight = 0
 	is_reverse_engineerable = no
-	potential = {
-		has_country_flag = blokkat_afterburner_possible
-	}
+
 	modifier = {
 		ship_speed_mult = 0.10
 	}
@@ -472,9 +442,7 @@ giga_tech_blokkat_hullrepair = {
 	is_rare = yes
 	weight = 0
 	is_reverse_engineerable = no
-	potential = {
-		has_country_flag = blokkat_hull_repair_possible
-	}
+
 	modifier = {
 		ship_hull_mult = 0.10
 	}
@@ -493,9 +461,7 @@ giga_tech_blokkat_ftl = {
 	is_rare = yes
 	weight = 0
 	is_reverse_engineerable = no
-	potential = {
-		has_country_flag = blokkat_ftl_possible
-	}
+
 	modifier = {
 		ship_windup_mult = -0.15
 		ship_evasion_mult = 0.10
@@ -515,9 +481,7 @@ giga_tech_blokkat_reactor = {
 	is_rare = yes
 	weight = 0
 	is_reverse_engineerable = no
-	potential = {
-		has_country_flag = blokkat_reactor_possible
-	}
+
 	modifier = {
 		ship_windup_mult = -0.15
 		ships_energy_upkeep_mult = -0.10
@@ -537,9 +501,7 @@ giga_tech_blokkat_computer = {
 	is_rare = yes
 	weight = 0
 	is_reverse_engineerable = no
-	potential = {
-		has_country_flag = blokkat_computer_possible
-	}
+
 	modifier = {
 		ship_accuracy_mult = 0.10
 		all_technology_research_speed = 0.10
@@ -559,9 +521,7 @@ giga_tech_blokkat_sensors = {
 	is_rare = yes
 	weight = 0
 	is_reverse_engineerable = no
-	potential = {
-		has_country_flag = blokkat_sensors_possible
-	}
+
 	modifier = {
 		ship_engagement_range_mult = 0.10
 		ship_tracking_mult = 0.10
@@ -581,9 +541,7 @@ giga_tech_blokkat_mega_stage_0 = {
 	is_rare = yes
 	weight = 0
 	is_reverse_engineerable = no
-	potential = {
-		has_country_flag = destabiliser_stage_0_possible
-	}
+
 	prereqfor_desc = {
 		custom = { title = "giga_tech_blokkat_mega_stage_0_title"	desc = "giga_tech_blokkat_mega_stage_0_title" }
 	}
@@ -598,9 +556,7 @@ giga_tech_blokkat_mega_stage_1 = {
 	is_rare = yes
 	weight = 0
 	is_reverse_engineerable = no
-	potential = {
-		has_country_flag = destabiliser_stage_1_possible
-	}
+
 	modifier = {
 		country_energy_produces_mult = 0.10
 	}
@@ -619,9 +575,7 @@ giga_tech_blokkat_mega_stage_2 = {
 	is_rare = yes
 	weight = 0
 	is_reverse_engineerable = no
-	potential = {
-		has_country_flag = destabiliser_stage_2_possible
-	}
+
 	modifier = {
 		country_resource_max_alloys_add = 200000
 		country_resource_max_energy_add = 400000
@@ -641,12 +595,10 @@ giga_tech_blokkat_mega_stage_3 = {
 	is_rare = yes
 	weight = 0
 	is_reverse_engineerable = no
-	potential = {
-		has_country_flag = destabiliser_stage_3_possible
-	}
+
 	modifier = {
 		country_resource_max_energy_add = 1000000
-		megastructures_energy_upkeep_mult = -0.10
+		megastructure_energy_upkeep_mult = -0.10
 	}
 
 	prereqfor_desc = {
@@ -663,9 +615,7 @@ giga_tech_blokkat_mega_stage_4 = {
 	is_rare = yes
 	weight = 0
 	is_reverse_engineerable = no
-	potential = {
-		has_country_flag = destabiliser_stage_4_possible
-	}
+
 	modifier = {
 		country_resource_max_energy_add = 5000000
 		ship_weapon_damage = 0.20
@@ -684,9 +634,7 @@ giga_tech_blokkat_snare = {
 	is_rare = yes
 	weight = 0
 	is_reverse_engineerable = no
-	potential = {
-		has_country_flag = blokkat_snare_possible
-	}
+
 	prereqfor_desc = {
 		custom = { title = "blokkat_snare_mega_title"	desc = "blokkat_snare_mega_title" }
 	}
@@ -700,9 +648,7 @@ giga_tech_blokkat_reprogram = {
 	is_rare = yes
 	weight = 0
 	is_reverse_engineerable = no
-	potential = {
-		has_country_flag = blokkat_reprogram_possible
-	}
+
 	modifier = {
 		leader_skill_levels = 2
 	}
@@ -720,9 +666,7 @@ giga_tech_blokkat_history = {
 	is_rare = yes
 	weight = 0
 	is_reverse_engineerable = no
-	potential = {
-		has_country_flag = blokkat_history_possible
-	}
+
 	modifier = {
 		damage_vs_country_type_blokkat_stripminers_mult = 0.10
 		category_blokkats_research_speed_mult = 0.20
@@ -741,9 +685,7 @@ giga_tech_blokkat_timetravel = {
 	is_rare = yes
 	weight = 0
 	is_reverse_engineerable = no
-	potential = {
-		has_country_flag = blokkat_temporal_discrepancy_solved
-	}
+
 	modifier = {
 		category_blokkats_research_speed_mult = 0.30
 		megastructure_build_speed_mult = 0.25
@@ -763,9 +705,7 @@ giga_tech_blokkat_fix_systems = {
 	is_rare = yes
 	weight = 0
 	is_reverse_engineerable = no
-	potential = {
-		has_country_flag = blokkat_system_repair_possible
-	}
+
 	modifier = {
 		planet_jobs_produces_mult = 0.25
 		country_resource_max_energy_add = 10000000
@@ -773,157 +713,5 @@ giga_tech_blokkat_fix_systems = {
 
 	prereqfor_desc = {
 		custom = { title = "tech_blokkat_fix_systems_title"	desc = "tech_blokkat_fix_systems_title" }
-	}
-}
-
-#Join them
-#Blokkatese
-giga_tech_translate_blokkatese = {
-	cost = 1000000
-	area = society
-	tier = 5
-	category = { blokkats }
-	is_rare = yes
-	weight = 0
-	is_reverse_engineerable = no
-	potential = {
-		has_country_flag = blokkat_language_possible
-	}
-	modifier = {
-		envoys_add = 1
-	}
-
-	prereqfor_desc = {
-		custom = { title = "blokkat_blokkatese_title"	desc = "blokkat_blokkatese_title" }
-	}
-}
-
-#Energy transfer
-giga_tech_blokkat_energy_transfer = {
-	cost = 150000000
-	area = physics
-	tier = 5
-	category = { blokkats }
-	is_rare = yes
-	weight = 0
-	is_reverse_engineerable = no
-	potential = {
-		has_country_flag = blokkat_math_projects_possible
-	}
-	modifier = {
-		megastructures_energy_produces_mult = 0.30
-		country_resource_max_energy_add = 5000000
-	}
-
-	prereqfor_desc = {
-		custom = { title = "blokkat_protocols_physics_title"	desc = "blokkat_protocols_physics_title" }
-	}
-}
-
-#Logistics
-giga_tech_blokkat_intergalactic_logistics = {
-	cost = 150000000
-	area = society
-	tier = 5
-	category = { blokkats }
-	is_rare = yes
-	weight = 0
-	is_reverse_engineerable = no
-	potential = {
-		has_country_flag = blokkat_math_projects_possible
-	}
-	modifier = {
-		ships_upkeep_mult = -0.30
-		country_resource_max_energy_add = 5000000
-	}
-
-	prereqfor_desc = {
-		custom = { title = "blokkat_protocols_society_title"	desc = "blokkat_protocols_society_title" }
-	}
-}
-
-#Engineering
-giga_tech_blokkat_subplanck_engineering = {
-	cost = 150000000
-	area = engineering
-	tier = 5
-	category = { blokkats }
-	is_rare = yes
-	weight = 0
-	is_reverse_engineerable = no
-	potential = {
-		has_country_flag = blokkat_math_projects_possible
-	}
-	modifier = {
-		megastructure_build_speed_mult = 0.60
-		country_resource_max_energy_add = 5000000
-	}
-
-	prereqfor_desc = {
-		custom = { title = "blokkat_protocols_engineering_title"	desc = "blokkat_protocols_engineering_title" }
-	}
-}
-
-#Blokkwork
-giga_tech_blokkat_blokkwork_power_node = {
-	cost = 250000000
-	area = society
-	tier = 5
-	category = { blokkats }
-	is_rare = yes
-	weight = 0
-	is_reverse_engineerable = no
-	potential = {
-		has_country_flag = blokkat_nodes_possible
-	}
-	modifier = {
-		country_energy_produces_mult = 0.10
-		country_resource_max_energy_add = 5000000
-	}
-}
-
-#Gigarelay Frame
-giga_tech_blokkat_gigarelay_frame = {
-	cost = 500000000
-	area = engineering
-	tier = 5
-	category = { blokkats }
-	is_rare = yes
-	is_dangerous = yes
-	weight = 0
-	is_reverse_engineerable = no
-	potential = {
-		has_country_flag = blokkat_gigarelay_possible
-	}
-	modifier = {
-		country_resource_max_energy_add = 10000000
-		country_resource_max_alloys_add = 500000
-	}
-
-	prereqfor_desc = {
-		custom = { title = "blokkat_gigarelay_frame_title"	desc = "blokkat_gigarelay_frame_title" }
-	}
-}
-
-#Gigarelay Core
-giga_tech_blokkat_gigarelay_core = {
-	cost = 500000000
-	area = physics
-	tier = 5
-	category = { blokkats }
-	is_rare = yes
-	is_dangerous = yes
-	weight = 0
-	is_reverse_engineerable = no
-	potential = {
-		has_country_flag = blokkat_gigarelay_possible
-	}
-	modifier = {
-		megastructure_build_speed_mult = 0.2
-		country_resource_max_energy_add = 10000000
-	}
-
-	prereqfor_desc = {
-		custom = { title = "blokkat_gigarelay_core_title"	desc = "blokkat_gigarelay_core_title" }
 	}
 }
