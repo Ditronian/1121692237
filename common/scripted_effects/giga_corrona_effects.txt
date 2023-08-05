@@ -1876,7 +1876,7 @@ create_ezic_revolt = {
 	}
 	create_country = {
 		species = event_target:arcticezics
-		name = "Ezicania Order"
+		name = "Zuspri Vanguard"
 		authority = auth_imperial
 		origin = origin_katzen_rebels
 		ethos = {
@@ -1947,10 +1947,6 @@ create_ezic_revolt = {
 						species = event_target:arcticezics
 						name = random
 						skill = 3
-						traits = {
-							trait = random_trait
-							trait = random_trait
-						}
 						effect = {
 							save_event_target_as = rebel_ezic_admiral
 						}
@@ -1983,7 +1979,7 @@ create_ezic_revolt = {
 					}
 				}
 				create_fleet = { #Spawn a simple task force of panzers & bombers
-					name = "Ezicanian Hunters"
+					name = "Zuspri Hunters"
 					settings = {
 						spawn_debris = no
 						can_upgrade = no
@@ -2149,7 +2145,7 @@ clear_hke_centra_buffs = {
 
 create_katzen_governor = {
 	create_leader = {
-		class = ruler
+		class = governor
 		species = event_target:flusion_katzens
 		name = random
 		skill = 5
@@ -2192,10 +2188,6 @@ create_corrona_dragon_fleet_corrona = {
 		name = random
 		skill = 3
 		gender = male
-		traits = {
-			trait = random_trait
-			trait = random_trait
-		}
 		effect = {
 			save_event_target_as = corrona_admiral
 		}
