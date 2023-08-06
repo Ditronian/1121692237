@@ -640,8 +640,7 @@ trait_pc_alderson_slice_pc_preference = {
 	sorting_priority = 30
 	initial = no
 	randomized = no
-	species_potential_add = { always = no }
-	species_possible_merge_add = { always = yes }
+	modification = no
 	modifier = {
 		pc_alderson_slice_gaia_habitability = 1.0
 		pc_alderson_slice_pc_habitability = 1.0
@@ -724,8 +723,7 @@ trait_pc_alderson_slice_ecu_preference = {
 	sorting_priority = 30
 	initial = no
 	randomized = no
-	species_potential_add = { always = no }
-	species_possible_merge_add = { always = yes }
+	modification = no
 	modifier = {
 		pc_alderson_slice_gaia_habitability = 1.0
 		pc_alderson_slice_pc_habitability = 1.0
@@ -810,8 +808,7 @@ trait_pc_alderson_slice_hive_preference = {
 	sorting_priority = 30
 	initial = no
 	randomized = no
-	species_potential_add = { always = no }
-	species_possible_merge_add = { always = yes }
+	modification = no
 	modifier = {
 		pc_alderson_slice_gaia_habitability = 1.0
 		pc_alderson_slice_pc_habitability = 1.0
@@ -896,8 +893,7 @@ trait_pc_alderson_slice_machine_preference = {
 	sorting_priority = 30
 	initial = no
 	randomized = no
-	species_potential_add = { always = no }
-	species_possible_merge_add = { always = yes }
+	modification = no
 	modifier = {
 		pc_alderson_slice_gaia_habitability = 1.0
 		pc_alderson_slice_pc_habitability = 1.0
@@ -982,8 +978,7 @@ trait_pc_alderson_slice_gaia_preference = {
 	sorting_priority = 30
 	initial = no
 	randomized = no
-	species_potential_add = { always = no }
-	species_possible_merge_add = { always = yes }
+	modification = no
 	modifier = {
 		pc_alderson_slice_gaia_habitability = 1.0
 		pc_alderson_slice_pc_habitability = 1.0
@@ -1094,23 +1089,6 @@ trait_pc_void_birch_preference = {
 	sorting_priority = 30
 	modifier = {
 		pc_void_birch_habitability = 1
-	}
-	ai_weight = {
-		weight = 0
-	}
-}
-
-trait_pc_alderson_slice_gaia_shattered_preference = {
-	icon = "gfx/interface/icons/traits/trait_pc_ring_preference.dds"
-	initial = no
-	randomized = no
-	species_potential_add = { always = no }
-	species_possible_merge_add = { always = yes }
-	allowed_archetypes = { BIOLOGICAL PRESAPIENT LITHOID }
-	sorting_priority = 30
-	modifier = {
-		pc_alderson_slice_gaia_habitability = 1.0
-		pc_alderson_slice_gaia_shattered_habitability = 1.0
 	}
 	ai_weight = {
 		weight = 0

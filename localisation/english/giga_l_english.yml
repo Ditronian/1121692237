@@ -2006,17 +2006,14 @@
   origin_pangalactic:0 "Pangalactic Union"
   origin_pangalactic_desc:0 "This empire is the result of an incredible galactic effort to stop an empire from unleashing a hyperweapon."
 
-  #########################################
-  ### Alderson Disk Start #################
-  #########################################
-  origin_alderson:0 "Alderson Disk"
-
-  origin_alderson_desc:0 "You are the remnant of a long forgotten civilization, living in the vast expanse of an Alderson disk built by your ancestors. The other slices harbor intelligent life, however their arcane generators gave out long ago."
-
-  origin_alderson_effects:0 "Start on a $pc_alderson_slice_gaia_shattered$, a ruined part of a colossal Alderson Disk.\n- Species habitability is set to §L$pc_alderson_slice_gaia_shattered$§!.\n- §RThere will be no systems with guaranteed habitable worlds nearby§!.\n- Two powerful Pre-FTL nations will spawn alongside you on the Alderson."
-
-  giga_alderson_start_NAME:0 "$origin_alderson$"
-  giga_alderson_start_DESC:0 "$origin_alderson_desc$"
+    #########################################
+    ### Alderson Disk Start #################
+    #########################################
+    origin_alderson:0 "Alderson Disk"
+    origin_alderson_desc:0 "You are the remnant of a long forgotten civilization, living in the vast expanse of an Alderson disk built by your ancestors."
+    origin_alderson_effects:0 "The other slices harbor intelligent life, however their arcane generators gave out long ago."
+    giga_alderson_start_NAME:0 "$origin_alderson$"
+    giga_alderson_start_DESC:0 "$origin_alderson_desc$"
 
   giga_start_screen_alderson:0 "We do not know what happened to our ancestors. Enemies, plague, civil war? They exist now as myths and legends, their knowledge and power lost. They somehow built this vast disk encompassing the entirety of our star's gravity well, now we live in the vast, echoing expanse designed to house a million times more people than are left.\n\nAs all but the last slice has fallen into disrepair and uselessness our people have been filled with a new sense of purpose: we must unite and take our place against in the stars, or we will be lost forever to history.\n\nWe need to get people working the §Y$job_miner$§! and §Y$job_technician$§! jobs before we run out of resources to expand.\n\nWe may have to displace some people from their preferred job to make that happen.\n\n§RAI cannot use this origin. Any generated predefined custom AI empires with this origin will be generate with $origin_default$ instead.§!"
 
@@ -3459,7 +3456,8 @@
 
   d_zro_cloud:0 "Zro Nebulae"
   d_zro_cloud_desc:0 "Large drifting clouds of precious Zro particles, floating endlessly."
-
+  d_found_communities:0 "Found Communities"
+  d_found_communities_desc:0 "Exponential growth comes with exponential costs. Regardless, we're glad to have them."
     d_alderson_generator:0 "Arcane Generator"
     d_alderson_generator_desc:0 "This ancient machine seems to respond to our needs by producing the resources needed to upkeep some of our districts."
 
@@ -3623,10 +3621,6 @@
   mod_pc_virtual_stellar_industry_habitability:0 "Virtual Stellar Industry Habitability"
   trait_pc_virtual_stellar_industry_preference:0 "Virtual Stellar Industry Preference"
   trait_pc_virtual_stellar_industry_preference_desc:0 "§LClimate preference is determined at the genetic level, by eons of evolution or skillful manipulation.§!"
-
-  mod_pc_alderson_slice_gaia_shattered_habitability:0 "Shattered Gaia Alderson Habitability"
-  trait_pc_alderson_slice_gaia_shattered_preference:0 "Shattered Gaia Alderson Preference"
-  trait_pc_alderson_slice_gaia_shattered_preference_desc:0 "§LClimate preference is determined at the genetic level, by eons of evolution or skillful manipulation.§!"
 
   mod_pc_alderson_slice_gaia_habitability:0 "Gaia Habitability"
   trait_pc_alderson_slice_gaia_preference:0 "Gaia Preference"
@@ -4134,20 +4128,12 @@
   district_penrose_industrial_plural:0 "$district_interstellar_industrial_plural$"
   district_penrose_industrial_desc:0 "$district_interstellar_industrial_desc$"
 
-  #########################################
-  ### Alderson districts ##################
-  #########################################
-  pc_alderson_slice_gaia_shattered:0 "Shattered Hypersegment"
-  pc_alderson_slice_gaia_shattered_desc:0 "A dysfunctional, colossal segment of an Alderson Disk World."
-  pc_alderson_slice_gaia_shattered_adj:0 "post this in general-talk"
-  
-  district_giga_alderson_refineries:0 "Processing Hypersegment"
-  district_giga_alderson_refineries_plural:0 "Processing Hypersegments"
-  district_giga_alderson_refineries_desc:0 "Multiple vast facilities larger than some moons make up this Hypersegment. They allow for the processing of simple materials into much more complex shapes on an unparalleled scale."
-  
-  district_giga_alderson_city:0 "Habitation Hypersegment"
-  district_giga_alderson_city_plural:0 "Habitation Hypersegments"
-  district_giga_alderson_city_desc:0 "Mind-bogglingly large expanses of urban housing built here, stretching thousands and thousands of kilometers in every direction."
+    #########################################
+    ### Alderson districts ##################
+    #########################################
+    district_giga_alderson_city:0 "Habitation Hypersegment"
+    district_giga_alderson_city_plural:0 "Habitation Hypersegments"
+    district_giga_alderson_city_desc:0 "Mind-bogglingly large expanses of urban housing built here, stretching thousands and thousands of kilometers in every direction."
 
   district_giga_alderson_nexus:0 "Nexus Hypersegment"
   district_giga_alderson_nexus_plural:0 "Nexus Hypersegments"
@@ -4161,13 +4147,13 @@
   district_giga_alderson_generator_plural:0 "Solar Generator Hypersegments"
   district_giga_alderson_generator_desc:0 "Gargantuan complexes of solar panels built here, generating untold amounts of power from the sun, supplemented by underground fusion reactors."
 
-  district_giga_alderson_farming:0 "Agriculture Hypersegment"
-  district_giga_alderson_farming_plural:0 "Agriculture Hypersegments"
-  district_giga_alderson_farming_desc:0 "A colossal landscape that provides a mix of tower growing and more classic farmland. Livestock conditions vary from condensed to free range. These processes are mostly automated; flora and fauna can be dangerous to an average farmer."
+    district_giga_alderson_farming:0 "Farming Megaplex Hypersegment"
+    district_giga_alderson_farming_plural:0 "Farming Megaplex Hypersegments"
+    district_giga_alderson_farming_desc:0 "Millions and millions of acres of fertile farmland, designed to feed a truly gigantic population living here."
 
-  district_giga_alderson_mining:0 "Matter Synthesis Hypersegment"
-  district_giga_alderson_mining_plural:0 "Matter Synthesis Hypersegments"
-  district_giga_alderson_mining_desc:0 "A colossal landscape dedicated to planet sized substations and complex machines for the synthesis of various basic materials."
+    district_giga_alderson_mining:0 "Matter Generator Hypersegment"
+    district_giga_alderson_mining_plural:0 "Matter Generator Hypersegments"
+    district_giga_alderson_mining_desc:0 "Colossal facilities that draw immense amounts of power from the power grids in order to artificially synthesize minerals and heavy elements."
 
   district_giga_alderson_commercial:0 "Commercial Hypersegment"
   district_giga_alderson_commercial_plural:0 "Commercial Hypersegments"
@@ -4177,17 +4163,9 @@
   district_giga_alderson_science_plural:0 "Research Hypersegments"
   district_giga_alderson_science_desc:0 "Research facilities of all kinds fill this hypersegment."
 
-  district_giga_alderson_admin:0 "Administrative Hypersegment"
-  district_giga_alderson_admin_plural:0 "Administrative Hypersegments"
-  district_giga_alderson_admin_desc:0 "$district_arcology_administrative_desc$"
-
-  district_giga_alderson_admin_spiritualist:0 "Ecclesiastical Hypersegment"
-  district_giga_alderson_admin_spiritualist_plural:0 "Ecclesiastical Hypersegments"
-  district_giga_alderson_admin_spiritualist_desc:0 "$district_arcology_religious_desc$"
-
-  district_giga_alderson_sanctuary:0 "Sanctuary Hypersegment"
-  district_giga_alderson_sanctuary_plural:0 "Sanctuary Hypersegments"
-  district_giga_alderson_sanctuary_desc:0 "$district_arcology_organic_housing_desc$"
+    district_giga_alderson_admin:0 "Administrative Hypersegment"
+    district_giga_alderson_admin_plural:0 "Administrative Hypersegments"
+    district_giga_alderson_admin_desc:0 "Dedicated to improving our empire's capacity to administer colonies."
 
   district_giga_alderson_consumer:0 "Industrial Hypersegment"
   district_giga_alderson_consumer_plural:0 "Industrial Hypersegments"
@@ -4201,10 +4179,9 @@
   district_giga_alderson_leisure_plural:0 "Leisure Hypersegments"
   district_giga_alderson_leisure_desc:0 "Where denizens of the hypersegment unwind in their leisure hours."
 
-  district_giga_alderson_pop_growth:0 "Spawning Hypersegment"
-  district_giga_alderson_pop_growth_plural:0 "Spawning Hypersegments"
-  district_giga_alderson_pop_growth_desc:0 "Tended by the scientific and gentle care of specialists, these pools stimulate our spawn into faster growth."
-  mod_district_giga_alderson_pop_growth_max:0 "Max $district_giga_alderson_pop_growth_plural$"
+    district_giga_alderson_pop_growth:0 "Spawning Hypersegment"
+    district_giga_alderson_pop_growth_plural:0 "Spawning Hypersegments"
+    district_giga_alderson_pop_growth_desc:0 "Tended by the scientific and gentle care of specialists, these pools stimulate our spawn into faster growth."
 
   district_giga_alderson_pop_assembly:0 "Assembly Hypersegment"
   district_giga_alderson_pop_assembly_plural:0 "Assembly Hypersegments"
